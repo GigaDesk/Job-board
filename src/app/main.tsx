@@ -1,4 +1,4 @@
-import NextButton from "./buttons/nextbutton";
+import NextButton from "../components/button/nextbutton";
 import StudentSchoolSurvey from "@/components/question/studentschoolsurvey";
 
 export default function Main() {
