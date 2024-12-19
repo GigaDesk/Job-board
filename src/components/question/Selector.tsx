@@ -2,7 +2,6 @@
 
 import Checkbox from "@mui/material/Checkbox";
 import { purple } from "@mui/material/colors";
-import { useState } from "react";
 
 export default function Selector(props: {
   checked: boolean;
