@@ -9,7 +9,7 @@ export default function InputPhoneNumber(props: {
   return (
     <div>
       <Stack spacing={1}>
-        <MuiPhoneNumber defaultCountry={"ke"} onChange={props.handlechange} onlyCountries={["ke"]} countryCodeEditable={false}/>;
+        <MuiPhoneNumber defaultCountry={"ke"} onChange={props.handlechange} onlyCountries={["ke"]} countryCodeEditable={false}/>
         <Button
           type="submit"
           color="primary"

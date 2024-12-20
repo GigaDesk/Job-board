@@ -28,7 +28,7 @@ export default function Detail() {
   return (
     <InputPhoneNumber
       handlechange={handleChange}
-      disableSubmit={SchoolSignupInstance.instance.phoneNumber == ""}
+      disableSubmit={SchoolSignupInstance.instance.phoneNumber.length != 13}
     />
   );
 }
