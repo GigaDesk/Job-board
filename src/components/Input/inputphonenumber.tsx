@@ -5,11 +5,14 @@ import MuiPhoneNumber from 'mui-phone-number';
 export default function InputPhoneNumber(props: {
   handlechange: any;
   disableSubmit: boolean;
+  value: string;
+  handleSubmit: any;
+  loading: boolean;
 }) {
   return (
     <div>
       <Stack spacing={1}>
-        <MuiPhoneNumber defaultCountry={"ke"} onChange={props.handlechange} onlyCountries={["ke"]} countryCodeEditable={false}/>
+        <MuiPhoneNumber defaultCountry={"ke"} onChange={props.handlechange} onlyCountries={["ke"]} countryCodeEditable={false} value={props.value}/>
         <Button
           type="submit"
           color="primary"
@@ -22,6 +25,8 @@ export default function InputPhoneNumber(props: {
             },
           }}
           disabled={props.disableSubmit}
+          onClick={props.handleSubmit}
+          loading={props.loading}
         >
           Submit
         </Button>
