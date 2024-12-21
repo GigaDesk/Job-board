@@ -4,19 +4,20 @@ import { SchoolSignupInstance } from "@/state/store";
 import { useEffect } from "react";
 import { useSnapshot } from "valtio";
 import { SchoolSignup } from "@/state/store";
-import { useLazyQuery, gql } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
+import { gql } from '../../../__generated__/gql' ;
 import Button from "@mui/joy/Button";
 import Stack from "@mui/joy/Stack";
 import MuiPhoneNumber from "mui-phone-number";
 
-const CHECK_SCHOOL_PHONENUMBER_EXISTENCE_QUERY = gql`
+const CHECK_SCHOOL_PHONENUMBER_EXISTENCE_QUERY = gql(`
   query checkphonenumber($phone_number: String!) {
     schoolPhoneNumberExists(phone_number: $phone_number) {
       verified
       unverified
     }
   }
-`;
+`);
 
 export default function Detail() {
   let phoneNumber: string;
