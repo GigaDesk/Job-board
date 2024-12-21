@@ -39,7 +39,6 @@ export default function Detail() {
   useEffect(() => {
     window.localStorage.setItem("SchoolSignUp", JSON.stringify(snap.instance));
     phoneNumber = snap.instance.phoneNumber;
-    console.log(phoneNumber);
   }, [snap.instance]);
 
   const [checkPhoneNumber, { loading, error, data }] = useLazyQuery(
