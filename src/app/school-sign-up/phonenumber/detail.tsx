@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useSnapshot } from "valtio";
 import { SchoolSignup } from "@/state/store";
 import { useLazyQuery } from "@apollo/client";
-import { gql } from '../../../__generated__/gql' ;
+import { gql } from "../../../__generated__/gql";
 import Button from "@mui/joy/Button";
 import Stack from "@mui/joy/Stack";
 import MuiPhoneNumber from "mui-phone-number";
@@ -46,6 +46,8 @@ export default function Detail() {
     CHECK_SCHOOL_PHONENUMBER_EXISTENCE_QUERY
   );
 
+  console.log(data);
+
   return (
     <div className="max-md:px-2">
       <Stack spacing={1}>
@@ -57,6 +59,14 @@ export default function Detail() {
           value={snap.instance.phoneNumber}
         />
         <div className="text-red-600">{error?.message}</div>
+        {data?.schoolPhoneNumberExists.unverified ? (
+          <div className="text-red-600">
+            Phone number exists but is unverified. Verify
+          </div>
+        ) : null}
+        {data?.schoolPhoneNumberExists.verified ? (
+          <div className="text-red-600"> Phone number already exists </div>
+        ) : null}
         <Button
           type="submit"
           color="primary"
