@@ -6,6 +6,33 @@ import Button from "@mui/joy/Button";
 import { useEffect, useState } from "react";
 import Stack from "@mui/joy/Stack";
 import Input from "@mui/joy/Input";
+import { useMutation } from "@apollo/client";
+import { gql } from "../../../__generated__/gql";
+
+const VERIFY_SCHOOL_MUTATION = gql(`
+  mutation verifySchool ($verificationinfo: verificationinfo!) {   
+  verifySchool(input: $verificationinfo) {    
+    id
+    createdAt
+    updatedAt
+    deletedAt
+    name
+    phone_number
+    password
+    badge
+    Website
+   }    
+}
+`);
+
+const SEND_CODE_MUTATION = gql(`
+   mutation sendCode($phone_number: String!) {   
+    sendCode(phone_number: $phone_number) {    
+      phone_number
+      success
+     }    
+ }
+`)
 
 export default function Detail() {
   const snap = useSnapshot(SchoolSignupInstance);
@@ -28,6 +55,10 @@ export default function Detail() {
     window.localStorage.setItem("SchoolSignUp", JSON.stringify(snap.instance));
   }, [snap.instance]);
 
+  const [verifySchool, { data, loading, error }] = useMutation(
+    VERIFY_SCHOOL_MUTATION
+  );
+
   return (
     <div className="grid">
       <Stack spacing={1}>
@@ -43,6 +74,7 @@ export default function Detail() {
             },
           }}
         />
+        <div className="text-red-600 mb-4 text-center">{error?.message}</div>
         <Button
           type="submit"
           color="primary"
@@ -55,6 +87,22 @@ export default function Detail() {
             },
           }}
           disabled={value.length != 6}
+          loading={loading}
+          onClick={(e) => {
+            e.preventDefault();
+            verifySchool({
+              variables: {
+                verificationinfo: {
+                  phone_number: snap.instance.phoneNumber,
+                  otp: value,
+                },
+              },
+            }).catch((res) => {
+              const errors = res.graphQLErrors.map((error: any) => {
+                console.log(error.message);
+              });
+            });
+          }}
         >
           Verify
         </Button>
