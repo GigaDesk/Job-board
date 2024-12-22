@@ -8,21 +8,29 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
 
-export default function InputPassword(props: {
+export default function InputPasswordConfirmation(props: {
   handlechange: any;
-  value: string;
+  expectedValue: string;
 }) {
-  //let color = "#881337";
-  let color = "#14962D";
+  const [value, setValue] = useState("");
+  const [color, setColor] = useState("#881337");
+
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
+  const handleChange = (event: any) => {
+    props.handlechange(event);
+    setValue(event.target.value);
+    if (event.target.value == props.expectedValue) {
+      setColor("#14962D");
+    } else {
+      setColor("#881337");
+    }
+  };
+
   return (
     <div>
-      <Stack
-        spacing={0.5}
-        sx={{ "--hue": Math.min(props.value.length * 10, 120) }}
-      >
+      <Stack spacing={0.5} sx={{ "--hue": Math.min(value.length * 10, 120) }}>
         <Input
           type={showPassword ? "text" : "password"}
           placeholder="Confirm password in here…"
@@ -38,18 +46,16 @@ export default function InputPassword(props: {
               </div>
             )
           }
-          value={props.value}
-          onChange={props.handlechange}
+          value={value}
+          onChange={handleChange}
         />
         <Typography
           level="body-xs"
           sx={{ alignSelf: "flex-end", color: color }}
         >
-          {props.value == "" && "Empty"}
-          {props.value.length >= 1 &&
-            props.value != "Kisii@2024" &&
-            "Incorrect"}
-          {props.value == "Kisii@2024" && "Correct"}
+          {value == "" && "Empty"}
+          {value != props.expectedValue && value != "" && "Incorrect"}
+          {value == props.expectedValue && "Correct"}
         </Typography>
       </Stack>
     </div>
