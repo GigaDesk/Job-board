@@ -948,6 +948,13 @@ export type Verificationinfo = {
   phone_number: Scalars['String']['input'];
 };
 
+export type CreateSchoolMutationVariables = Exact<{
+  newschool: NewSchool;
+}>;
+
+
+export type CreateSchoolMutation = { __typename?: 'Mutation', createSchool?: { __typename?: 'UnverifiedSchool', id: number, createdAt: any, updatedAt: any, deletedAt?: any | null, name: string, phone_number: string, password: string, badge?: string | null, Website?: string | null } | null };
+
 export type CheckphonenumberQueryVariables = Exact<{
   phone_number: Scalars['String']['input'];
 }>;
@@ -956,4 +963,5 @@ export type CheckphonenumberQueryVariables = Exact<{
 export type CheckphonenumberQuery = { __typename?: 'Query', schoolPhoneNumberExists: { __typename?: 'PhoneNumberExists', verified: boolean, unverified: boolean } };
 
 
+export const CreateSchoolDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createSchool"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newschool"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"NewSchool"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createSchool"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newschool"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"deletedAt"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}},{"kind":"Field","name":{"kind":"Name","value":"password"}},{"kind":"Field","name":{"kind":"Name","value":"badge"}},{"kind":"Field","name":{"kind":"Name","value":"Website"}}]}}]}}]} as unknown as DocumentNode<CreateSchoolMutation, CreateSchoolMutationVariables>;
 export const CheckphonenumberDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"checkphonenumber"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"schoolPhoneNumberExists"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"phone_number"},"value":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"unverified"}}]}}]}}]} as unknown as DocumentNode<CheckphonenumberQuery, CheckphonenumberQueryVariables>;
