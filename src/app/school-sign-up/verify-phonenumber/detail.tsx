@@ -6,6 +6,7 @@ import Button from "@mui/joy/Button";
 import { useEffect, useState } from "react";
 import Stack from "@mui/joy/Stack";
 import Input from "@mui/joy/Input";
+import SendOtp from "./sendotp";
 import { useMutation } from "@apollo/client";
 import { gql } from "../../../__generated__/gql";
 
@@ -24,15 +25,6 @@ const VERIFY_SCHOOL_MUTATION = gql(`
    }    
 }
 `);
-
-const SEND_CODE_MUTATION = gql(`
-   mutation sendCode($phone_number: String!) {   
-    sendCode(phone_number: $phone_number) {    
-      phone_number
-      success
-     }    
- }
-`)
 
 export default function Detail() {
   const snap = useSnapshot(SchoolSignupInstance);
@@ -106,20 +98,7 @@ export default function Detail() {
         >
           Verify
         </Button>
-        <Button
-          type="submit"
-          color="primary"
-          sx={{
-            "&.MuiButton-colorPrimary": {
-              backgroundColor: "#3B0764",
-              "&:hover": {
-                backgroundColor: "#581C87",
-              },
-            },
-          }}
-        >
-          Didn't receive code? Resend
-        </Button>
+        <SendOtp />
       </Stack>
     </div>
   );
