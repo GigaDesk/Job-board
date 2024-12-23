@@ -1,7 +1,5 @@
 "use client";
 
-import { SchoolSignupInstance } from "@/state/store";
-import { useSnapshot } from "valtio";
 import Button from "@mui/joy/Button";
 import Stack from "@mui/joy/Stack";
 import { useMutation } from "@apollo/client";
@@ -16,9 +14,7 @@ const SEND_CODE_MUTATION = gql(`
  }
 `);
 
-export default function SendOtp() {
-  const snap = useSnapshot(SchoolSignupInstance);
-
+export default function SendOtp(props: { phonenumber: string }) {
   const [sendCode, { data, loading, error }] = useMutation(SEND_CODE_MUTATION);
   console.log(data);
 
@@ -48,7 +44,7 @@ export default function SendOtp() {
             e.preventDefault();
             sendCode({
               variables: {
-                phone_number: snap.instance.phoneNumber,
+                phone_number: props.phonenumber,
               },
             }).catch((res) => {
               const errors = res.graphQLErrors.map((error: any) => {
