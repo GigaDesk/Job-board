@@ -17,3 +17,7 @@ export const StudentSchoolSurveyInstance = proxy({
 export const SchoolSignupInstance = proxy({
     instance: { name: "", phoneNumber: "", password: ""  } as SchoolSignup,
 });
+
+export const AuthenticationToken = proxy({
+    token: "" as string | null | undefined
+})
