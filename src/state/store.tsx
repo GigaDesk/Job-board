@@ -21,3 +21,7 @@ export const SchoolSignupInstance = proxy({
 export const AuthenticationToken = proxy({
     token: "" as string | null | undefined
 })
+
+export const SchoolPasswordResetValue= proxy({
+    password: "" as string
+})
