@@ -43,7 +43,7 @@ export default function Detail() {
         }}
         disabled={password != snap.password}
       >
-        Sign up
+        Reset password
       </Button>
     </div>
   );
