@@ -98,7 +98,7 @@ export default function Detail() {
         >
           Verify
         </Button>
-        <SendOtp />
+        <SendOtp phonenumber={snap.instance.phoneNumber}/>
       </Stack>
     </div>
   );
