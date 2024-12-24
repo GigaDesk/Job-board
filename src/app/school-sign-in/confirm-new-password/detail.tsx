@@ -1,10 +1,28 @@
 "use client";
 
+import { gql } from "@/__generated__/gql";
 import InputPasswordConfirmation from "@/components/Input/inputpasswordconfirmation";
 import { SchoolPasswordResetValue } from "@/state/store";
+import { useMutation } from "@apollo/client";
 import Button from "@mui/joy/Button";
 import { useEffect, useState } from "react";
 import { useSnapshot } from "valtio";
+
+const RESET_SCHOOL_PASSWORD_MUTATION = gql(`
+   mutation resetSchoolPassword($new_password: String!){
+    resetSchoolPassword(new_password: $new_password){
+      id
+      createdAt
+      updatedAt
+      deletedAt
+      name
+      phone_number
+      password
+      badge
+      Website
+    }
+  }
+ `);
 
 export default function Detail() {
   const snap = useSnapshot(SchoolPasswordResetValue);
@@ -23,13 +41,19 @@ export default function Detail() {
     }
   }, []);
 
+  const [resetSchoolPassword, { loading, error, data }] = useMutation(
+    RESET_SCHOOL_PASSWORD_MUTATION
+  );
+
+  console.log(data);
+
   return (
     <div className="grid">
       <InputPasswordConfirmation
         handlechange={handleChange}
         expectedValue={snap.password}
       />
-      <div className="text-red-600 mb-4 text-center"></div>
+      <div className="text-red-600 mb-4 text-center">{error?.message}</div>
       <Button
         type="submit"
         color="primary"
@@ -42,6 +66,19 @@ export default function Detail() {
           },
         }}
         disabled={password != snap.password}
+        onClick={(e) => {
+          e.preventDefault();
+          resetSchoolPassword({
+            variables: {
+              new_password: snap.password,
+            },
+          }).catch((res) => {
+            const errors = res.graphQLErrors.map((error: any) => {
+              console.log(error.message);
+            });
+          });
+        }}
+        loading={loading}
       >
         Reset password
       </Button>

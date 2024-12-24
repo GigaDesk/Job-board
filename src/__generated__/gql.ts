@@ -14,6 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
+    "\n   mutation resetSchoolPassword($new_password: String!){\n    resetSchoolPassword(new_password: $new_password){\n      id\n      createdAt\n      updatedAt\n      deletedAt\n      name\n      phone_number\n      password\n      badge\n      Website\n    }\n  }\n ": types.ResetSchoolPasswordDocument,
     "\nmutation schoolLogin($schoollogin: SchoolLogin!) {   \n  schoolLogin(input: $schoollogin) \n}\n": types.SchoolLoginDocument,
     "\nmutation forgotSchoolPassword($phone_number: String!){\n  forgotSchoolPassword(phone_number: $phone_number){\n    phone_number\n    success\n  }\n}\n": types.ForgotSchoolPasswordDocument,
     "\n   mutation requestSchoolPasswordReset($verificationinfo: verificationinfo!){\n      requestSchoolPasswordReset(input: $verificationinfo)\n   }\n": types.RequestSchoolPasswordResetDocument,
@@ -37,6 +38,10 @@ const documents = {
  */
 export function gql(source: string): unknown;
 
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n   mutation resetSchoolPassword($new_password: String!){\n    resetSchoolPassword(new_password: $new_password){\n      id\n      createdAt\n      updatedAt\n      deletedAt\n      name\n      phone_number\n      password\n      badge\n      Website\n    }\n  }\n "): (typeof documents)["\n   mutation resetSchoolPassword($new_password: String!){\n    resetSchoolPassword(new_password: $new_password){\n      id\n      createdAt\n      updatedAt\n      deletedAt\n      name\n      phone_number\n      password\n      badge\n      Website\n    }\n  }\n "];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
