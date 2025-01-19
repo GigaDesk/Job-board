@@ -5,7 +5,7 @@ export default function Navbar() {
     <div className=" flex justify-between">
       <div className="grid content-center p-2">
         <button
-          className="p-2 rounded-lg text-black text-lg hover:bg-hover-gray"
+          className="p-2 rounded-lg text-black text-xl hover:bg-hover-gray"
           style={{ fontFamily: "McLaren" }}
         >
           eardrum
