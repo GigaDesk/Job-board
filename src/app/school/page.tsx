@@ -1,5 +1,6 @@
 import Sidebar from "./sidebar";
 import Navbar from "./navbar";
+import Main from "./main";
 
 export default function School() {
   return (
@@ -10,7 +11,7 @@ export default function School() {
       <Sidebar />
       <div className="grow grid grid-rows-[74px_1fr]">
         <Navbar />
-        <div className=""></div>
+        <Main />
       </div>
     </div>
   );
