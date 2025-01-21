@@ -6,6 +6,7 @@ import { Unstable_Popup as BasePopup } from "@mui/base/Unstable_Popup";
 export interface PopupButtonProps {
   button: React.JSX.Element;
   popupElement: React.JSX.Element;
+  popupPlacement: any;
 }
 
 export default function PopupButton(props: PopupButtonProps) {
@@ -20,7 +21,7 @@ export default function PopupButton(props: PopupButtonProps) {
   return (
     <div className="grid content-center p-2">
       <button onClick={handleClick}>{props.button}</button>
-      <BasePopup open={open} anchor={anchor} placement="bottom-start">
+      <BasePopup open={open} anchor={anchor} placement={props.popupPlacement}>
         {props.popupElement}
       </BasePopup>
     </div>
