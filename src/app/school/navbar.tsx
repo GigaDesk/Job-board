@@ -9,6 +9,7 @@ export default function Navbar() {
       <PopupButton
         button={<EardrumStatement />}
         popupElement={<ProductContent />}
+        popupPlacement="bottom-start"
       />
       <SchoolProfile />
     </div>
