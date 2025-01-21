@@ -15,6 +15,8 @@ export default {
         'light-gray':'#F0F4F9',
         'hover-gray':'#DDE3EA',
         'border-gray':'#E4E4E5',
+        'border-table-gray':'#DADCE0',
+        'text-table-gray':'#5F6368',
         'black':'#1B1C1D'
       },
     },
