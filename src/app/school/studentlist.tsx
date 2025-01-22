@@ -6,7 +6,7 @@ export default function StudentList() {
           <div className="grid grid-cols-3">
             <div className="">Leon Kenyaga</div>
             <div className=""> SCT-251-035/2019</div>
-            <div className="">11/12/2002</div>
+            <div className="">+254719226150</div>
           </div>
         </div>
       </div>
@@ -15,7 +15,7 @@ export default function StudentList() {
           <div className="grid grid-cols-3">
             <div className="">Leon Kenyaga</div>
             <div className=""> SCT-251-035/2019</div>
-            <div className="">11/12/2002</div>
+            <div className="">+254719226150</div>
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@ export default function StudentList() {
           <div className="grid grid-cols-3">
             <div className="">Leon Kenyaga</div>
             <div className=""> SCT-251-035/2019</div>
-            <div className="">11/12/2002</div>
+            <div className="">+254719226150</div>
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@ export default function StudentList() {
           <div className="grid grid-cols-3">
             <div className="">Leon Kenyaga</div>
             <div className=""> SCT-251-035/2019</div>
-            <div className="">11/12/2002</div>
+            <div className="">+254719226150</div>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@ export default function StudentList() {
           <div className="grid grid-cols-3">
             <div className="">Leon Kenyaga</div>
             <div className=""> SCT-251-035/2019</div>
-            <div className="">11/12/2002</div>
+            <div className="">+254756142241</div>
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@ export default function StudentList() {
           <div className="grid grid-cols-3">
             <div className="">Leon Kenyaga</div>
             <div className=""> SCT-251-035/2019</div>
-            <div className="">11/12/2002</div>
+            <div className="">+254756142241</div>
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@ export default function StudentList() {
           <div className="grid grid-cols-3">
             <div className="">Leon Kenyaga</div>
             <div className=""> SCT-251-035/2019</div>
-            <div className="">11/12/2002</div>
+            <div className="">+254756142241</div>
           </div>
         </div>
       </div>
@@ -69,7 +69,7 @@ export default function StudentList() {
           <div className="grid grid-cols-3">
             <div className="">Leon Kenyaga</div>
             <div className=""> SCT-251-035/2019</div>
-            <div className="">11/12/2002</div>
+            <div className="">+254756142241</div>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@ export default function StudentList() {
           <div className="grid grid-cols-3">
             <div className="">Leon Kenyaga</div>
             <div className=""> SCT-251-035/2019</div>
-            <div className="">11/12/2002</div>
+            <div className="">+254756142241</div>
           </div>
         </div>
       </div>
@@ -87,7 +87,7 @@ export default function StudentList() {
           <div className="grid grid-cols-3">
             <div className="">Leon Kenyaga</div>
             <div className=""> SCT-251-035/2019</div>
-            <div className="">11/12/2002</div>
+            <div className="">+254756142241</div>
           </div>
         </div>
       </div>
@@ -96,7 +96,7 @@ export default function StudentList() {
           <div className="grid grid-cols-3">
             <div className="">Leon Kenyaga</div>
             <div className=""> SCT-251-035/2019</div>
-            <div className="">11/12/2002</div>
+            <div className="">+254756142241</div>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@ export default function StudentList() {
           <div className="grid grid-cols-3">
             <div className="">Leon Kenyaga</div>
             <div className=""> SCT-251-035/2019</div>
-            <div className="">11/12/2002</div>
+            <div className="">+254756142241</div>
           </div>
         </div>
       </div>
@@ -114,7 +114,7 @@ export default function StudentList() {
           <div className="grid grid-cols-3">
             <div className="">Leon Kenyaga</div>
             <div className=""> SCT-251-035/2019</div>
-            <div className="">11/12/2002</div>
+            <div className="">+254756142241</div>
           </div>
         </div>
       </div>
