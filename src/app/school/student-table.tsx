@@ -18,7 +18,7 @@ export default function StudentTable() {
         <div className="border-b border-border-table-gray grid grid-cols-3 px-4 pr-6 items-center text-text-table-gray">
           <div className="">Name </div>
           <div className=""> Registration Number</div>
-          <div className="">Date of Birth</div>
+          <div className="">Phone Number</div>
         </div>
         <StudentList />
       </div>
