@@ -26,7 +26,7 @@ export default function SchoolProfile() {
         <div className="shadow-lg">
           <Card sx={{ backgroundColor: "#F0F4F9" }}>
             <div
-              className="w-96 h-96 rounded-xl py-4 text-sm grid justify-items-center"
+              className="w-72 md:w-96 h-96 rounded-xl py-4 text-sm grid justify-items-center"
               style={{ fontFamily: "McLaren" }}
             >
               <Stack spacing={2}>
