@@ -9,7 +9,7 @@ export default function ProductContent() {
     <div className="shadow-xl">
       <Card sx={{ backgroundColor: "#F0F4F9" }}>
         <div
-          className="w-80 h-52 rounded-xl py-4 text-sm"
+          className="w-72 md:w-80 h-52 rounded-xl py-4 text-sm"
           style={{ fontFamily: "McLaren" }}
         >
           <Stack spacing={1}>
