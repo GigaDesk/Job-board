@@ -6,13 +6,19 @@ import MenuIcon from "@mui/icons-material/Menu";
 import RoutesToggle from "./routes-toggle";
 import PopupRoutes from "./popup-routes";
 
-export default function Navbar() {
+export interface NavbarProps {
+  onClickMenu?: any;
+}
+
+export default function Navbar(props: NavbarProps) {
   return (
     <div>
       <div className="flex justify-between">
         <div className="max-lg:grid max-lg:grid-cols-[50px_1fr]">
           <div className="lg:hidden p-4 grid content-center">
-            <MenuIcon sx={{ color: "#1C2B33" }} />
+            <button onClick={props.onClickMenu}>
+              <MenuIcon sx={{ color: "#1C2B33" }} />
+            </button>
           </div>
           <PopupButton
             button={<EardrumStatement />}
