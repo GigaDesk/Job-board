@@ -1,6 +1,6 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavbarProps } from "./navbar";
-import { Stack } from "@mui/joy";
+import PagesSection from "./pages-section";
 
 export default function SideDrawerContent(props: NavbarProps) {
   return (
@@ -16,14 +16,7 @@ export default function SideDrawerContent(props: NavbarProps) {
           <MenuIcon sx={{ color: "#1C2B33" }} />
         </button>
       </div>
-      <div className="p-4">
-        <Stack spacing={2}>
-          <div className="">Pages</div>
-          <div className="pl-4 py-2 rounded-full bg-light-blue text-bright-blue">
-            Home
-          </div>
-        </Stack>
-      </div>
+      <PagesSection />
     </div>
   );
 }
