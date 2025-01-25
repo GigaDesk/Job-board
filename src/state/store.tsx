@@ -29,3 +29,7 @@ export const SchoolPasswordResetValue= proxy({
 export const SidebarState = proxy({
     showPagesSection: false
 })
+
+export const SideDrawerState = proxy({
+    show: false
+})
