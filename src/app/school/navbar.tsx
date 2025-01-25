@@ -5,18 +5,19 @@ import ProductContent from "./product-content";
 import MenuIcon from "@mui/icons-material/Menu";
 import RoutesToggle from "./routes-toggle";
 import PopupRoutes from "./popup-routes";
+import { SideDrawerState } from "@/state/store";
 
-export interface NavbarProps {
-  onClickMenu?: any;
-}
+export default function Navbar() {
+  const handleMenuClick = () => {
+    SideDrawerState.show = true;
+  };
 
-export default function Navbar(props: NavbarProps) {
   return (
     <div>
       <div className="flex justify-between">
         <div className="max-lg:grid max-lg:grid-cols-[50px_1fr]">
           <div className="lg:hidden p-4 grid content-center">
-            <button onClick={props.onClickMenu}>
+            <button onClick={handleMenuClick}>
               <MenuIcon sx={{ color: "#1C2B33" }} />
             </button>
           </div>

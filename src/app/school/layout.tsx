@@ -1,15 +1,19 @@
 "use client";
 
 import Sidebar from "./sidebar";
-import Navbar from "./navbar";
 import CompanyStatement from "@/components/splash/companystatement";
-import Main from "./main";
 import SwipeableTemporaryDrawer from "@/components/drawer/swipeabledrawer";
-import React from "react";
 import SideDrawerContent from "./sidedrawercontent";
+import { useSnapshot } from "valtio";
+import { SideDrawerState } from "@/state/store";
+import Navbar from "./navbar";
 
-export default function School() {
-  const [state, setState] = React.useState(false);
+export default function SchoolPageLayout({
+  home
+}: {
+  home: React.ReactNode;
+}) {
+  const snap = useSnapshot(SideDrawerState);
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -21,8 +25,7 @@ export default function School() {
       ) {
         return;
       }
-
-      setState(open);
+      SideDrawerState.show = open;
     };
 
   return (
@@ -32,23 +35,15 @@ export default function School() {
     >
       <Sidebar />
       <div className="grow grid h-screen relative">
-        <Navbar
-          onClickMenu={() => {
-            setState(true);
-          }}
-        />
-        <Main />
+        <Navbar/>
+        {home}
         <div className="p-2">
           <CompanyStatement />
         </div>
       </div>
       <div className="lg:hidden">
-        <SwipeableTemporaryDrawer toggleDrawer={toggleDrawer} open={state}>
-          <SideDrawerContent
-            onClickMenu={() => {
-              setState(false);
-            }}
-          />
+        <SwipeableTemporaryDrawer toggleDrawer={toggleDrawer} open={snap.show}>
+          <SideDrawerContent />
         </SwipeableTemporaryDrawer>
       </div>
     </div>
