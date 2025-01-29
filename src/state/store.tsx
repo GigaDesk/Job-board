@@ -25,3 +25,11 @@ export const AuthenticationToken = proxy({
 export const SchoolPasswordResetValue= proxy({
     password: "" as string
 })
+
+export const SidebarState = proxy({
+    showPagesSection: false
+})
+
+export const SideDrawerState = proxy({
+    show: false
+})
