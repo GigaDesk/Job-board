@@ -1,5 +1,5 @@
 import StudentList from "./studentlist";
-import PopupButton from "./popup-button";
+import PopupButton from "@/components/button/popup-button";
 import AddStudent from "./add-student";
 import AddStudentPopup from "./add-student-popup";
 
