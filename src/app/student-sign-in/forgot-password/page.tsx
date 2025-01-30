@@ -1,7 +1,7 @@
-import Main from "./main";
 import CompanyStatement from "@/components/splash/companystatement";
+import Main from "./main";
 
-export default function StudentSignIn() {
+export default function ForgotStudentPassword() {
   return (
     <div
       className="min-h-screen grid content-center bg-white relative"
