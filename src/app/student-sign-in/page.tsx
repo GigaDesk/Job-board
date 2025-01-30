@@ -1,7 +1,7 @@
 import Main from "./main";
 import CompanyStatement from "@/components/splash/companystatement";
 
-export default function SchoolSignIn() {
+export default function StudentSignIn() {
   return (
     <div
       className="min-h-screen grid content-center bg-white relative"
