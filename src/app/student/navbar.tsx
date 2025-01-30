@@ -1,11 +1,11 @@
 import PopupButton from "@/components/button/popup-button";
 import SchoolProfile from "./school-profile";
-import EardrumStatement from "./eardrum-statement";
-import ProductContent from "./product-content";
+import SchoolProfilePopUp from "@/components/popup/school-profile-popup";
+import StudentProfile from "./student-profile";
+import StudentProfilePopUp from "@/components/popup/student-profile-popup";
 import MenuIcon from "@mui/icons-material/Menu";
 import RoutesToggle from "@/components/button/routes-toggle";
 import PopupRoutes from "@/components/popup/popup-routes";
-import SchoolProfilePopUp from "../../components/popup/school-profile-popup";
 import { SideDrawerState } from "@/state/store";
 
 export default function Navbar() {
@@ -23,16 +23,16 @@ export default function Navbar() {
             </button>
           </div>
           <PopupButton
-            button={<EardrumStatement />}
-            popupElement={<ProductContent />}
+            button={<SchoolProfile />}
+            popupElement={<SchoolProfilePopUp />}
             popupPlacement="bottom-start"
           />
         </div>
         <PopupButton
-          button={<SchoolProfile />}
-          popupElement={<SchoolProfilePopUp />}
-          popupPlacement="bottom-start"
-        />
+            button={<StudentProfile />}
+            popupElement={<StudentProfilePopUp />}
+            popupPlacement="bottom-start"
+          />
       </div>
       <div className="grid justify-items-start">
         <PopupButton

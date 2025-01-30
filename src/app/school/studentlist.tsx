@@ -8,7 +8,6 @@ export default function StudentList() {
               Leon Kenyaga
             </div>
             <div className="h-[20px] overflow-x-clip overflow-y-clip">
-              {" "}
               SCT-251-035/2019
             </div>
             <div className="max-md:hidden h-[20px] overflow-x-clip overflow-y-clip">
@@ -24,7 +23,6 @@ export default function StudentList() {
               Leon Kenyaga
             </div>
             <div className="h-[20px] overflow-x-clip overflow-y-clip">
-              {" "}
               SCT-251-035/2019
             </div>
             <div className="max-md:hidden h-[20px] overflow-x-clip overflow-y-clip">
