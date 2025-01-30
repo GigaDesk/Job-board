@@ -1,9 +1,9 @@
 "use client";
 
-import Sidebar from "./sidebar";
+import Sidebar from "@/components/drawer/sidebar";
 import CompanyStatement from "@/components/splash/companystatement";
 import SwipeableTemporaryDrawer from "@/components/drawer/swipeabledrawer";
-import SideDrawerContent from "./sidedrawercontent";
+import SideDrawerContent from "@/components/drawer/sidedrawercontent";
 import { useSnapshot } from "valtio";
 import { SideDrawerState } from "@/state/store";
 import Navbar from "./navbar";
