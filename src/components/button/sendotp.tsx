@@ -3,7 +3,7 @@
 import Button from "@mui/joy/Button";
 import Stack from "@mui/joy/Stack";
 import { useMutation } from "@apollo/client";
-import { gql } from "../../../__generated__/gql";
+import { gql } from "../../__generated__/gql";
 
 const SEND_CODE_MUTATION = gql(`
    mutation sendCode($phone_number: String!) {   
