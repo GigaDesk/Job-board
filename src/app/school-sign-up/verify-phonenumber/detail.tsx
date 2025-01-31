@@ -6,7 +6,7 @@ import Button from "@mui/joy/Button";
 import { useEffect, useState } from "react";
 import Stack from "@mui/joy/Stack";
 import Input from "@mui/joy/Input";
-import SendOtp from "./sendotp";
+import SendOtp from "../../../components/button/sendotp";
 import { useMutation } from "@apollo/client";
 import { gql } from "../../../__generated__/gql";
 
