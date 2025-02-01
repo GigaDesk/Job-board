@@ -4,7 +4,7 @@ import Detail from "./detail";
 export default function Main() {
   return (
     <div className="grid content-center justify-items-center grid-rows-2 gap-8">
-      <Question question="What is your official student phone number ? " />
+      <Question question="What is your student registration number ? " />
       <Detail />
     </div>
   );
