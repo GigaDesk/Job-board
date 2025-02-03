@@ -6,7 +6,16 @@ import Stack from "@mui/joy/Stack";
 import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
 import MuiPhoneNumber from "mui-phone-number";
+import { useMutation } from "@apollo/client";
+import { gql } from "../../__generated__/gql";
 
+const ADD_STUDENT_MUTATION = gql(`
+  mutation AddStudent($newstudents: [NewStudent!]!) {   
+    AddStudents( students: $newstudents ) {    
+      name
+     }    
+ }
+`);
 export default function AddStudentPopup() {
   const [name, setName] = React.useState("");
 
@@ -47,11 +56,14 @@ export default function AddStudentPopup() {
     }
   }, [name, registrationNumber, password, phoneNumber]);
 
+  const [addStudent, { data, loading, error }] =
+    useMutation(ADD_STUDENT_MUTATION);
+
   return (
     <div className="shadow-xl">
       <Card sx={{ backgroundColor: "#F0F4F9" }}>
         <div
-          className="w-80 h-60 rounded-xl p-4 text-sm"
+          className="w-80 h-70 rounded-xl p-4 text-sm"
           style={{ fontFamily: "McLaren" }}
         >
           <Stack spacing={1}>
@@ -80,9 +92,33 @@ export default function AddStudentPopup() {
               countryCodeEditable={false}
               value={phoneNumber}
             />
-            <Button sx={{ fontFamily: "McLaren" }} disabled={disableSubmit}>
+            <Button
+              sx={{ fontFamily: "McLaren" }}
+              disabled={disableSubmit}
+              loading={loading}
+              onClick={(e) => {
+                e.preventDefault();
+                addStudent({
+                  variables: {
+                    newstudents: [
+                      {
+                        name: name,
+                        registration_number: registrationNumber,
+                        password: password,
+                        phone_number: phoneNumber,
+                      },
+                    ],
+                  },
+                }).catch((res) => {
+                  const errors = res.graphQLErrors.map((error: any) => {
+                    console.log(error.message);
+                  });
+                });
+              }}
+            >
               Submit
             </Button>
+            <div className="text-red-600">{error?.message}</div>
           </Stack>
         </div>
       </Card>
