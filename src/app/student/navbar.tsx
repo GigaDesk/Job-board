@@ -24,7 +24,7 @@ export default function Navbar() {
           </div>
           <PopupButton
             button={<SchoolProfile />}
-            popupElement={<SchoolProfilePopUp />}
+            popupElement={<SchoolProfilePopUp loading/>}
             popupPlacement="bottom-start"
           />
         </div>
