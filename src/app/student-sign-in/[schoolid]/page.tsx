@@ -1,7 +1,11 @@
 import Main from "./main";
 import CompanyStatement from "@/components/splash/companystatement";
 
-export default function StudentSignIn() {
+export default function StudentSignIn({
+  params,
+}: {
+  params: { schoolid: number };
+}) {
   return (
     <div
       className="min-h-screen grid content-center bg-white relative"
