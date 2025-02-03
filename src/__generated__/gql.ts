@@ -21,6 +21,9 @@ const documents = {
     "\n  mutation createSchool($newschool: NewSchool!) {   \n    createSchool( input: $newschool ) {    \n      id\n      createdAt\n      updatedAt\n      deletedAt\n      name\n      phone_number\n      password\n      badge\n      Website\n     }    \n }\n": types.CreateSchoolDocument,
     "\n  query checkphonenumber($phone_number: String!) {\n    schoolPhoneNumberExists(phone_number: $phone_number) {\n      verified\n      unverified\n    }\n  }\n": types.CheckphonenumberDocument,
     "\n  mutation verifySchool ($verificationinfo: verificationinfo!) {   \n  verifySchool(input: $verificationinfo) {    \n    id\n    createdAt\n    updatedAt\n    deletedAt\n    name\n    phone_number\n    password\n    badge\n    Website\n   }    \n}\n": types.VerifySchoolDocument,
+    "\n  mutation AddStudent($newstudents: [NewStudent!]!) {   \n    AddStudents( students: $newstudents ) {    \n      name\n     }    \n }\n": types.AddStudentDocument,
+    "\n  query SchoolProfile{\n     getSchoolProfile{\n         name\n         phone_number\n    }\n  }\n": types.SchoolProfileDocument,
+    "\n  query SchoolStudents{\n     getSchoolProfile{\n      students{\n        id\n        name\n        registration_number\n        phone_number\n      }\n    }\n  }\n": types.SchoolStudentsDocument,
     "\n   mutation sendCode($phone_number: String!) {   \n    sendCode(phone_number: $phone_number) {    \n      phone_number\n      success\n     }    \n }\n": types.SendCodeDocument,
 };
 
@@ -66,6 +69,18 @@ export function gql(source: "\n  query checkphonenumber($phone_number: String!) 
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  mutation verifySchool ($verificationinfo: verificationinfo!) {   \n  verifySchool(input: $verificationinfo) {    \n    id\n    createdAt\n    updatedAt\n    deletedAt\n    name\n    phone_number\n    password\n    badge\n    Website\n   }    \n}\n"): (typeof documents)["\n  mutation verifySchool ($verificationinfo: verificationinfo!) {   \n  verifySchool(input: $verificationinfo) {    \n    id\n    createdAt\n    updatedAt\n    deletedAt\n    name\n    phone_number\n    password\n    badge\n    Website\n   }    \n}\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation AddStudent($newstudents: [NewStudent!]!) {   \n    AddStudents( students: $newstudents ) {    \n      name\n     }    \n }\n"): (typeof documents)["\n  mutation AddStudent($newstudents: [NewStudent!]!) {   \n    AddStudents( students: $newstudents ) {    \n      name\n     }    \n }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query SchoolProfile{\n     getSchoolProfile{\n         name\n         phone_number\n    }\n  }\n"): (typeof documents)["\n  query SchoolProfile{\n     getSchoolProfile{\n         name\n         phone_number\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query SchoolStudents{\n     getSchoolProfile{\n      students{\n        id\n        name\n        registration_number\n        phone_number\n      }\n    }\n  }\n"): (typeof documents)["\n  query SchoolStudents{\n     getSchoolProfile{\n      students{\n        id\n        name\n        registration_number\n        phone_number\n      }\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
