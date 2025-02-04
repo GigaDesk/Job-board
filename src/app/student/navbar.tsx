@@ -1,5 +1,5 @@
 import PopupButton from "@/components/button/popup-button";
-import SchoolProfile from "./school-profile";
+import StudentSchoolProfile from "./student-school-profile";
 import SchoolProfilePopUp from "@/components/popup/school-profile-popup";
 import StudentProfile from "./student-profile";
 import StudentProfilePopUp from "@/components/popup/student-profile-popup";
@@ -7,11 +7,29 @@ import MenuIcon from "@mui/icons-material/Menu";
 import RoutesToggle from "@/components/button/routes-toggle";
 import PopupRoutes from "@/components/popup/popup-routes";
 import { SideDrawerState } from "@/state/store";
+import { gql } from "../../__generated__/gql";
+import { useQuery } from "@apollo/client";
+
+const GET_STUDENT_PROFILE_QUERY = gql(`
+query studentProfile{
+  getStudentProfile{
+    name
+    phone_number
+    registration_number
+    school{
+      name
+      phone_number
+    }
+  }
+}
+`);
 
 export default function Navbar() {
   const handleMenuClick = () => {
     SideDrawerState.show = true;
   };
+
+  const { loading, data, error } = useQuery(GET_STUDENT_PROFILE_QUERY);
 
   return (
     <div>
@@ -23,16 +41,34 @@ export default function Navbar() {
             </button>
           </div>
           <PopupButton
-            button={<SchoolProfile />}
-            popupElement={<SchoolProfilePopUp loading/>}
+            button={
+              <StudentSchoolProfile
+                name={data?.getStudentProfile?.school.name}
+                loading={loading}
+              />
+            }
+            popupElement={
+              <SchoolProfilePopUp
+                name={data?.getStudentProfile?.school.name}
+                phone_number={data?.getStudentProfile?.school.phone_number}
+                loading={loading}
+              />
+            }
             popupPlacement="bottom-start"
           />
         </div>
         <PopupButton
-            button={<StudentProfile />}
-            popupElement={<StudentProfilePopUp />}
-            popupPlacement="bottom-start"
-          />
+          button={<StudentProfile />}
+          popupElement={
+            <StudentProfilePopUp
+              name={data?.getStudentProfile?.name}
+              phone_number={data?.getStudentProfile?.phone_number}
+              registration_number={data?.getStudentProfile?.registration_number}
+              loading={loading}
+            />
+          }
+          popupPlacement="bottom-start"
+        />
       </div>
       <div className="grid justify-items-start">
         <PopupButton
