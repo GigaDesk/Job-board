@@ -25,6 +25,7 @@ const documents = {
     "\n  query SchoolProfile{\n     getSchoolProfile{\n         name\n         phone_number\n    }\n  }\n": types.SchoolProfileDocument,
     "\n  query SchoolStudents{\n     getSchoolProfile{\n      students{\n        id\n        name\n        registration_number\n        phone_number\n      }\n    }\n  }\n": types.SchoolStudentsDocument,
     "\nmutation studentLogin($studentlogin: StudentLogin!) {   \n  studentLogin(input: $studentlogin)\n}\n": types.StudentLoginDocument,
+    "\nmutation forgotStudentPassword($schoolid: Int!, $registration_number: String!){\n  forgotStudentPassword(schoolid: $schoolid, registration_number: $registration_number){\n    phone_number\n    success\n  }\n}\n  ": types.ForgotStudentPasswordDocument,
     "\nquery SchoolsProfile{\n  getSchoolsProfile{\n    id\n    name\n  }\n}\n": types.SchoolsProfileDocument,
     "\n   mutation sendCode($phone_number: String!) {   \n    sendCode(phone_number: $phone_number) {    \n      phone_number\n      success\n     }    \n }\n": types.SendCodeDocument,
 };
@@ -87,6 +88,10 @@ export function gql(source: "\n  query SchoolStudents{\n     getSchoolProfile{\n
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\nmutation studentLogin($studentlogin: StudentLogin!) {   \n  studentLogin(input: $studentlogin)\n}\n"): (typeof documents)["\nmutation studentLogin($studentlogin: StudentLogin!) {   \n  studentLogin(input: $studentlogin)\n}\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\nmutation forgotStudentPassword($schoolid: Int!, $registration_number: String!){\n  forgotStudentPassword(schoolid: $schoolid, registration_number: $registration_number){\n    phone_number\n    success\n  }\n}\n  "): (typeof documents)["\nmutation forgotStudentPassword($schoolid: Int!, $registration_number: String!){\n  forgotStudentPassword(schoolid: $schoolid, registration_number: $registration_number){\n    phone_number\n    success\n  }\n}\n  "];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
