@@ -10,7 +10,11 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useMutation } from "@apollo/client";
 import { gql } from "../../../__generated__/gql";
 import { useSnapshot } from "valtio";
-import { AuthenticationToken, StudentSignInInstance } from "@/state/store";
+import {
+  AuthenticationToken,
+  StudentSignInInstance,
+  ForgotStudentPasswordInstance,
+} from "@/state/store";
 
 const STUDENT_LOGIN_MUTATION = gql(`
 mutation studentLogin($studentlogin: StudentLogin!) {   
@@ -20,7 +24,10 @@ mutation studentLogin($studentlogin: StudentLogin!) {
 
 export default function Detail() {
   const auth = useSnapshot(AuthenticationToken);
-  const snap = useSnapshot(StudentSignInInstance);
+  const studentsignininstance = useSnapshot(StudentSignInInstance);
+  const forgotstudentpasswordinstance = useSnapshot(
+    ForgotStudentPasswordInstance
+  );
 
   const [password, setPassword] = useState("");
   const [registrationNumber, setRegistrationNumber] = useState("");
@@ -60,6 +67,13 @@ export default function Detail() {
       AuthenticationToken.token = data.studentLogin;
     }
   }, [data]);
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      "ForgotStudentPassword",
+      JSON.stringify(forgotstudentpasswordinstance.instance)
+    );
+  }, [forgotstudentpasswordinstance.instance]);
 
   return (
     <div className="max-md:px-2">
@@ -113,7 +127,7 @@ export default function Detail() {
             studentLogin({
               variables: {
                 studentlogin: {
-                  schoolid: snap.instance.schoolid,
+                  schoolid: studentsignininstance.instance.schoolid,
                   registration_number: registrationNumber,
                   password: password,
                 },
