@@ -3,8 +3,17 @@
 import React from "react";
 import Card from "@mui/material/Card";
 import Stack from "@mui/joy/Stack";
+import { ApolloError } from "@apollo/client";
 
-export default function StudentProfilePopUp() {
+export interface StudentProfilePopUpProps {
+  name?: string;
+  phone_number?: string;
+  registration_number?: string;
+  loading: boolean;
+  error?: ApolloError;
+}
+
+export default function StudentProfilePopUp(props: StudentProfilePopUpProps) {
   return (
     <div className="shadow-lg">
       <Card sx={{ backgroundColor: "#F0F4F9" }}>
@@ -15,11 +24,11 @@ export default function StudentProfilePopUp() {
           <Stack spacing={2}>
             <div className="grid justify-items-center gap-4">
               <button className="rounded-full w-[80px] h-[80px] bg-white border border-border-gray"></button>
-              <h4 className="font-medium"> Leon Kenyaga </h4>
+              <h4 className="font-medium"> {props.name} </h4>
             </div>
-            <div className="grid justify-items-center">0719226150</div>
+            <div className="grid justify-items-center">{props.phone_number}</div>
             <div className="grid justify-items-center">
-              SCT-251-035/2019
+              {props.registration_number}
             </div>
           </Stack>
         </div>
