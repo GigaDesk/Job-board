@@ -1,14 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "@mui/joy/Button";
 import Stack from "@mui/joy/Stack";
 import Input from "@mui/joy/Input";
 import Key from "@mui/icons-material/Key";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { useMutation } from "@apollo/client";
+import { gql } from "../../../__generated__/gql";
+import { useSnapshot } from "valtio";
+import {
+  AuthenticationToken,
+  StudentSignInInstance,
+  ForgotStudentPasswordInstance,
+} from "@/state/store";
+
+const STUDENT_LOGIN_MUTATION = gql(`
+mutation studentLogin($studentlogin: StudentLogin!) {   
+  studentLogin(input: $studentlogin)
+}
+`);
 
 export default function Detail() {
+  const auth = useSnapshot(AuthenticationToken);
+  const studentsignininstance = useSnapshot(StudentSignInInstance);
+  const forgotstudentpasswordinstance = useSnapshot(
+    ForgotStudentPasswordInstance
+  );
+
   const [password, setPassword] = useState("");
   const [registrationNumber, setRegistrationNumber] = useState("");
 
@@ -22,6 +42,38 @@ export default function Detail() {
   const handleChangeRegistrationNumber = (event: any) => {
     setRegistrationNumber(event.target.value);
   };
+
+  const [studentLogin, { data, loading, error }] = useMutation(
+    STUDENT_LOGIN_MUTATION
+  );
+
+  useEffect(() => {
+    const data = window.localStorage.getItem("AuthenticationToken");
+    if (data !== null) {
+      const Parseddata: string = JSON.parse(data);
+      AuthenticationToken.token = Parseddata;
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      "AuthenticationToken",
+      JSON.stringify(auth.token)
+    );
+  }, [auth.token]);
+
+  useEffect(() => {
+    if (data !== undefined && data !== null) {
+      AuthenticationToken.token = data.studentLogin;
+    }
+  }, [data]);
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      "ForgotStudentPassword",
+      JSON.stringify(forgotstudentpasswordinstance.instance)
+    );
+  }, [forgotstudentpasswordinstance.instance]);
 
   return (
     <div className="max-md:px-2">
@@ -57,7 +109,7 @@ export default function Detail() {
             Change password
           </p>
         </div>
-        <div className="text-red-600 mb-4 text-center"></div>
+        <div className="text-red-600 mb-4 text-center">{error?.message}</div>
         <Button
           type="submit"
           color="primary"
@@ -70,6 +122,23 @@ export default function Detail() {
             },
           }}
           disabled={registrationNumber.length < 1 || password.length < 1}
+          onClick={(e) => {
+            e.preventDefault();
+            studentLogin({
+              variables: {
+                studentlogin: {
+                  schoolid: studentsignininstance.instance.schoolid,
+                  registration_number: registrationNumber,
+                  password: password,
+                },
+              },
+            }).catch((res) => {
+              const errors = res.graphQLErrors.map((error: any) => {
+                console.log(error.message);
+              });
+            });
+          }}
+          loading={loading}
         >
           Sign in
         </Button>

@@ -24,6 +24,11 @@ const documents = {
     "\n  mutation AddStudent($newstudents: [NewStudent!]!) {   \n    AddStudents( students: $newstudents ) {    \n      name\n     }    \n }\n": types.AddStudentDocument,
     "\n  query SchoolProfile{\n     getSchoolProfile{\n         name\n         phone_number\n    }\n  }\n": types.SchoolProfileDocument,
     "\n  query SchoolStudents{\n     getSchoolProfile{\n      students{\n        id\n        name\n        registration_number\n        phone_number\n      }\n    }\n  }\n": types.SchoolStudentsDocument,
+    "\nmutation studentLogin($studentlogin: StudentLogin!) {   \n  studentLogin(input: $studentlogin)\n}\n": types.StudentLoginDocument,
+    "\n  mutation resetStudentPassword($new_password: String!) {   \n    resetStudentPassword(new_password: $new_password){\n      id\n    }\n  }\n": types.ResetStudentPasswordDocument,
+    "\nmutation forgotStudentPassword($schoolid: Int!, $registration_number: String!){\n  forgotStudentPassword(schoolid: $schoolid, registration_number: $registration_number){\n    phone_number\n    success\n  }\n}\n  ": types.ForgotStudentPasswordDocument,
+    "\nmutation requestStudentPasswordReset($schoolid: Int!, $registration_number: String!, $phone_number: String!, $otp: String!){\n  requestStudentPasswordReset(schoolid: $schoolid, registration_number: $registration_number, phone_number: $phone_number, otp: $otp)\n}\n  ": types.RequestStudentPasswordResetDocument,
+    "\nquery SchoolsProfile{\n  getSchoolsProfile{\n    id\n    name\n  }\n}\n": types.SchoolsProfileDocument,
     "\n   mutation sendCode($phone_number: String!) {   \n    sendCode(phone_number: $phone_number) {    \n      phone_number\n      success\n     }    \n }\n": types.SendCodeDocument,
 };
 
@@ -81,6 +86,26 @@ export function gql(source: "\n  query SchoolProfile{\n     getSchoolProfile{\n 
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  query SchoolStudents{\n     getSchoolProfile{\n      students{\n        id\n        name\n        registration_number\n        phone_number\n      }\n    }\n  }\n"): (typeof documents)["\n  query SchoolStudents{\n     getSchoolProfile{\n      students{\n        id\n        name\n        registration_number\n        phone_number\n      }\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\nmutation studentLogin($studentlogin: StudentLogin!) {   \n  studentLogin(input: $studentlogin)\n}\n"): (typeof documents)["\nmutation studentLogin($studentlogin: StudentLogin!) {   \n  studentLogin(input: $studentlogin)\n}\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation resetStudentPassword($new_password: String!) {   \n    resetStudentPassword(new_password: $new_password){\n      id\n    }\n  }\n"): (typeof documents)["\n  mutation resetStudentPassword($new_password: String!) {   \n    resetStudentPassword(new_password: $new_password){\n      id\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\nmutation forgotStudentPassword($schoolid: Int!, $registration_number: String!){\n  forgotStudentPassword(schoolid: $schoolid, registration_number: $registration_number){\n    phone_number\n    success\n  }\n}\n  "): (typeof documents)["\nmutation forgotStudentPassword($schoolid: Int!, $registration_number: String!){\n  forgotStudentPassword(schoolid: $schoolid, registration_number: $registration_number){\n    phone_number\n    success\n  }\n}\n  "];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\nmutation requestStudentPasswordReset($schoolid: Int!, $registration_number: String!, $phone_number: String!, $otp: String!){\n  requestStudentPasswordReset(schoolid: $schoolid, registration_number: $registration_number, phone_number: $phone_number, otp: $otp)\n}\n  "): (typeof documents)["\nmutation requestStudentPasswordReset($schoolid: Int!, $registration_number: String!, $phone_number: String!, $otp: String!){\n  requestStudentPasswordReset(schoolid: $schoolid, registration_number: $registration_number, phone_number: $phone_number, otp: $otp)\n}\n  "];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\nquery SchoolsProfile{\n  getSchoolsProfile{\n    id\n    name\n  }\n}\n"): (typeof documents)["\nquery SchoolsProfile{\n  getSchoolsProfile{\n    id\n    name\n  }\n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
