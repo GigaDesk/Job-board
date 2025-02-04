@@ -3,17 +3,21 @@
 import React from "react";
 import Main from "./main";
 import CompanyStatement from "@/components/splash/companystatement";
-import { StudentSignInInstance } from "@/state/store";
+import {
+  ForgotStudentPasswordInstance,
+  StudentSignInInstance,
+} from "@/state/store";
 import { useEffect } from "react";
 
-import { useParams } from 'next/navigation'
+import { useParams } from "next/navigation";
 
 export default function StudentSignIn() {
-
-  const params = useParams()
+  const params = useParams();
 
   useEffect(() => {
-      StudentSignInInstance.instance.schoolid = (params.schoolid as unknown) as number;
+    const schoolid = params.schoolid as unknown as number;
+    StudentSignInInstance.instance.schoolid = schoolid;
+    ForgotStudentPasswordInstance.instance.schoolid = schoolid;
   }, [params]);
 
   return (
