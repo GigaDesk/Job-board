@@ -10,12 +10,20 @@ export interface SchoolSignup {
     password: string
 }
 
+export interface StudentSignIn{
+    schoolid: number;
+}
+
 export const StudentSchoolSurveyInstance = proxy({
     instance: { answer: "" } as StudentSchoolSurveyAnswer,
 });
 
 export const SchoolSignupInstance = proxy({
     instance: { name: "", phoneNumber: "", password: ""  } as SchoolSignup,
+});
+
+export const StudentSignInInstance = proxy({
+    instance: {} as StudentSignIn,
 });
 
 export const AuthenticationToken = proxy({
