@@ -2,18 +2,43 @@
 
 import PasswordMeterInput from "@/components/Input/passwordmeterinput";
 import Button from "@mui/joy/Button";
-import { useState } from "react";
+import { useEffect } from "react";
+import {
+  ForgotStudentPasswordInstance,
+  ForgotStudentPassword,
+} from "@/state/store";
+import { useSnapshot } from "valtio";
 
 export default function Detail() {
-  const [password, setPassword] = useState("");
+  const forgotstudentpasswordinstance = useSnapshot(
+    ForgotStudentPasswordInstance
+  );
 
-  const handleChange = (event: any) => {
-    setPassword(event.target.value);
+  const handleChangePassword = (event: any) => {
+    ForgotStudentPasswordInstance.instance.newpassword = event.target.value;
   };
+
+  useEffect(() => {
+    const data = window.localStorage.getItem("ForgotStudentPassword");
+    if (data !== null) {
+      const Parseddata: ForgotStudentPassword = JSON.parse(data);
+      ForgotStudentPasswordInstance.instance = Parseddata;
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      "ForgotStudentPassword",
+      JSON.stringify(forgotstudentpasswordinstance.instance)
+    );
+  }, [forgotstudentpasswordinstance.instance]);
 
   return (
     <div className="grid">
-      <PasswordMeterInput handlechange={handleChange} value={password} />
+      <PasswordMeterInput
+        handlechange={handleChangePassword}
+        value={forgotstudentpasswordinstance.instance.newpassword}
+      />
       <Button
         type="submit"
         color="primary"
@@ -25,7 +50,7 @@ export default function Detail() {
             },
           },
         }}
-        disabled={password.length < 8}
+        disabled={forgotstudentpasswordinstance.instance.newpassword.length < 8}
       >
         Submit
       </Button>
