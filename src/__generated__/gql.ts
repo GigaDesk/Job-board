@@ -24,6 +24,7 @@ const documents = {
     "\n  mutation AddStudent($newstudents: [NewStudent!]!) {   \n    AddStudents( students: $newstudents ) {    \n      name\n     }    \n }\n": types.AddStudentDocument,
     "\n  query SchoolProfile{\n     getSchoolProfile{\n         name\n         phone_number\n    }\n  }\n": types.SchoolProfileDocument,
     "\n  query SchoolStudents{\n     getSchoolProfile{\n      students{\n        id\n        name\n        registration_number\n        phone_number\n      }\n    }\n  }\n": types.SchoolStudentsDocument,
+    "\nmutation studentLogin($studentlogin: StudentLogin!) {   \n  studentLogin(input: $studentlogin)\n}\n": types.StudentLoginDocument,
     "\nquery SchoolsProfile{\n  getSchoolsProfile{\n    id\n    name\n  }\n}\n": types.SchoolsProfileDocument,
     "\n   mutation sendCode($phone_number: String!) {   \n    sendCode(phone_number: $phone_number) {    \n      phone_number\n      success\n     }    \n }\n": types.SendCodeDocument,
 };
@@ -82,6 +83,10 @@ export function gql(source: "\n  query SchoolProfile{\n     getSchoolProfile{\n 
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  query SchoolStudents{\n     getSchoolProfile{\n      students{\n        id\n        name\n        registration_number\n        phone_number\n      }\n    }\n  }\n"): (typeof documents)["\n  query SchoolStudents{\n     getSchoolProfile{\n      students{\n        id\n        name\n        registration_number\n        phone_number\n      }\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\nmutation studentLogin($studentlogin: StudentLogin!) {   \n  studentLogin(input: $studentlogin)\n}\n"): (typeof documents)["\nmutation studentLogin($studentlogin: StudentLogin!) {   \n  studentLogin(input: $studentlogin)\n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
