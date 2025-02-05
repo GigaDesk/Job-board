@@ -7,7 +7,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import RoutesToggle from "@/components/button/routes-toggle";
 import PopupRoutes from "@/components/popup/popup-routes";
 import { SideDrawerState } from "@/state/store";
-import { gql } from "../../__generated__/gql";
+import { gql } from "../../../__generated__/gql";
 import { useQuery } from "@apollo/client";
 
 const GET_STUDENT_PROFILE_QUERY = gql(`
