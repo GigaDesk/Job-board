@@ -10,11 +10,13 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useMutation } from "@apollo/client";
 import { gql } from "../../../../__generated__/gql";
 import { useSnapshot } from "valtio";
+import { useRouter } from "next/navigation";
 import {
   AuthenticationToken,
-  StudentSignInInstance,
   ForgotStudentPasswordInstance,
-} from "@/state/store";
+} from "../../../../state/store";
+
+import { StudentSignInInstance } from "../../state/store";
 
 const STUDENT_LOGIN_MUTATION = gql(`
 mutation studentLogin($studentlogin: StudentLogin!) {   
@@ -23,8 +25,12 @@ mutation studentLogin($studentlogin: StudentLogin!) {
 `);
 
 export default function Detail() {
+  const router = useRouter();
+
   const auth = useSnapshot(AuthenticationToken);
+
   const studentsignininstance = useSnapshot(StudentSignInInstance);
+
   const forgotstudentpasswordinstance = useSnapshot(
     ForgotStudentPasswordInstance
   );
@@ -65,6 +71,7 @@ export default function Detail() {
   useEffect(() => {
     if (data !== undefined && data !== null) {
       AuthenticationToken.token = data.studentLogin;
+      router.push(`/student`)
     }
   }, [data]);
 

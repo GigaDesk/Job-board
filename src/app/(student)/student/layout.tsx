@@ -5,15 +5,15 @@ import CompanyStatement from "@/components/splash/companystatement";
 import SwipeableTemporaryDrawer from "@/components/drawer/swipeabledrawer";
 import SideDrawerContent from "@/components/drawer/sidedrawercontent";
 import { useSnapshot } from "valtio";
-import { SideDrawerState } from "@/state/store";
+import { AuthenticationToken, SideDrawerState } from "@/state/store";
 import Navbar from "./navbar";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-export default function SchoolPageLayout({
-  home
-}: {
-  home: React.ReactNode;
-}) {
+export default function StudentPageLayout({ home }: { home: React.ReactNode }) {
   const snap = useSnapshot(SideDrawerState);
+
+  const router = useRouter();
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -28,6 +28,19 @@ export default function SchoolPageLayout({
       SideDrawerState.show = open;
     };
 
+  useEffect(() => {
+    const data = window.localStorage.getItem("AuthenticationToken");
+    if (data !== null) {
+      const Parseddata: string = JSON.parse(data);
+      if (Parseddata === "") {
+        router.push(`/student-sign-in`);
+      }
+      AuthenticationToken.token = Parseddata;
+    } else {
+      router.push(`/student-sign-in`);
+    }
+  }, []);
+
   return (
     <div
       className="h-screen bg-white flex flex-row"
@@ -35,7 +48,7 @@ export default function SchoolPageLayout({
     >
       <Sidebar />
       <div className="grow grid h-screen relative">
-        <Navbar/>
+        <Navbar />
         {home}
         <div className="p-2">
           <CompanyStatement />
