@@ -34,6 +34,14 @@ export default function StudentPageLayout({ home }: { home: React.ReactNode }) {
       const Parseddata: string = JSON.parse(data);
       if (Parseddata === "") {
         router.push(`/student-sign-in`);
+      } else {
+        const data = window.localStorage.getItem("LastSignedInAs");
+        if (data !== null) {
+          const Parseddata: string = JSON.parse(data);
+          if (Parseddata !== "student") {
+            router.push(`/student-sign-in`);
+          }
+        }
       }
       AuthenticationToken.token = Parseddata;
     } else {

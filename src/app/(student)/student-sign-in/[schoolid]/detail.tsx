@@ -71,7 +71,8 @@ export default function Detail() {
   useEffect(() => {
     if (data !== undefined && data !== null) {
       AuthenticationToken.token = data.studentLogin;
-      router.push(`/student`)
+      window.localStorage.setItem("LastSignedInAs", JSON.stringify("student"));
+      router.push(`/student`);
     }
   }, [data]);
 
