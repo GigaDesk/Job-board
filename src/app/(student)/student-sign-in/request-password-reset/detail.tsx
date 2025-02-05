@@ -11,7 +11,7 @@ import {
   AuthenticationToken,
 } from "@/state/store";
 import { useSnapshot } from "valtio";
-import { gql } from "../../../__generated__/gql";
+import { gql } from "../../../../__generated__/gql";
 import { useMutation } from "@apollo/client";
 
 const REQUEST_STUDENT_PASSWORD_RESET_MUTATION = gql(`

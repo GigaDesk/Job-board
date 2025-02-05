@@ -9,7 +9,7 @@ import {
   ForgotStudentPasswordInstance,
   ForgotStudentPassword,
 } from "@/state/store";
-import { gql } from "../../../__generated__/gql";
+import { gql } from "../../../../__generated__/gql";
 import { useMutation } from "@apollo/client";
 
 const FORGOT_STUDENT_PASSWORD_MUTATION = gql(`

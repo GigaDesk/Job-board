@@ -9,7 +9,7 @@ import {
 } from "@/state/store";
 import { useSnapshot } from "valtio";
 import { useMutation } from "@apollo/client";
-import { gql } from "../../../__generated__/gql";
+import { gql } from "../../../../__generated__/gql";
 
 const RESET_STUDENT_PASSWORD_MUTATION = gql(`
   mutation resetStudentPassword($new_password: String!) {   

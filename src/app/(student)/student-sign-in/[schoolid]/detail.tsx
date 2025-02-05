@@ -8,7 +8,7 @@ import Key from "@mui/icons-material/Key";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useMutation } from "@apollo/client";
-import { gql } from "../../../__generated__/gql";
+import { gql } from "../../../../__generated__/gql";
 import { useSnapshot } from "valtio";
 import {
   AuthenticationToken,
