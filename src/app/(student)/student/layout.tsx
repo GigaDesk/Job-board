@@ -9,6 +9,7 @@ import { AuthenticationToken, SideDrawerState } from "@/state/store";
 import Navbar from "./navbar";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { SinceSignIn } from "@/utils/session-management/signin";
 
 export default function StudentPageLayout({ home }: { home: React.ReactNode }) {
   const snap = useSnapshot(SideDrawerState);
@@ -28,25 +29,40 @@ export default function StudentPageLayout({ home }: { home: React.ReactNode }) {
       SideDrawerState.show = open;
     };
 
+  const handleSinceSignIn = () => {
+    const hours = SinceSignIn();
+    if (hours > 22) {
+      router.push(`/student-sign-in`);
+    }
+  };
+
   useEffect(() => {
     const data = window.localStorage.getItem("AuthenticationToken");
     if (data !== null) {
       const Parseddata: string = JSON.parse(data);
       if (Parseddata === "") {
         router.push(`/student-sign-in`);
-      } else {
-        const data = window.localStorage.getItem("LastSignedInAs");
-        if (data !== null) {
-          const Parseddata: string = JSON.parse(data);
-          if (Parseddata !== "student") {
-            router.push(`/student-sign-in`);
-          }
-        }
       }
       AuthenticationToken.token = Parseddata;
     } else {
       router.push(`/student-sign-in`);
     }
+  }, []);
+
+  useEffect(() => {
+    const data = window.localStorage.getItem("LastSignedInAs");
+    if (data !== null) {
+      const Parseddata: string = JSON.parse(data);
+      if (Parseddata !== "student") {
+        router.push(`/student-sign-in`);
+      }
+    } else {
+      router.push(`/student-sign-in`);
+    }
+  }, []);
+
+  useEffect(() => {
+    handleSinceSignIn();
   }, []);
 
   return (

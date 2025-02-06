@@ -72,6 +72,7 @@ export default function Detail() {
     if (data !== undefined && data !== null) {
       AuthenticationToken.token = data.studentLogin;
       window.localStorage.setItem("LastSignedInAs", JSON.stringify("student"));
+      window.localStorage.setItem("LastSignInDate", JSON.stringify(new Date()));
       router.push(`/student`);
     }
   }, [data]);
