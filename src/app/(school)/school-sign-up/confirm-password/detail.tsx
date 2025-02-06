@@ -6,7 +6,7 @@ import Button from "@mui/joy/Button";
 import { useEffect, useState } from "react";
 import { useSnapshot } from "valtio";
 import { useMutation } from "@apollo/client";
-import { gql } from "../../../__generated__/gql";
+import { gql } from "../../../../__generated__/gql";
 
 const CREATE_SCHOOL_MUTATION = gql(`
   mutation createSchool($newschool: NewSchool!) {   

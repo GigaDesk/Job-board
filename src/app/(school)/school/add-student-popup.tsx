@@ -7,7 +7,7 @@ import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
 import MuiPhoneNumber from "mui-phone-number";
 import { useMutation } from "@apollo/client";
-import { gql } from "../../__generated__/gql";
+import { gql } from "../../../__generated__/gql";
 
 const ADD_STUDENT_MUTATION = gql(`
   mutation AddStudent($newstudents: [NewStudent!]!) {   

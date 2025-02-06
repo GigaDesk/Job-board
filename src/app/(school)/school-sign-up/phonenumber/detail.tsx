@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useSnapshot } from "valtio";
 import { SchoolSignup } from "@/state/store";
 import { useLazyQuery } from "@apollo/client";
-import { gql } from "../../../__generated__/gql";
+import { gql } from "../../../../__generated__/gql";
 import Button from "@mui/joy/Button";
 import Stack from "@mui/joy/Stack";
 import MuiPhoneNumber from "mui-phone-number";
