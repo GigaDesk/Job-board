@@ -12,6 +12,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import MuiPhoneNumber from "mui-phone-number";
 import { useMutation } from "@apollo/client";
 import { gql } from "@/__generated__";
+import { useRouter } from "next/navigation";
 
 const SCHOOL_LOGIN_MUTATION = gql(`
 mutation schoolLogin($schoollogin: SchoolLogin!) {   
@@ -21,6 +22,8 @@ mutation schoolLogin($schoollogin: SchoolLogin!) {
 
 export default function Detail() {
   const snap = useSnapshot(AuthenticationToken);
+
+  const router = useRouter();
 
   const [phonenumber, setPhoneNumber] = useState("");
 
@@ -50,16 +53,26 @@ export default function Detail() {
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem("AuthenticationToken", JSON.stringify(snap.token));
+    window.localStorage.setItem(
+      "AuthenticationToken",
+      JSON.stringify(snap.token)
+    );
   }, [snap.token]);
 
-  
   useEffect(() => {
-    if (data !== undefined && data !== null){
-    AuthenticationToken.token = data.schoolLogin
+    if (data !== undefined && data !== null) {
+      AuthenticationToken.token = data.schoolLogin;
+      window.localStorage.setItem("LastSignedInAs", JSON.stringify("school"));
+      window.localStorage.setItem("LastSignInDate", JSON.stringify(new Date()));
+      router.push(`/school`);
     }
   }, [data]);
 
+  useEffect(() => {
+    if (data !== undefined && data !== null) {
+      AuthenticationToken.token = data.schoolLogin;
+    }
+  }, [data]);
 
   return (
     <div className="max-md:px-2">
