@@ -5,15 +5,16 @@ import CompanyStatement from "@/components/splash/companystatement";
 import SwipeableTemporaryDrawer from "@/components/drawer/swipeabledrawer";
 import SideDrawerContent from "@/components/drawer/sidedrawercontent";
 import { useSnapshot } from "valtio";
-import { SideDrawerState } from "@/state/store";
+import { AuthenticationToken, SideDrawerState } from "@/state/store";
 import Navbar from "./navbar";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { SinceSignIn } from "@/utils/session-management/signin";
 
-export default function SchoolPageLayout({
-  home
-}: {
-  home: React.ReactNode;
-}) {
+export default function SchoolPageLayout({ home }: { home: React.ReactNode }) {
   const snap = useSnapshot(SideDrawerState);
+
+  const router = useRouter();
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -28,6 +29,42 @@ export default function SchoolPageLayout({
       SideDrawerState.show = open;
     };
 
+  const handleSinceSignIn = () => {
+    const hours = SinceSignIn();
+    if (hours > 22) {
+      router.push(`/school-sign-in`);
+    }
+  };
+
+  useEffect(() => {
+    const data = window.localStorage.getItem("AuthenticationToken");
+    if (data !== null) {
+      const Parseddata: string = JSON.parse(data);
+      if (Parseddata === "") {
+        router.push(`/school-sign-in`);
+      }
+      AuthenticationToken.token = Parseddata;
+    } else {
+      router.push(`/school-sign-in`);
+    }
+  }, []);
+
+  useEffect(() => {
+    const data = window.localStorage.getItem("LastSignedInAs");
+    if (data !== null) {
+      const Parseddata: string = JSON.parse(data);
+      if (Parseddata !== "school") {
+        router.push(`/school-sign-in`);
+      }
+    } else {
+      router.push(`/school-sign-in`);
+    }
+  }, []);
+
+  useEffect(() => {
+    handleSinceSignIn();
+  }, []);
+
   return (
     <div
       className="h-screen bg-white flex flex-row"
@@ -35,7 +72,7 @@ export default function SchoolPageLayout({
     >
       <Sidebar />
       <div className="grow grid h-screen relative">
-        <Navbar/>
+        <Navbar />
         {home}
         <div className="p-2">
           <CompanyStatement />
