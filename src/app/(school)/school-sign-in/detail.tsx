@@ -14,6 +14,7 @@ import { useMutation } from "@apollo/client";
 import { gql } from "@/__generated__";
 import { useRouter } from "next/navigation";
 
+
 const SCHOOL_LOGIN_MUTATION = gql(`
 mutation schoolLogin($schoollogin: SchoolLogin!) {   
   schoolLogin(input: $schoollogin) 
@@ -103,9 +104,14 @@ export default function Detail() {
           value={password}
         />
         <div className="grid grid-cols-2">
-          <p className="text-sky-600 cursor-pointer text-center">
+        <button
+            className="text-sky-600 cursor-pointer text-center"
+            onClick={(e) => {
+              router.push(`/school-sign-in/forgot-password`);
+            }}
+          >
             Forgot password?
-          </p>
+          </button>
           <p className="text-sky-600 cursor-pointer text-center">
             Create an account
           </p>
