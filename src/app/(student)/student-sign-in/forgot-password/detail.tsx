@@ -5,6 +5,7 @@ import Stack from "@mui/joy/Stack";
 import Input from "@mui/joy/Input";
 import { useEffect } from "react";
 import { useSnapshot } from "valtio";
+import { useRouter } from "next/navigation";
 import {
   ForgotStudentPasswordInstance,
   ForgotStudentPassword,
@@ -22,6 +23,8 @@ mutation forgotStudentPassword($schoolid: Int!, $registration_number: String!){
   `);
 
 export default function Detail() {
+  const router = useRouter();
+
   const forgotstudentpasswordinstance = useSnapshot(
     ForgotStudentPasswordInstance
   );
@@ -54,6 +57,12 @@ export default function Detail() {
     if (data?.forgotStudentPassword?.phone_number != undefined) {
       ForgotStudentPasswordInstance.instance.phoneNumber =
         data?.forgotStudentPassword?.phone_number;
+    }
+    if (
+      data?.forgotStudentPassword?.success !== undefined &&
+      data.forgotStudentPassword.success === true
+    ) {
+      router.push(`/student-sign-in/request-password-reset`);
     }
   }, [data]);
 

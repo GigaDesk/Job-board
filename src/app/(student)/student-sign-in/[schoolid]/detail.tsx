@@ -110,13 +110,15 @@ export default function Detail() {
           onChange={handleChangePassword}
           value={password}
         />
-        <div className="grid grid-cols-2">
-          <p className="text-sky-600 cursor-pointer text-center">
+        <div className="grid">
+          <button
+            className="text-sky-600 cursor-pointer text-center"
+            onClick={(e) => {
+              router.push(`/student-sign-in/forgot-password`);
+            }}
+          >
             Forgot password?
-          </p>
-          <p className="text-sky-600 cursor-pointer text-center">
-            Change password
-          </p>
+          </button>
         </div>
         <div className="text-red-600 mb-4 text-center">{error?.message}</div>
         <Button
