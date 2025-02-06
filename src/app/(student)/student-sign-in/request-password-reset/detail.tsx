@@ -11,8 +11,9 @@ import {
   AuthenticationToken,
 } from "@/state/store";
 import { useSnapshot } from "valtio";
-import { gql } from "../../../__generated__/gql";
+import { gql } from "../../../../__generated__/gql";
 import { useMutation } from "@apollo/client";
+import { useRouter } from "next/navigation";
 
 const REQUEST_STUDENT_PASSWORD_RESET_MUTATION = gql(`
 mutation requestStudentPasswordReset($schoolid: Int!, $registration_number: String!, $phone_number: String!, $otp: String!){
@@ -21,6 +22,8 @@ mutation requestStudentPasswordReset($schoolid: Int!, $registration_number: Stri
   `);
 
 export default function Detail() {
+  const router = useRouter();
+
   const auth = useSnapshot(AuthenticationToken);
   const forgotstudentpasswordinstance = useSnapshot(
     ForgotStudentPasswordInstance
@@ -67,6 +70,7 @@ export default function Detail() {
   useEffect(() => {
     if (data !== undefined && data !== null) {
       AuthenticationToken.token = data.requestStudentPasswordReset;
+      router.push(`/student-sign-in/reset-password`);
     }
   }, [data]);
 

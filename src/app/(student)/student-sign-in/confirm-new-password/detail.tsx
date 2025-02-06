@@ -9,7 +9,8 @@ import {
 } from "@/state/store";
 import { useSnapshot } from "valtio";
 import { useMutation } from "@apollo/client";
-import { gql } from "../../../__generated__/gql";
+import { gql } from "../../../../__generated__/gql";
+import { useRouter } from "next/navigation";
 
 const RESET_STUDENT_PASSWORD_MUTATION = gql(`
   mutation resetStudentPassword($new_password: String!) {   
@@ -20,6 +21,8 @@ const RESET_STUDENT_PASSWORD_MUTATION = gql(`
 `);
 
 export default function Detail() {
+  const router = useRouter();
+
   const [password, setPassword] = useState("");
   const forgotstudentpasswordinstance = useSnapshot(
     ForgotStudentPasswordInstance
@@ -40,6 +43,14 @@ export default function Detail() {
   const [resetStudentPassword, { data, loading, error }] = useMutation(
     RESET_STUDENT_PASSWORD_MUTATION
   );
+
+  useEffect(() => {
+    if (data !== undefined && data !== null) {
+      window.localStorage.setItem("LastSignedInAs", JSON.stringify("student"));
+      window.localStorage.setItem("LastSignInDate", JSON.stringify(new Date()));
+      router.push(`/student`);
+    }
+  }, [data]);
 
   return (
     <div className="grid">
@@ -66,7 +77,7 @@ export default function Detail() {
           e.preventDefault();
           resetStudentPassword({
             variables: {
-              new_password: forgotstudentpasswordinstance.instance.newpassword
+              new_password: forgotstudentpasswordinstance.instance.newpassword,
             },
           }).catch((res) => {
             const errors = res.graphQLErrors.map((error: any) => {

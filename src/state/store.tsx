@@ -10,9 +10,7 @@ export interface SchoolSignup {
   password: string;
 }
 
-export interface StudentSignIn {
-  schoolid: number;
-}
+
 
 export interface ForgotStudentPassword {
   schoolid: number;
@@ -30,9 +28,7 @@ export const SchoolSignupInstance = proxy({
   instance: { name: "", phoneNumber: "", password: "" } as SchoolSignup,
 });
 
-export const StudentSignInInstance = proxy({
-  instance: { schoolid: 0 } as StudentSignIn,
-});
+
 
 export const ForgotStudentPasswordInstance = proxy({
   instance: {
