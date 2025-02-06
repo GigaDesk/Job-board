@@ -8,8 +8,11 @@ import {
   ForgotStudentPassword,
 } from "@/state/store";
 import { useSnapshot } from "valtio";
+import { useRouter } from "next/navigation";
 
 export default function Detail() {
+  const router = useRouter();
+
   const forgotstudentpasswordinstance = useSnapshot(
     ForgotStudentPasswordInstance
   );
@@ -51,6 +54,9 @@ export default function Detail() {
           },
         }}
         disabled={forgotstudentpasswordinstance.instance.newpassword.length < 8}
+        onClick={(e) => {
+          router.push(`/student-sign-in/confirm-new-password`);
+        }}
       >
         Submit
       </Button>
