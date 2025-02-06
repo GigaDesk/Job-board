@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import {
   ForgotStudentPasswordInstance,
   ForgotStudentPassword,
-} from "@/state/store";
+} from "../../state/store";
 import { gql } from "../../../../__generated__/gql";
 import { useMutation } from "@apollo/client";
 

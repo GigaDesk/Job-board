@@ -5,7 +5,13 @@ import { useMutation } from "@apollo/client";
 import Button from "@mui/joy/Button";
 import Stack from "@mui/joy/Stack";
 import MuiPhoneNumber from "mui-phone-number";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useSnapshot } from "valtio";
+import {
+  ForgotSchoolPassword,
+  ForgotSchoolPasswordInstance,
+} from "../../state/store";
+import { useRouter } from "next/navigation";
 
 const FORGOT_SCHOOL_PASSWORD_MUTATION = gql(`
 mutation forgotSchoolPassword($phone_number: String!){
@@ -17,32 +23,40 @@ mutation forgotSchoolPassword($phone_number: String!){
 `);
 
 export default function Detail() {
-  const [phonenumber, setPhoneNumber] = useState("");
+  const router = useRouter();
+
+  const forgotschoolpasswordinstance = useSnapshot(
+    ForgotSchoolPasswordInstance
+  );
 
   const handleChangePhoneNumber = (value: any) => {
-    setPhoneNumber(value);
+    ForgotSchoolPasswordInstance.instance.phoneNumber = value;
   };
 
   useEffect(() => {
-    const data = window.localStorage.getItem("ForgotPasswordPhoneNumber");
+    const data = window.localStorage.getItem("ForgotSchoolPassword");
     if (data !== null) {
-      const Parseddata: string = JSON.parse(data);
-      setPhoneNumber(Parseddata);
+      const Parseddata: ForgotSchoolPassword = JSON.parse(data);
+      ForgotSchoolPasswordInstance.instance = Parseddata;
     }
   }, []);
 
   useEffect(() => {
     window.localStorage.setItem(
-      "ForgotPasswordPhoneNumber",
-      JSON.stringify(phonenumber)
+      "ForgotSchoolPassword",
+      JSON.stringify(forgotschoolpasswordinstance.instance)
     );
-  }, [phonenumber]);
+  }, [forgotschoolpasswordinstance.instance]);
 
   const [forgotSchoolPassword, { loading, error, data }] = useMutation(
     FORGOT_SCHOOL_PASSWORD_MUTATION
   );
 
-  console.log(data);
+  useEffect(() => {
+    if (data?.forgotSchoolPassword?.success === true) {
+      router.push(`/school-sign-in/request-password-reset`);
+    }
+  }, [data]);
 
   return (
     <div className="max-md:px-2">
@@ -52,7 +66,7 @@ export default function Detail() {
           onChange={handleChangePhoneNumber}
           onlyCountries={["ke"]}
           countryCodeEditable={false}
-          value={phonenumber}
+          value={forgotschoolpasswordinstance.instance.phoneNumber}
         />
         <div className="text-red-600 mb-4 text-center">{error?.message}</div>
         <Button
@@ -66,12 +80,14 @@ export default function Detail() {
               },
             },
           }}
-          disabled={phonenumber.length != 13}
+          disabled={
+            forgotschoolpasswordinstance.instance.phoneNumber.length != 13
+          }
           onClick={(e) => {
             e.preventDefault();
             forgotSchoolPassword({
               variables: {
-                phone_number: phonenumber,
+                phone_number: forgotschoolpasswordinstance.instance.phoneNumber,
               },
             }).catch((res) => {
               const errors = res.graphQLErrors.map((error: any) => {

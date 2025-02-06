@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import {
   ForgotStudentPasswordInstance,
   ForgotStudentPassword,
-} from "@/state/store";
+} from "../../state/store";
 import { useSnapshot } from "valtio";
 import { useMutation } from "@apollo/client";
 import { gql } from "../../../../__generated__/gql";

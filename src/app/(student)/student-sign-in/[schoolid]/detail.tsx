@@ -11,11 +11,8 @@ import { useMutation } from "@apollo/client";
 import { gql } from "../../../../__generated__/gql";
 import { useSnapshot } from "valtio";
 import { useRouter } from "next/navigation";
-import {
-  AuthenticationToken,
-  ForgotStudentPasswordInstance,
-} from "../../../../state/store";
-
+import { AuthenticationToken } from "../../../../state/store";
+import { ForgotStudentPasswordInstance } from "../../state/store";
 import { StudentSignInInstance } from "../../state/store";
 
 const STUDENT_LOGIN_MUTATION = gql(`
