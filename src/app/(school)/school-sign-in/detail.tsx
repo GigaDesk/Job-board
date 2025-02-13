@@ -112,9 +112,14 @@ export default function Detail() {
           >
             Forgot password?
           </button>
-          <p className="text-sky-600 cursor-pointer text-center">
+          <button
+            className="text-sky-600 cursor-pointer text-center"
+            onClick={(e) => {
+              router.push(`/school-sign-up`);
+            }}
+          >
             Create an account
-          </p>
+          </button>
         </div>
         <div className="text-red-600 mb-4 text-center">{error?.message}</div>
         <Button
