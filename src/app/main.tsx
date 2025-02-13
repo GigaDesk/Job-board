@@ -1,5 +1,5 @@
-import NextButton from "../components/button/nextbutton";
-import StudentSchoolSurvey from "@/components/question/studentschoolsurvey";
+import NextButton from "./nextbutton";
+import StudentSchoolSurvey from "@/app/studentschoolsurvey";
 
 export default function Main() {
   return (

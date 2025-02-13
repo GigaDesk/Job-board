@@ -7,7 +7,6 @@ export default function Selector(props: {
   checked: boolean;
   handleChange: any;
 }) {
-
   return (
     <div className=" w-10 grid justify-items-center">
       <Checkbox
