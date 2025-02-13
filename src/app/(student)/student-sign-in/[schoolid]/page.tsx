@@ -5,7 +5,7 @@ import Main from "./main";
 import CompanyStatement from "@/components/splash/companystatement";
 import {
   ForgotStudentPasswordInstance,
-} from "@/state/store";
+} from "../../state/store";
 import { useEffect } from "react";
 
 import { useParams } from "next/navigation";
