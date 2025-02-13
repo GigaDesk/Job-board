@@ -1,5 +1,6 @@
 import { Stack } from "@mui/joy";
 
+//PagesSection shows the navigable pages of the application
 export default function PagesSection() {
   return (
       <div className="p-4 text-black">

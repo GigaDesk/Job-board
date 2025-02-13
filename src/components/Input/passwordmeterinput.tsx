@@ -9,6 +9,7 @@ import Key from "@mui/icons-material/Key";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
+//PasswordMeterInput serves as an input field for passwords of a minimum length of 8 characters
 export default function PasswordMeterInput(props: {
   handlechange: any;
   value: string;

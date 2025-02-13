@@ -5,14 +5,19 @@ import Card from "@mui/material/Card";
 import Stack from "@mui/joy/Stack";
 import { ApolloError } from "@apollo/client";
 
-
+//defines the properties of a SchoolProfilePopUp
 export interface SchoolProfilePopUpProps {
+// name of the school
   name?: string;
+// phone number of a school
   phone_number?: string;
+// indicates if the component is in a loading state
   loading: boolean;
+// shows the error that arise from rendering the component
   error?: ApolloError;
 }
 
+//SchoolProfilePopUp displays a school's profile
 export default function SchoolProfilePopUp(props: SchoolProfilePopUpProps) {
   
   return (

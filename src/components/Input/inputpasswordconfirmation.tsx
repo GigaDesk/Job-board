@@ -8,6 +8,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
 
+//InputPasswordConfirmation compares the input password with the expected password
 export default function InputPasswordConfirmation(props: {
   handlechange: any;
   expectedValue: string;

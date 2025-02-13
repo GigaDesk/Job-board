@@ -1,4 +1,5 @@
 
+//Company Statement renders the company's brand.
 export default function CompanyStatement() {
   return (
     <div className="grid grid-rows-2 gap-2 w-full">
