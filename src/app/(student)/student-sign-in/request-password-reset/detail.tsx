@@ -5,11 +5,11 @@ import { useEffect } from "react";
 import Stack from "@mui/joy/Stack";
 import Input from "@mui/joy/Input";
 import SendOtp from "@/components/button/sendotp";
+import { AuthenticationToken } from "@/state/store";
 import {
-  ForgotStudentPasswordInstance,
   ForgotStudentPassword,
-  AuthenticationToken,
-} from "@/state/store";
+  ForgotStudentPasswordInstance,
+} from "../../state/store";
 import { useSnapshot } from "valtio";
 import { gql } from "../../../../__generated__/gql";
 import { useMutation } from "@apollo/client";

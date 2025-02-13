@@ -1,34 +1,47 @@
 "use client";
 
 import PasswordMeterInput from "@/components/Input/passwordmeterinput";
-import { SchoolPasswordResetValue } from "@/state/store";
+import {
+  ForgotSchoolPassword,
+  ForgotSchoolPasswordInstance,
+} from "../../state/store";
 import Button from "@mui/joy/Button";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useSnapshot } from "valtio";
 
 export default function Detail() {
-  
-  const snap = useSnapshot(SchoolPasswordResetValue)
+  const router = useRouter();
 
-  const handleChange = (event: any) => {
-    SchoolPasswordResetValue.password = event.target.value
+  const forgotschoolpasswordinstance = useSnapshot(
+    ForgotSchoolPasswordInstance
+  );
+
+  const handleChangePassword = (event: any) => {
+    ForgotSchoolPasswordInstance.instance.newpassword = event.target.value;
   };
 
   useEffect(() => {
-    const data = window.localStorage.getItem("SchoolPasswordResetValue");
+    const data = window.localStorage.getItem("ForgotSchoolPassword");
     if (data !== null) {
-      const Parseddata: string = JSON.parse(data);
-      SchoolPasswordResetValue.password = Parseddata;
+      const Parseddata: ForgotSchoolPassword = JSON.parse(data);
+      ForgotSchoolPasswordInstance.instance = Parseddata;
     }
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem("SchoolPasswordResetValue", JSON.stringify(snap.password));
-  }, [snap.password]);
+    window.localStorage.setItem(
+      "ForgotSchoolPassword",
+      JSON.stringify(forgotschoolpasswordinstance.instance)
+    );
+  }, [forgotschoolpasswordinstance.instance]);
 
   return (
     <div className="grid">
-      <PasswordMeterInput handlechange={handleChange} value={snap.password} />
+      <PasswordMeterInput
+        handlechange={handleChangePassword}
+        value={forgotschoolpasswordinstance.instance.newpassword}
+      />
       <Button
         type="submit"
         color="primary"
@@ -40,7 +53,10 @@ export default function Detail() {
             },
           },
         }}
-        disabled={snap.password.length < 8}
+        disabled={forgotschoolpasswordinstance.instance.newpassword.length < 8}
+        onClick={() => {
+          router.push(`/school-sign-in/confirm-new-password`);
+        }}
       >
         Submit
       </Button>

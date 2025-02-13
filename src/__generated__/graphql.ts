@@ -948,6 +948,72 @@ export type Verificationinfo = {
   phone_number: Scalars['String']['input'];
 };
 
+export type ResetSchoolPasswordMutationVariables = Exact<{
+  new_password: Scalars['String']['input'];
+}>;
+
+
+export type ResetSchoolPasswordMutation = { __typename?: 'Mutation', resetSchoolPassword?: { __typename?: 'School', id: number } | null };
+
+export type SchoolLoginMutationVariables = Exact<{
+  schoollogin: SchoolLogin;
+}>;
+
+
+export type SchoolLoginMutation = { __typename?: 'Mutation', schoolLogin?: string | null };
+
+export type ForgotSchoolPasswordMutationVariables = Exact<{
+  phone_number: Scalars['String']['input'];
+}>;
+
+
+export type ForgotSchoolPasswordMutation = { __typename?: 'Mutation', forgotSchoolPassword?: { __typename?: 'SendCodeStatus', phone_number: string, success: boolean } | null };
+
+export type RequestSchoolPasswordResetMutationVariables = Exact<{
+  verificationinfo: Verificationinfo;
+}>;
+
+
+export type RequestSchoolPasswordResetMutation = { __typename?: 'Mutation', requestSchoolPasswordReset?: string | null };
+
+export type CreateSchoolMutationVariables = Exact<{
+  newschool: NewSchool;
+}>;
+
+
+export type CreateSchoolMutation = { __typename?: 'Mutation', createSchool?: { __typename?: 'UnverifiedSchool', id: number } | null };
+
+export type CheckphonenumberQueryVariables = Exact<{
+  phone_number: Scalars['String']['input'];
+}>;
+
+
+export type CheckphonenumberQuery = { __typename?: 'Query', schoolPhoneNumberExists: { __typename?: 'PhoneNumberExists', verified: boolean, unverified: boolean } };
+
+export type VerifySchoolMutationVariables = Exact<{
+  verificationinfo: Verificationinfo;
+}>;
+
+
+export type VerifySchoolMutation = { __typename?: 'Mutation', verifySchool?: { __typename?: 'School', id: number } | null };
+
+export type AddStudentMutationVariables = Exact<{
+  newstudents: Array<NewStudent> | NewStudent;
+}>;
+
+
+export type AddStudentMutation = { __typename?: 'Mutation', AddStudents?: Array<{ __typename?: 'Student', name: string }> | null };
+
+export type SchoolProfileQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SchoolProfileQuery = { __typename?: 'Query', getSchoolProfile?: { __typename?: 'SchoolProfile', name: string, phone_number: string } | null };
+
+export type SchoolStudentsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SchoolStudentsQuery = { __typename?: 'Query', getSchoolProfile?: { __typename?: 'SchoolProfile', students?: Array<{ __typename?: 'StudentProfile', id: number, name: string, registration_number: string, phone_number: string } | null> | null } | null };
+
 export type StudentLoginMutationVariables = Exact<{
   studentlogin: StudentLogin;
 }>;
@@ -985,83 +1051,10 @@ export type SchoolsProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type SchoolsProfileQuery = { __typename?: 'Query', getSchoolsProfile?: Array<{ __typename?: 'SchoolProfile', id: number, name: string }> | null };
 
-export type RefreshTokenMutationVariables = Exact<{
-  refreshtokeninput: RefreshTokenInput;
-}>;
-
-
-export type RefreshTokenMutation = { __typename?: 'Mutation', refreshToken?: string | null };
-
 export type StudentProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type StudentProfileQuery = { __typename?: 'Query', getStudentProfile?: { __typename?: 'StudentProfile', name: string, phone_number: string, registration_number: string, school: { __typename?: 'SchoolProfile', name: string, phone_number: string } } | null };
-
-export type ResetSchoolPasswordMutationVariables = Exact<{
-  new_password: Scalars['String']['input'];
-}>;
-
-
-export type ResetSchoolPasswordMutation = { __typename?: 'Mutation', resetSchoolPassword?: { __typename?: 'School', id: number, createdAt: any, updatedAt: any, deletedAt?: any | null, name: string, phone_number: string, password: string, badge?: string | null, Website?: string | null } | null };
-
-export type SchoolLoginMutationVariables = Exact<{
-  schoollogin: SchoolLogin;
-}>;
-
-
-export type SchoolLoginMutation = { __typename?: 'Mutation', schoolLogin?: string | null };
-
-export type ForgotSchoolPasswordMutationVariables = Exact<{
-  phone_number: Scalars['String']['input'];
-}>;
-
-
-export type ForgotSchoolPasswordMutation = { __typename?: 'Mutation', forgotSchoolPassword?: { __typename?: 'SendCodeStatus', phone_number: string, success: boolean } | null };
-
-export type RequestSchoolPasswordResetMutationVariables = Exact<{
-  verificationinfo: Verificationinfo;
-}>;
-
-
-export type RequestSchoolPasswordResetMutation = { __typename?: 'Mutation', requestSchoolPasswordReset?: string | null };
-
-export type CreateSchoolMutationVariables = Exact<{
-  newschool: NewSchool;
-}>;
-
-
-export type CreateSchoolMutation = { __typename?: 'Mutation', createSchool?: { __typename?: 'UnverifiedSchool', id: number, createdAt: any, updatedAt: any, deletedAt?: any | null, name: string, phone_number: string, password: string, badge?: string | null, Website?: string | null } | null };
-
-export type CheckphonenumberQueryVariables = Exact<{
-  phone_number: Scalars['String']['input'];
-}>;
-
-
-export type CheckphonenumberQuery = { __typename?: 'Query', schoolPhoneNumberExists: { __typename?: 'PhoneNumberExists', verified: boolean, unverified: boolean } };
-
-export type VerifySchoolMutationVariables = Exact<{
-  verificationinfo: Verificationinfo;
-}>;
-
-
-export type VerifySchoolMutation = { __typename?: 'Mutation', verifySchool?: { __typename?: 'School', id: number, createdAt: any, updatedAt: any, deletedAt?: any | null, name: string, phone_number: string, password: string, badge?: string | null, Website?: string | null } | null };
-
-export type AddStudentMutationVariables = Exact<{
-  newstudents: Array<NewStudent> | NewStudent;
-}>;
-
-
-export type AddStudentMutation = { __typename?: 'Mutation', AddStudents?: Array<{ __typename?: 'Student', name: string }> | null };
-
-export type SchoolProfileQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type SchoolProfileQuery = { __typename?: 'Query', getSchoolProfile?: { __typename?: 'SchoolProfile', name: string, phone_number: string } | null };
-
-export type SchoolStudentsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type SchoolStudentsQuery = { __typename?: 'Query', getSchoolProfile?: { __typename?: 'SchoolProfile', students?: Array<{ __typename?: 'StudentProfile', id: number, name: string, registration_number: string, phone_number: string } | null> | null } | null };
 
 export type SendCodeMutationVariables = Exact<{
   phone_number: Scalars['String']['input'];
@@ -1071,21 +1064,20 @@ export type SendCodeMutationVariables = Exact<{
 export type SendCodeMutation = { __typename?: 'Mutation', sendCode?: { __typename?: 'SendCodeStatus', phone_number: string, success: boolean } | null };
 
 
+export const ResetSchoolPasswordDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"resetSchoolPassword"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"new_password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"resetSchoolPassword"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"new_password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"new_password"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<ResetSchoolPasswordMutation, ResetSchoolPasswordMutationVariables>;
+export const SchoolLoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"schoolLogin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"schoollogin"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SchoolLogin"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"schoolLogin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"schoollogin"}}}]}]}}]} as unknown as DocumentNode<SchoolLoginMutation, SchoolLoginMutationVariables>;
+export const ForgotSchoolPasswordDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"forgotSchoolPassword"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"forgotSchoolPassword"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"phone_number"},"value":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"phone_number"}},{"kind":"Field","name":{"kind":"Name","value":"success"}}]}}]}}]} as unknown as DocumentNode<ForgotSchoolPasswordMutation, ForgotSchoolPasswordMutationVariables>;
+export const RequestSchoolPasswordResetDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"requestSchoolPasswordReset"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"verificationinfo"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"verificationinfo"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"requestSchoolPasswordReset"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"verificationinfo"}}}]}]}}]} as unknown as DocumentNode<RequestSchoolPasswordResetMutation, RequestSchoolPasswordResetMutationVariables>;
+export const CreateSchoolDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createSchool"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newschool"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"NewSchool"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createSchool"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newschool"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreateSchoolMutation, CreateSchoolMutationVariables>;
+export const CheckphonenumberDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"checkphonenumber"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"schoolPhoneNumberExists"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"phone_number"},"value":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"unverified"}}]}}]}}]} as unknown as DocumentNode<CheckphonenumberQuery, CheckphonenumberQueryVariables>;
+export const VerifySchoolDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"verifySchool"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"verificationinfo"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"verificationinfo"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verifySchool"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"verificationinfo"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<VerifySchoolMutation, VerifySchoolMutationVariables>;
+export const AddStudentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"AddStudent"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newstudents"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"NewStudent"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"AddStudents"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"students"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newstudents"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<AddStudentMutation, AddStudentMutationVariables>;
+export const SchoolProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SchoolProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getSchoolProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}}]}}]}}]} as unknown as DocumentNode<SchoolProfileQuery, SchoolProfileQueryVariables>;
+export const SchoolStudentsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SchoolStudents"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getSchoolProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"students"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"registration_number"}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}}]}}]}}]}}]} as unknown as DocumentNode<SchoolStudentsQuery, SchoolStudentsQueryVariables>;
 export const StudentLoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"studentLogin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"studentlogin"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"StudentLogin"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"studentLogin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"studentlogin"}}}]}]}}]} as unknown as DocumentNode<StudentLoginMutation, StudentLoginMutationVariables>;
 export const ResetStudentPasswordDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"resetStudentPassword"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"new_password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"resetStudentPassword"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"new_password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"new_password"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<ResetStudentPasswordMutation, ResetStudentPasswordMutationVariables>;
 export const ForgotStudentPasswordDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"forgotStudentPassword"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"schoolid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"registration_number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"forgotStudentPassword"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"schoolid"},"value":{"kind":"Variable","name":{"kind":"Name","value":"schoolid"}}},{"kind":"Argument","name":{"kind":"Name","value":"registration_number"},"value":{"kind":"Variable","name":{"kind":"Name","value":"registration_number"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"phone_number"}},{"kind":"Field","name":{"kind":"Name","value":"success"}}]}}]}}]} as unknown as DocumentNode<ForgotStudentPasswordMutation, ForgotStudentPasswordMutationVariables>;
 export const RequestStudentPasswordResetDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"requestStudentPasswordReset"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"schoolid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"registration_number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"otp"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"requestStudentPasswordReset"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"schoolid"},"value":{"kind":"Variable","name":{"kind":"Name","value":"schoolid"}}},{"kind":"Argument","name":{"kind":"Name","value":"registration_number"},"value":{"kind":"Variable","name":{"kind":"Name","value":"registration_number"}}},{"kind":"Argument","name":{"kind":"Name","value":"phone_number"},"value":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}}},{"kind":"Argument","name":{"kind":"Name","value":"otp"},"value":{"kind":"Variable","name":{"kind":"Name","value":"otp"}}}]}]}}]} as unknown as DocumentNode<RequestStudentPasswordResetMutation, RequestStudentPasswordResetMutationVariables>;
 export const SchoolsProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SchoolsProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getSchoolsProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<SchoolsProfileQuery, SchoolsProfileQueryVariables>;
-export const RefreshTokenDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"refreshToken"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"refreshtokeninput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RefreshTokenInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"refreshToken"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"refreshtokeninput"}}}]}]}}]} as unknown as DocumentNode<RefreshTokenMutation, RefreshTokenMutationVariables>;
 export const StudentProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"studentProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getStudentProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}},{"kind":"Field","name":{"kind":"Name","value":"registration_number"}},{"kind":"Field","name":{"kind":"Name","value":"school"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}}]}}]}}]}}]} as unknown as DocumentNode<StudentProfileQuery, StudentProfileQueryVariables>;
-export const ResetSchoolPasswordDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"resetSchoolPassword"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"new_password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"resetSchoolPassword"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"new_password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"new_password"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"deletedAt"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}},{"kind":"Field","name":{"kind":"Name","value":"password"}},{"kind":"Field","name":{"kind":"Name","value":"badge"}},{"kind":"Field","name":{"kind":"Name","value":"Website"}}]}}]}}]} as unknown as DocumentNode<ResetSchoolPasswordMutation, ResetSchoolPasswordMutationVariables>;
-export const SchoolLoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"schoolLogin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"schoollogin"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SchoolLogin"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"schoolLogin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"schoollogin"}}}]}]}}]} as unknown as DocumentNode<SchoolLoginMutation, SchoolLoginMutationVariables>;
-export const ForgotSchoolPasswordDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"forgotSchoolPassword"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"forgotSchoolPassword"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"phone_number"},"value":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"phone_number"}},{"kind":"Field","name":{"kind":"Name","value":"success"}}]}}]}}]} as unknown as DocumentNode<ForgotSchoolPasswordMutation, ForgotSchoolPasswordMutationVariables>;
-export const RequestSchoolPasswordResetDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"requestSchoolPasswordReset"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"verificationinfo"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"verificationinfo"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"requestSchoolPasswordReset"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"verificationinfo"}}}]}]}}]} as unknown as DocumentNode<RequestSchoolPasswordResetMutation, RequestSchoolPasswordResetMutationVariables>;
-export const CreateSchoolDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createSchool"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newschool"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"NewSchool"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createSchool"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newschool"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"deletedAt"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}},{"kind":"Field","name":{"kind":"Name","value":"password"}},{"kind":"Field","name":{"kind":"Name","value":"badge"}},{"kind":"Field","name":{"kind":"Name","value":"Website"}}]}}]}}]} as unknown as DocumentNode<CreateSchoolMutation, CreateSchoolMutationVariables>;
-export const CheckphonenumberDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"checkphonenumber"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"schoolPhoneNumberExists"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"phone_number"},"value":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"unverified"}}]}}]}}]} as unknown as DocumentNode<CheckphonenumberQuery, CheckphonenumberQueryVariables>;
-export const VerifySchoolDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"verifySchool"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"verificationinfo"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"verificationinfo"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verifySchool"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"verificationinfo"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"deletedAt"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}},{"kind":"Field","name":{"kind":"Name","value":"password"}},{"kind":"Field","name":{"kind":"Name","value":"badge"}},{"kind":"Field","name":{"kind":"Name","value":"Website"}}]}}]}}]} as unknown as DocumentNode<VerifySchoolMutation, VerifySchoolMutationVariables>;
-export const AddStudentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"AddStudent"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newstudents"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"NewStudent"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"AddStudents"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"students"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newstudents"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<AddStudentMutation, AddStudentMutationVariables>;
-export const SchoolProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SchoolProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getSchoolProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}}]}}]}}]} as unknown as DocumentNode<SchoolProfileQuery, SchoolProfileQueryVariables>;
-export const SchoolStudentsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SchoolStudents"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getSchoolProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"students"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"registration_number"}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}}]}}]}}]}}]} as unknown as DocumentNode<SchoolStudentsQuery, SchoolStudentsQueryVariables>;
 export const SendCodeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"sendCode"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sendCode"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"phone_number"},"value":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"phone_number"}},{"kind":"Field","name":{"kind":"Name","value":"success"}}]}}]}}]} as unknown as DocumentNode<SendCodeMutation, SendCodeMutationVariables>;

@@ -2,42 +2,42 @@
 
 import { gql } from "@/__generated__/gql";
 import InputPasswordConfirmation from "@/components/Input/inputpasswordconfirmation";
-import { SchoolPasswordResetValue } from "@/state/store";
 import { useMutation } from "@apollo/client";
 import Button from "@mui/joy/Button";
 import { useEffect, useState } from "react";
 import { useSnapshot } from "valtio";
+import {
+  ForgotSchoolPassword,
+  ForgotSchoolPasswordInstance,
+} from "../../state/store";
+import { useRouter } from "next/navigation";
 
 const RESET_SCHOOL_PASSWORD_MUTATION = gql(`
    mutation resetSchoolPassword($new_password: String!){
     resetSchoolPassword(new_password: $new_password){
       id
-      createdAt
-      updatedAt
-      deletedAt
-      name
-      phone_number
-      password
-      badge
-      Website
     }
   }
  `);
 
 export default function Detail() {
-  const snap = useSnapshot(SchoolPasswordResetValue);
+  const router = useRouter();
+
+  const forgotschoolpasswordinstance = useSnapshot(
+    ForgotSchoolPasswordInstance
+  );
 
   const [password, setPassword] = useState("");
 
-  const handleChange = (event: any) => {
+  const handleChangePassword = (event: any) => {
     setPassword(event.target.value);
   };
 
   useEffect(() => {
-    const data = window.localStorage.getItem("SchoolPasswordResetValue");
+    const data = window.localStorage.getItem("ForgotSchoolPassword");
     if (data !== null) {
-      const Parseddata: string = JSON.parse(data);
-      SchoolPasswordResetValue.password = Parseddata;
+      const Parseddata: ForgotSchoolPassword = JSON.parse(data);
+      ForgotSchoolPasswordInstance.instance = Parseddata;
     }
   }, []);
 
@@ -45,13 +45,19 @@ export default function Detail() {
     RESET_SCHOOL_PASSWORD_MUTATION
   );
 
-  console.log(data);
+  useEffect(() => {
+    if (data !== undefined && data !== null) {
+      window.localStorage.setItem("LastSignedInAs", JSON.stringify("school"));
+      window.localStorage.setItem("LastSignInDate", JSON.stringify(new Date()));
+      router.push(`/school`);
+    }
+  }, [data]);
 
   return (
     <div className="grid">
       <InputPasswordConfirmation
-        handlechange={handleChange}
-        expectedValue={snap.password}
+        handlechange={handleChangePassword}
+        expectedValue={forgotschoolpasswordinstance.instance.newpassword}
       />
       <div className="text-red-600 mb-4 text-center">{error?.message}</div>
       <Button
@@ -65,12 +71,12 @@ export default function Detail() {
             },
           },
         }}
-        disabled={password != snap.password}
+        disabled={password != forgotschoolpasswordinstance.instance.newpassword}
         onClick={(e) => {
           e.preventDefault();
           resetSchoolPassword({
             variables: {
-              new_password: snap.password,
+              new_password: forgotschoolpasswordinstance.instance.newpassword,
             },
           }).catch((res) => {
             const errors = res.graphQLErrors.map((error: any) => {

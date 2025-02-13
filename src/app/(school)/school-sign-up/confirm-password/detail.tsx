@@ -1,31 +1,26 @@
 "use client";
 
 import InputPasswordConfirmation from "@/components/Input/inputpasswordconfirmation";
-import { SchoolSignup, SchoolSignupInstance } from "@/state/store";
+import { SchoolSignup, SchoolSignupInstance } from "../../state/store";
 import Button from "@mui/joy/Button";
 import { useEffect, useState } from "react";
 import { useSnapshot } from "valtio";
 import { useMutation } from "@apollo/client";
 import { gql } from "../../../../__generated__/gql";
+import { useRouter } from "next/navigation";
 
 const CREATE_SCHOOL_MUTATION = gql(`
   mutation createSchool($newschool: NewSchool!) {   
     createSchool( input: $newschool ) {    
       id
-      createdAt
-      updatedAt
-      deletedAt
-      name
-      phone_number
-      password
-      badge
-      Website
      }    
  }
 `);
 
 export default function Detail() {
-  const snap = useSnapshot(SchoolSignupInstance);
+  const router = useRouter();
+
+  const schoolsignupinstance = useSnapshot(SchoolSignupInstance);
 
   const [value, setValue] = useState("");
 
@@ -42,19 +37,28 @@ export default function Detail() {
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem("SchoolSignUp", JSON.stringify(snap.instance));
-  }, [snap.instance]);
+    window.localStorage.setItem(
+      "SchoolSignUp",
+      JSON.stringify(schoolsignupinstance.instance)
+    );
+  }, [schoolsignupinstance.instance]);
 
   // our mutation's result, data, is typed!
   const [createSchool, { data, loading, error }] = useMutation(
     CREATE_SCHOOL_MUTATION
   );
 
+  useEffect(() => {
+    if (data !== null && data !== undefined) {
+      router.push(`/school-sign-up/verify-phonenumber`);
+    }
+  }, [data]);
+
   return (
     <div className="grid">
       <InputPasswordConfirmation
         handlechange={handleChange}
-        expectedValue={snap.instance.password}
+        expectedValue={schoolsignupinstance.instance.password}
       />
       <div className="text-red-600 mb-4 text-center">{error?.message}</div>
       <Button
@@ -68,16 +72,16 @@ export default function Detail() {
             },
           },
         }}
-        disabled={snap.instance.password != value}
+        disabled={schoolsignupinstance.instance.password != value}
         loading={loading}
         onClick={(e) => {
           e.preventDefault();
           createSchool({
             variables: {
               newschool: {
-                name: snap.instance.name,
-                phone_number: snap.instance.phoneNumber,
-                password: snap.instance.password,
+                name: schoolsignupinstance.instance.name,
+                phone_number: schoolsignupinstance.instance.phoneNumber,
+                password: schoolsignupinstance.instance.password,
               },
             },
           }).catch((res) => {

@@ -12,6 +12,8 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import MuiPhoneNumber from "mui-phone-number";
 import { useMutation } from "@apollo/client";
 import { gql } from "@/__generated__";
+import { useRouter } from "next/navigation";
+
 
 const SCHOOL_LOGIN_MUTATION = gql(`
 mutation schoolLogin($schoollogin: SchoolLogin!) {   
@@ -21,6 +23,8 @@ mutation schoolLogin($schoollogin: SchoolLogin!) {
 
 export default function Detail() {
   const snap = useSnapshot(AuthenticationToken);
+
+  const router = useRouter();
 
   const [phonenumber, setPhoneNumber] = useState("");
 
@@ -50,16 +54,26 @@ export default function Detail() {
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem("AuthenticationToken", JSON.stringify(snap.token));
+    window.localStorage.setItem(
+      "AuthenticationToken",
+      JSON.stringify(snap.token)
+    );
   }, [snap.token]);
 
-  
   useEffect(() => {
-    if (data !== undefined && data !== null){
-    AuthenticationToken.token = data.schoolLogin
+    if (data !== undefined && data !== null) {
+      AuthenticationToken.token = data.schoolLogin;
+      window.localStorage.setItem("LastSignedInAs", JSON.stringify("school"));
+      window.localStorage.setItem("LastSignInDate", JSON.stringify(new Date()));
+      router.push(`/school`);
     }
   }, [data]);
 
+  useEffect(() => {
+    if (data !== undefined && data !== null) {
+      AuthenticationToken.token = data.schoolLogin;
+    }
+  }, [data]);
 
   return (
     <div className="max-md:px-2">
@@ -90,12 +104,22 @@ export default function Detail() {
           value={password}
         />
         <div className="grid grid-cols-2">
-          <p className="text-sky-600 cursor-pointer text-center">
+        <button
+            className="text-sky-600 cursor-pointer text-center"
+            onClick={(e) => {
+              router.push(`/school-sign-in/forgot-password`);
+            }}
+          >
             Forgot password?
-          </p>
-          <p className="text-sky-600 cursor-pointer text-center">
+          </button>
+          <button
+            className="text-sky-600 cursor-pointer text-center"
+            onClick={(e) => {
+              router.push(`/school-sign-up`);
+            }}
+          >
             Create an account
-          </p>
+          </button>
         </div>
         <div className="text-red-600 mb-4 text-center">{error?.message}</div>
         <Button

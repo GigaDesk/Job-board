@@ -1,13 +1,16 @@
 "use client";
 
 import PasswordMeterInput from "@/components/Input/passwordmeterinput";
-import { SchoolSignup, SchoolSignupInstance } from "@/state/store";
+import { SchoolSignup, SchoolSignupInstance } from "../../state/store";
 import { useSnapshot } from "valtio";
 import Button from "@mui/joy/Button";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Detail() {
-  const snap = useSnapshot(SchoolSignupInstance);
+  const router = useRouter();
+
+  const schoolsignupinstance = useSnapshot(SchoolSignupInstance);
 
   const handleChange = (event: any) => {
     SchoolSignupInstance.instance.password = event.target.value;
@@ -22,14 +25,17 @@ export default function Detail() {
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem("SchoolSignUp", JSON.stringify(snap.instance));
-  }, [snap.instance]);
+    window.localStorage.setItem(
+      "SchoolSignUp",
+      JSON.stringify(schoolsignupinstance.instance)
+    );
+  }, [schoolsignupinstance.instance]);
 
   return (
     <div className="grid">
       <PasswordMeterInput
         handlechange={handleChange}
-        value={snap.instance.password}
+        value={schoolsignupinstance.instance.password}
       />
       <Button
         type="submit"
@@ -42,7 +48,10 @@ export default function Detail() {
             },
           },
         }}
-        disabled={snap.instance.password.length < 8}
+        disabled={schoolsignupinstance.instance.password.length < 8}
+        onClick={() => {
+          router.push(`/school-sign-up/confirm-password`);
+        }}
       >
         Submit
       </Button>

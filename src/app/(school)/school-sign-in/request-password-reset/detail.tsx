@@ -1,12 +1,18 @@
 "use client";
 
 import Button from "@mui/joy/Button";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Stack from "@mui/joy/Stack";
 import Input from "@mui/joy/Input";
 import SendOtp from "@/components/button/sendotp";
 import { gql } from "@/__generated__/gql";
 import { useMutation } from "@apollo/client";
+import { useSnapshot } from "valtio";
+import {
+  ForgotSchoolPassword,
+  ForgotSchoolPasswordInstance,
+} from "../../state/store";
+import { useRouter } from "next/navigation";
 
 const REQUEST_SCHOOL_PASSWORD_RESET_MUTATION = gql(`
    mutation requestSchoolPasswordReset($verificationinfo: verificationinfo!){
@@ -15,20 +21,30 @@ const REQUEST_SCHOOL_PASSWORD_RESET_MUTATION = gql(`
 `);
 
 export default function Detail() {
-  const [otp, setOtp] = useState("");
-  const [phonenumber, setPhoneNumber] = useState("");
+  const router = useRouter();
 
-  const handleChange = (event: any) => {
-    setOtp(event.target.value);
+  const forgotschoolpasswordinstance = useSnapshot(
+    ForgotSchoolPasswordInstance
+  );
+
+  const handleChangeOtp = (event: any) => {
+    ForgotSchoolPasswordInstance.instance.otp = event.target.value;
   };
 
   useEffect(() => {
-    const data = window.localStorage.getItem("ForgotPasswordPhoneNumber");
+    const data = window.localStorage.getItem("ForgotSchoolPassword");
     if (data !== null) {
-      const Parseddata: string = JSON.parse(data);
-      setPhoneNumber(Parseddata);
+      const Parseddata: ForgotSchoolPassword = JSON.parse(data);
+      ForgotSchoolPasswordInstance.instance = Parseddata;
     }
   }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      "ForgotSchoolPassword",
+      JSON.stringify(forgotschoolpasswordinstance.instance)
+    );
+  }, [forgotschoolpasswordinstance.instance]);
 
   const [requestSchoolPasswordReset, { data, loading, error }] = useMutation(
     REQUEST_SCHOOL_PASSWORD_RESET_MUTATION
@@ -40,6 +56,7 @@ export default function Detail() {
         "AuthenticationToken",
         JSON.stringify(data.requestSchoolPasswordReset)
       );
+      router.push(`/school-sign-in/reset-password`);
     }
   }, [data]);
 
@@ -49,8 +66,8 @@ export default function Detail() {
         <Input
           placeholder="Enter 6-digit code"
           type="number"
-          onChange={handleChange}
-          value={otp}
+          onChange={handleChangeOtp}
+          value={forgotschoolpasswordinstance.instance.otp}
           sx={{
             "&.MuiInput-colorNeutral": {
               display: "grid",
@@ -70,15 +87,16 @@ export default function Detail() {
               },
             },
           }}
-          disabled={otp.length != 6}
+          disabled={forgotschoolpasswordinstance.instance.otp.length != 6}
           loading={loading}
           onClick={(e) => {
             e.preventDefault();
             requestSchoolPasswordReset({
               variables: {
                 verificationinfo: {
-                  phone_number: phonenumber,
-                  otp: otp,
+                  phone_number:
+                    forgotschoolpasswordinstance.instance.phoneNumber,
+                  otp: forgotschoolpasswordinstance.instance.otp,
                 },
               },
             }).catch((res) => {
@@ -90,7 +108,9 @@ export default function Detail() {
         >
           Verify
         </Button>
-        <SendOtp phonenumber={phonenumber} />
+        <SendOtp
+          phonenumber={forgotschoolpasswordinstance.instance.phoneNumber}
+        />
       </Stack>
     </div>
   );
