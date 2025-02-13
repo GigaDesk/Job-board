@@ -4,6 +4,7 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import Stack from "@mui/joy/Stack";
 
+//PopupRoutes displays navigable routes within the application
 export default function PopupRoutes() {
   return (
     <div className="shadow-xl">

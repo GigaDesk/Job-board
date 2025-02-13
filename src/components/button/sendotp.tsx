@@ -5,6 +5,7 @@ import Stack from "@mui/joy/Stack";
 import { useMutation } from "@apollo/client";
 import { gql } from "../../__generated__/gql";
 
+//sends an OTP code to the provided phone number
 const SEND_CODE_MUTATION = gql(`
    mutation sendCode($phone_number: String!) {   
     sendCode(phone_number: $phone_number) {    
@@ -14,6 +15,7 @@ const SEND_CODE_MUTATION = gql(`
  }
 `);
 
+//SendOtp sends OTP code to the provided phone number in the props
 export default function SendOtp(props: { phonenumber: string }) {
   const [sendCode, { data, loading, error }] = useMutation(SEND_CODE_MUTATION);
   console.log(data);

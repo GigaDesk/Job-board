@@ -2,6 +2,7 @@ import Button from "@mui/joy/Button";
 import Stack from "@mui/joy/Stack";
 import MuiPhoneNumber from 'mui-phone-number';
 
+//InputPhoneNumber serves as an input field for phone numbers
 export default function InputPhoneNumber(props: {
   handlechange: any;
   disableSubmit: boolean;

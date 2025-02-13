@@ -3,6 +3,7 @@ import PagesSection from "./pages-section";
 import { SidebarState } from "@/state/store";
 import { useSnapshot } from "valtio";
 
+//Sidebar appears on the left hand side of a large screen
 export default function Sidebar() {
   const snap = useSnapshot(SidebarState);
 

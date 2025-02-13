@@ -2,6 +2,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import PagesSection from "./pages-section";
 import { SideDrawerState } from "@/state/store";
 
+// The content of the SwipeableTemporaryDrawer
 export default function SideDrawerContent() {
   const handleMenuClick = () => {
     SideDrawerState.show = false;

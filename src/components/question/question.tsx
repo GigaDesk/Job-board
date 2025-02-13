@@ -1,3 +1,4 @@
+// Question renders a question, specifically the main statement that explain's a form's purpose
 export default function Question(props: { question: string }) {
   return (
     <div className="grid justify-items-center text-center text-gray font-medium text-2xl max-md:px-12 md:text-4xl">
