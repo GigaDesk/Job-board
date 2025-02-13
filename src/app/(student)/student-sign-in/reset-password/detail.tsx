@@ -3,10 +3,7 @@
 import PasswordMeterInput from "@/components/Input/passwordmeterinput";
 import Button from "@mui/joy/Button";
 import { useEffect } from "react";
-import {
-  ForgotStudentPasswordInstance,
-  ForgotStudentPassword,
-} from "@/state/store";
+import { ForgotStudentPasswordInstance, ForgotStudentPassword } from "../../state/store";
 import { useSnapshot } from "valtio";
 import { useRouter } from "next/navigation";
 

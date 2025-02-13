@@ -1,14 +1,15 @@
 "use client";
 
-import { SchoolSignupInstance } from "@/state/store";
+import { SchoolSignupInstance } from "../../state/store";
 import { useEffect } from "react";
 import { useSnapshot } from "valtio";
-import { SchoolSignup } from "@/state/store";
+import { SchoolSignup } from "../../state/store";
 import { useLazyQuery } from "@apollo/client";
 import { gql } from "../../../../__generated__/gql";
 import Button from "@mui/joy/Button";
 import Stack from "@mui/joy/Stack";
 import MuiPhoneNumber from "mui-phone-number";
+import { useRouter } from "next/navigation";
 
 const CHECK_SCHOOL_PHONENUMBER_EXISTENCE_QUERY = gql(`
   query checkphonenumber($phone_number: String!) {
@@ -20,9 +21,11 @@ const CHECK_SCHOOL_PHONENUMBER_EXISTENCE_QUERY = gql(`
 `);
 
 export default function Detail() {
+  const router = useRouter();
+
   let phoneNumber: string;
 
-  const snap = useSnapshot(SchoolSignupInstance);
+  const schoolsignupinstance = useSnapshot(SchoolSignupInstance);
 
   const handleChange = (value: any) => {
     SchoolSignupInstance.instance.phoneNumber = value;
@@ -37,15 +40,25 @@ export default function Detail() {
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem("SchoolSignUp", JSON.stringify(snap.instance));
-    phoneNumber = snap.instance.phoneNumber;
-  }, [snap.instance]);
+    window.localStorage.setItem(
+      "SchoolSignUp",
+      JSON.stringify(schoolsignupinstance.instance)
+    );
+    phoneNumber = schoolsignupinstance.instance.phoneNumber;
+  }, [schoolsignupinstance.instance]);
 
   const [checkPhoneNumber, { loading, error, data }] = useLazyQuery(
     CHECK_SCHOOL_PHONENUMBER_EXISTENCE_QUERY
   );
 
-  console.log(data);
+  useEffect(() => {
+    if (
+      data?.schoolPhoneNumberExists.verified === false &&
+      data.schoolPhoneNumberExists.unverified === false
+    ) {
+      router.push(`/school-sign-up/password`);
+    }
+  }, [data]);
 
   return (
     <div className="max-md:px-2">
@@ -55,7 +68,7 @@ export default function Detail() {
           onChange={handleChange}
           onlyCountries={["ke"]}
           countryCodeEditable={false}
-          value={snap.instance.phoneNumber}
+          value={schoolsignupinstance.instance.phoneNumber}
         />
         <div className="text-red-600">{error?.message}</div>
         {data?.schoolPhoneNumberExists.unverified ? (
@@ -77,7 +90,7 @@ export default function Detail() {
               },
             },
           }}
-          disabled={snap.instance.phoneNumber.length != 13}
+          disabled={schoolsignupinstance.instance.phoneNumber.length != 13}
           onClick={() =>
             checkPhoneNumber({ variables: { phone_number: phoneNumber } })
           }

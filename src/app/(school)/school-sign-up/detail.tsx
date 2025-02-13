@@ -1,13 +1,19 @@
 "use client";
 
-import InputName from "@/components/Input/inputname";
-import { SchoolSignupInstance } from "@/state/store";
+import Button from "@mui/joy/Button";
+import Input from "@mui/joy/Input";
+import Stack from "@mui/joy/Stack";
+import { SchoolSignupInstance } from "../state/store";
 import { useEffect } from "react";
 import { useSnapshot } from "valtio";
-import { SchoolSignup } from "@/state/store";
+import { SchoolSignup } from "../state/store";
+import { useRouter } from "next/navigation";
 
 export default function Detail() {
-  const snap = useSnapshot(SchoolSignupInstance);
+
+  const router = useRouter();
+  
+  const schoolsignupinstance = useSnapshot(SchoolSignupInstance);
 
   const handleChange = (e: any) => {
     SchoolSignupInstance.instance.name = e.target.value;
@@ -24,16 +30,37 @@ export default function Detail() {
   useEffect(() => {
     window.localStorage.setItem(
       "SchoolSignUp",
-      JSON.stringify(snap.instance)
+      JSON.stringify(schoolsignupinstance.instance)
     );
-  }, [snap.instance]);
+  }, [schoolsignupinstance.instance]);
   
   return (
-    <InputName
-      placeholder="Type school's name here..."
-      value={snap.instance.name}
-      handlechange={handleChange}
-      disableSubmit={SchoolSignupInstance.instance.name==""}
-    />
+    <div>
+    <Stack spacing={1}>
+      <Input
+        placeholder="Type school's name here..."
+        value={schoolsignupinstance.instance.name}
+        onChange={handleChange}
+      />
+      <Button
+        type="submit"
+        color="primary"
+        sx={{
+          "&.MuiButton-colorPrimary": {
+            backgroundColor: "#3B0764",
+            "&:hover": {
+              backgroundColor: "#581C87",
+            },
+          },
+        }}
+        disabled={schoolsignupinstance.instance.name==""}
+        onClick={() => {
+          router.push(`/school-sign-up/phonenumber`);
+        }}
+      >
+        Submit
+      </Button>
+    </Stack>
+  </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { SchoolSignup, SchoolSignupInstance } from "@/state/store";
+import { SchoolSignup, SchoolSignupInstance } from "../../state/store";
 import { useSnapshot } from "valtio";
 import Button from "@mui/joy/Button";
 import { useEffect, useState } from "react";
@@ -9,25 +9,20 @@ import Input from "@mui/joy/Input";
 import SendOtp from "../../../../components/button/sendotp";
 import { useMutation } from "@apollo/client";
 import { gql } from "../../../../__generated__/gql";
+import { useRouter } from "next/navigation";
 
 const VERIFY_SCHOOL_MUTATION = gql(`
   mutation verifySchool ($verificationinfo: verificationinfo!) {   
   verifySchool(input: $verificationinfo) {    
     id
-    createdAt
-    updatedAt
-    deletedAt
-    name
-    phone_number
-    password
-    badge
-    Website
    }    
 }
 `);
 
 export default function Detail() {
-  const snap = useSnapshot(SchoolSignupInstance);
+  const router = useRouter();
+
+  const schoolsignupinstance = useSnapshot(SchoolSignupInstance);
 
   const [value, setValue] = useState("");
 
@@ -44,12 +39,21 @@ export default function Detail() {
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem("SchoolSignUp", JSON.stringify(snap.instance));
-  }, [snap.instance]);
+    window.localStorage.setItem(
+      "SchoolSignUp",
+      JSON.stringify(schoolsignupinstance.instance)
+    );
+  }, [schoolsignupinstance.instance]);
 
   const [verifySchool, { data, loading, error }] = useMutation(
     VERIFY_SCHOOL_MUTATION
   );
+
+  useEffect(() => {
+    if (data !== null && data !==undefined) {
+      router.push(`/school-sign-in`);
+    }
+  }, [data]);
 
   return (
     <div className="grid">
@@ -85,7 +89,7 @@ export default function Detail() {
             verifySchool({
               variables: {
                 verificationinfo: {
-                  phone_number: snap.instance.phoneNumber,
+                  phone_number: schoolsignupinstance.instance.phoneNumber,
                   otp: value,
                 },
               },
@@ -98,7 +102,7 @@ export default function Detail() {
         >
           Verify
         </Button>
-        <SendOtp phonenumber={snap.instance.phoneNumber}/>
+        <SendOtp phonenumber={schoolsignupinstance.instance.phoneNumber} />
       </Stack>
     </div>
   );
