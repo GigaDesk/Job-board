@@ -29,7 +29,7 @@ const authLink = new ApolloLink((operation, forward) => {
 
 const client = () => {
   const httpLink = new HttpLink({
-    uri: "https://eardrum-423271079010.europe-west3.run.app/query",
+    uri: process.env.EARDRUM_SERVER_URI,
     fetchOptions: { cache: "no-store" },
   });
 
