@@ -23,12 +23,10 @@ const CHECK_SCHOOL_PHONENUMBER_EXISTENCE_QUERY = gql(`
 export default function Detail() {
   const router = useRouter();
 
-  let phoneNumber: string;
-
   const schoolsignupinstance = useSnapshot(SchoolSignupInstance);
 
-  const handleChange = (value: any) => {
-    SchoolSignupInstance.instance.phoneNumber = value;
+  const handleChange = (e: string | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    SchoolSignupInstance.instance.phoneNumber = e as string;
   };
 
   useEffect(() => {
@@ -44,7 +42,6 @@ export default function Detail() {
       "SchoolSignUp",
       JSON.stringify(schoolsignupinstance.instance)
     );
-    phoneNumber = schoolsignupinstance.instance.phoneNumber;
   }, [schoolsignupinstance.instance]);
 
   const [checkPhoneNumber, { loading, error, data }] = useLazyQuery(
@@ -58,7 +55,7 @@ export default function Detail() {
     ) {
       router.push(`/school-sign-up/password`);
     }
-  }, [data]);
+  }, [data, router]);
 
   return (
     <div className="max-md:px-2">
@@ -92,7 +89,7 @@ export default function Detail() {
           }}
           disabled={schoolsignupinstance.instance.phoneNumber.length != 13}
           onClick={() =>
-            checkPhoneNumber({ variables: { phone_number: phoneNumber } })
+            checkPhoneNumber({ variables: { phone_number: schoolsignupinstance.instance.phoneNumber } })
           }
           loading={loading}
         >

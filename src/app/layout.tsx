@@ -28,11 +28,11 @@ export default function RootLayout({
       <head>
         <style>
           @import
-          url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+          url(&apos;https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap&apos;);
         </style>
         <style>
           @import
-          url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=McLaren&display=swap');
+          url(&apos;https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=McLaren&display=swap&apos;);
         </style>
       </head>
       <body

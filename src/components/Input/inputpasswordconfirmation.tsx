@@ -10,7 +10,7 @@ import { useState } from "react";
 
 //InputPasswordConfirmation compares the input password with the expected password
 export default function InputPasswordConfirmation(props: {
-  handlechange: any;
+  handlechange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   expectedValue: string;
 }) {
   const [value, setValue] = useState("");
@@ -19,7 +19,7 @@ export default function InputPasswordConfirmation(props: {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.handlechange(event);
     setValue(event.target.value);
     if (event.target.value == props.expectedValue) {

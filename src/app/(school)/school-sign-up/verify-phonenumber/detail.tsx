@@ -26,7 +26,7 @@ export default function Detail() {
 
   const [value, setValue] = useState("");
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 
@@ -53,7 +53,7 @@ export default function Detail() {
     if (data !== null && data !==undefined) {
       router.push(`/school-sign-in`);
     }
-  }, [data]);
+  }, [data, router]);
 
   return (
     <div className="grid">
@@ -94,8 +94,8 @@ export default function Detail() {
                 },
               },
             }).catch((res) => {
-              const errors = res.graphQLErrors.map((error: any) => {
-                console.log(error.message);
+              const errors = res.graphQLErrors.map(() => {
+                console.log(errors.message);
               });
             });
           }}

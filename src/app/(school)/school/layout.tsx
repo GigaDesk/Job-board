@@ -47,7 +47,7 @@ export default function SchoolPageLayout({ home }: { home: React.ReactNode }) {
     } else {
       router.push(`/school-sign-in`);
     }
-  }, []);
+  },[router]);
 
   useEffect(() => {
     const data = window.localStorage.getItem("LastSignedInAs");
@@ -59,11 +59,11 @@ export default function SchoolPageLayout({ home }: { home: React.ReactNode }) {
     } else {
       router.push(`/school-sign-in`);
     }
-  }, []);
+  },[router]);
 
   useEffect(() => {
     handleSinceSignIn();
-  }, []);
+  });
 
   return (
     <div

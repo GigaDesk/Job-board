@@ -11,7 +11,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 //PasswordMeterInput serves as an input field for passwords of a minimum length of 8 characters
 export default function PasswordMeterInput(props: {
-  handlechange: any;
+  handlechange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
 }) {
   const [showPassword, setShowPassword] = React.useState(false);

@@ -38,11 +38,11 @@ export default function Detail() {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleChangePassword = (event: any) => {
+  const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
-  const handleChangeRegistrationNumber = (event: any) => {
+  const handleChangeRegistrationNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRegistrationNumber(event.target.value);
   };
 
@@ -72,7 +72,7 @@ export default function Detail() {
       window.localStorage.setItem("LastSignInDate", JSON.stringify(new Date()));
       router.push(`/student`);
     }
-  }, [data]);
+  }, [data, router]);
 
   useEffect(() => {
     window.localStorage.setItem(
@@ -110,7 +110,7 @@ export default function Detail() {
         <div className="grid">
           <button
             className="text-sky-600 cursor-pointer text-center"
-            onClick={(e) => {
+            onClick={() => {
               router.push(`/student-sign-in/forgot-password`);
             }}
           >
@@ -141,8 +141,8 @@ export default function Detail() {
                 },
               },
             }).catch((res) => {
-              const errors = res.graphQLErrors.map((error: any) => {
-                console.log(error.message);
+              const errors = res.graphQLErrors.map(() => {
+                console.log(errors.message);
               });
             });
           }}

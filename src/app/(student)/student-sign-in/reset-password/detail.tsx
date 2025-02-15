@@ -14,7 +14,7 @@ export default function Detail() {
     ForgotStudentPasswordInstance
   );
 
-  const handleChangePassword = (event: any) => {
+  const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     ForgotStudentPasswordInstance.instance.newpassword = event.target.value;
   };
 
@@ -51,7 +51,7 @@ export default function Detail() {
           },
         }}
         disabled={forgotstudentpasswordinstance.instance.newpassword.length < 8}
-        onClick={(e) => {
+        onClick={() => {
           router.push(`/student-sign-in/confirm-new-password`);
         }}
       >

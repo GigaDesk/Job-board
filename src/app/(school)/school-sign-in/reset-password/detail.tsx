@@ -17,7 +17,7 @@ export default function Detail() {
     ForgotSchoolPasswordInstance
   );
 
-  const handleChangePassword = (event: any) => {
+  const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     ForgotSchoolPasswordInstance.instance.newpassword = event.target.value;
   };
 

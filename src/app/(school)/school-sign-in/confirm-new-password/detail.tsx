@@ -29,7 +29,7 @@ export default function Detail() {
 
   const [password, setPassword] = useState("");
 
-  const handleChangePassword = (event: any) => {
+  const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
@@ -39,7 +39,7 @@ export default function Detail() {
       const Parseddata: ForgotSchoolPassword = JSON.parse(data);
       ForgotSchoolPasswordInstance.instance = Parseddata;
     }
-  }, []);
+  });
 
   const [resetSchoolPassword, { loading, error, data }] = useMutation(
     RESET_SCHOOL_PASSWORD_MUTATION
@@ -51,7 +51,7 @@ export default function Detail() {
       window.localStorage.setItem("LastSignInDate", JSON.stringify(new Date()));
       router.push(`/school`);
     }
-  }, [data]);
+  }, [data, router]);
 
   return (
     <div className="grid">
@@ -79,8 +79,8 @@ export default function Detail() {
               new_password: forgotschoolpasswordinstance.instance.newpassword,
             },
           }).catch((res) => {
-            const errors = res.graphQLErrors.map((error: any) => {
-              console.log(error.message);
+            const errors = res.graphQLErrors.map(() => {
+              console.log(errors.message);
             });
           });
         }}
