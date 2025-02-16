@@ -51,7 +51,7 @@ export default function Detail() {
       const Parseddata: string = JSON.parse(data);
       AuthenticationToken.token = Parseddata;
     }
-  });
+  },[]);
 
   useEffect(() => {
     window.localStorage.setItem(
