@@ -29,7 +29,7 @@ export default function Detail() {
     ForgotStudentPasswordInstance
   );
 
-  const handleChangeOtp = (event: any) => {
+  const handleChangeOtp = (event: React.ChangeEvent<HTMLInputElement>) => {
     ForgotStudentPasswordInstance.instance.otp = event.target.value;
   };
 
@@ -72,7 +72,7 @@ export default function Detail() {
       AuthenticationToken.token = data.requestStudentPasswordReset;
       router.push(`/student-sign-in/reset-password`);
     }
-  }, [data]);
+  }, [data, router]);
 
   return (
     <div className="grid">
@@ -114,8 +114,8 @@ export default function Detail() {
                 otp: forgotstudentpasswordinstance.instance.otp,
               },
             }).catch((res) => {
-              const errors = res.graphQLErrors.map((error: any) => {
-                console.log(error.message);
+              const errors = res.graphQLErrors.map(() => {
+                console.log(errors.message);
               });
             });
           }}

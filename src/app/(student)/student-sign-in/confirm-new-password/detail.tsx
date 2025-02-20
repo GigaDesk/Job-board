@@ -28,7 +28,7 @@ export default function Detail() {
     ForgotStudentPasswordInstance
   );
 
-  const handleChangePassword = (event: any) => {
+  const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
@@ -50,7 +50,7 @@ export default function Detail() {
       window.localStorage.setItem("LastSignInDate", JSON.stringify(new Date()));
       router.push(`/student`);
     }
-  }, [data]);
+  }, [data, router]);
 
   return (
     <div className="grid">
@@ -80,8 +80,8 @@ export default function Detail() {
               new_password: forgotstudentpasswordinstance.instance.newpassword,
             },
           }).catch((res) => {
-            const errors = res.graphQLErrors.map((error: any) => {
-              console.log(error.message);
+            const errors = res.graphQLErrors.map(() => {
+              console.log(errors.message);
             });
           });
         }}

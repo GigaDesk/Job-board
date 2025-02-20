@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { Unstable_Popup as BasePopup } from "@mui/base/Unstable_Popup";
+import { Placement } from "@floating-ui/dom";
 
 //defines the properties of a PopupButton component
 export interface PopupButtonProps {
@@ -10,7 +11,7 @@ export interface PopupButtonProps {
   // the element that pops up
   popupElement: React.JSX.Element;
   // the position of the popupElement
-  popupPlacement: any;
+  popupPlacement: Placement;
 }
 
 // PopupButton is an element that produces a popup element of choice when clicked

@@ -27,7 +27,7 @@ export default function Detail() {
     ForgotSchoolPasswordInstance
   );
 
-  const handleChangeOtp = (event: any) => {
+  const handleChangeOtp = (event: React.ChangeEvent<HTMLInputElement>) => {
     ForgotSchoolPasswordInstance.instance.otp = event.target.value;
   };
 
@@ -58,7 +58,7 @@ export default function Detail() {
       );
       router.push(`/school-sign-in/reset-password`);
     }
-  }, [data]);
+  }, [data, router]);
 
   return (
     <div className="grid">
@@ -100,8 +100,8 @@ export default function Detail() {
                 },
               },
             }).catch((res) => {
-              const errors = res.graphQLErrors.map((error: any) => {
-                console.log(error.message);
+              const errors = res.graphQLErrors.map(() => {
+                console.log(errors.message);
               });
             });
           }}

@@ -33,11 +33,11 @@ export default function Detail() {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleChangePhoneNumber = (value: any) => {
-    setPhoneNumber(value);
+  const handleChangePhoneNumber = (e: string | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setPhoneNumber(e as string);
   };
 
-  const handleChangePassword = (event: any) => {
+  const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
@@ -51,7 +51,7 @@ export default function Detail() {
       const Parseddata: string = JSON.parse(data);
       AuthenticationToken.token = Parseddata;
     }
-  }, []);
+  },[]);
 
   useEffect(() => {
     window.localStorage.setItem(
@@ -67,13 +67,7 @@ export default function Detail() {
       window.localStorage.setItem("LastSignInDate", JSON.stringify(new Date()));
       router.push(`/school`);
     }
-  }, [data]);
-
-  useEffect(() => {
-    if (data !== undefined && data !== null) {
-      AuthenticationToken.token = data.schoolLogin;
-    }
-  }, [data]);
+  }, [data, router]);
 
   return (
     <div className="max-md:px-2">
@@ -106,7 +100,7 @@ export default function Detail() {
         <div className="grid grid-cols-2">
         <button
             className="text-sky-600 cursor-pointer text-center"
-            onClick={(e) => {
+            onClick={() => {
               router.push(`/school-sign-in/forgot-password`);
             }}
           >
@@ -114,7 +108,7 @@ export default function Detail() {
           </button>
           <button
             className="text-sky-600 cursor-pointer text-center"
-            onClick={(e) => {
+            onClick={() => {
               router.push(`/school-sign-up`);
             }}
           >
@@ -145,8 +139,8 @@ export default function Detail() {
                 },
               },
             }).catch((res) => {
-              const errors = res.graphQLErrors.map((error: any) => {
-                console.log(error.message);
+              const errors = res.graphQLErrors.map(() => {
+                console.log(errors.message);
               });
             });
           }}

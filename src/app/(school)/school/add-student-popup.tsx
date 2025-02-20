@@ -27,20 +27,20 @@ export default function AddStudentPopup() {
 
   const [disableSubmit, setDisableSubmit] = React.useState(true);
 
-  const handleChangeName = (e: any) => {
+  const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
 
-  const handleChangeRegistrationNumber = (e: any) => {
+  const handleChangeRegistrationNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRegistrationNumber(e.target.value);
   };
 
-  const handleChangePassword = (e: any) => {
+  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const handleChangePhoneNumber = (value: any) => {
-    setPhoneNumber(value);
+  const handleChangePhoneNumber = (e: string | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setPhoneNumber(e as string);
   };
 
   React.useEffect(() => {
@@ -56,7 +56,7 @@ export default function AddStudentPopup() {
     }
   }, [name, registrationNumber, password, phoneNumber]);
 
-  const [addStudent, { data, loading, error }] =
+  const [addStudent, { loading, error }] =
     useMutation(ADD_STUDENT_MUTATION);
 
   return (
@@ -110,8 +110,8 @@ export default function AddStudentPopup() {
                     ],
                   },
                 }).catch((res) => {
-                  const errors = res.graphQLErrors.map((error: any) => {
-                    console.log(error.message);
+                  const errors = res.graphQLErrors.map(() => {
+                    console.log(errors.message);
                   });
                 });
               }}

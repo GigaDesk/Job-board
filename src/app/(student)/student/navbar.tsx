@@ -29,7 +29,7 @@ export default function Navbar() {
     SideDrawerState.show = true;
   };
 
-  const { loading, data, error } = useQuery(GET_STUDENT_PROFILE_QUERY);
+  const { loading, data } = useQuery(GET_STUDENT_PROFILE_QUERY);
 
   return (
     <div>

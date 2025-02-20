@@ -3,7 +3,7 @@ import Selector from "./Selector";
 export default function Choice(props: {
   choice: string;
   checked: boolean;
-  handleChange: any;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
     <div className="grid grid-cols-2 justify-items-center  text-gray font-medium text-xl w-40">

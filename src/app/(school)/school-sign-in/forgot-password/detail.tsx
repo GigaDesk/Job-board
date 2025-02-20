@@ -29,8 +29,8 @@ export default function Detail() {
     ForgotSchoolPasswordInstance
   );
 
-  const handleChangePhoneNumber = (value: any) => {
-    ForgotSchoolPasswordInstance.instance.phoneNumber = value;
+  const handleChangePhoneNumber = (e: string | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    ForgotSchoolPasswordInstance.instance.phoneNumber = e as string;
   };
 
   useEffect(() => {
@@ -56,7 +56,7 @@ export default function Detail() {
     if (data?.forgotSchoolPassword?.success === true) {
       router.push(`/school-sign-in/request-password-reset`);
     }
-  }, [data]);
+  }, [data, router]);
 
   return (
     <div className="max-md:px-2">
@@ -90,8 +90,8 @@ export default function Detail() {
                 phone_number: forgotschoolpasswordinstance.instance.phoneNumber,
               },
             }).catch((res) => {
-              const errors = res.graphQLErrors.map((error: any) => {
-                console.log(error.message);
+              const errors = res.graphQLErrors.map(() => {
+                console.log(errors.message);
               });
             });
           }}

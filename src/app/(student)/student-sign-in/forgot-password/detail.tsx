@@ -29,7 +29,7 @@ export default function Detail() {
     ForgotStudentPasswordInstance
   );
 
-  const handleChangeRegistrationNumber = (event: any) => {
+  const handleChangeRegistrationNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
     ForgotStudentPasswordInstance.instance.registrationNumber =
       event.target.value;
   };
@@ -64,7 +64,7 @@ export default function Detail() {
     ) {
       router.push(`/student-sign-in/request-password-reset`);
     }
-  }, [data]);
+  }, [data, router]);
 
   return (
     <div className="max-md:px-2">
@@ -98,8 +98,8 @@ export default function Detail() {
                   forgotstudentpasswordinstance.instance.registrationNumber,
               },
             }).catch((res) => {
-              const errors = res.graphQLErrors.map((error: any) => {
-                console.log(error.message);
+              const errors = res.graphQLErrors.map(() => {
+                console.log(errors.message);
               });
             });
           }}

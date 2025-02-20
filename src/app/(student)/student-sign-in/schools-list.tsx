@@ -14,7 +14,7 @@ query SchoolsProfile{
 `);
 
 export default function SchoolsList() {
-  const { loading, data, error } = useQuery(GET_SCHOOLS_LIST_QUERY);
+  const { data } = useQuery(GET_SCHOOLS_LIST_QUERY);
   return (
     <div>
       {data?.getSchoolsProfile?.map((school) => (

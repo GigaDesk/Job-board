@@ -49,13 +49,13 @@ export default function SendOtp(props: { phonenumber: string }) {
                 phone_number: props.phonenumber,
               },
             }).catch((res) => {
-              const errors = res.graphQLErrors.map((error: any) => {
-                console.log(error.message);
+              const errors = res.graphQLErrors.map(() => {
+                console.log(errors.message);
               });
             });
           }}
         >
-          Didn't receive code? Resend
+          Didn&apos;t receive code? Resend
         </Button>
       </Stack>
     </div>

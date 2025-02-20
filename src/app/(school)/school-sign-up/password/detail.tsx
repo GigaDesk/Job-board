@@ -12,7 +12,7 @@ export default function Detail() {
 
   const schoolsignupinstance = useSnapshot(SchoolSignupInstance);
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     SchoolSignupInstance.instance.password = event.target.value;
   };
 
