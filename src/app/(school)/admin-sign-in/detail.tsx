@@ -65,7 +65,7 @@ export default function Detail() {
       AuthenticationToken.token = data.schoolLogin;
       window.localStorage.setItem("LastSignedInAs", JSON.stringify("school"));
       window.localStorage.setItem("LastSignInDate", JSON.stringify(new Date()));
-      router.push(`/school`);
+      router.push(`/admin`);
     }
   }, [data, router]);
 

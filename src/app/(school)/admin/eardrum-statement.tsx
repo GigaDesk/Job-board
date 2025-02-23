@@ -7,7 +7,7 @@ export default function EardrumStatement() {
   return (
     <div className="grid content-center p-2 rounded-lg text-black text-xl hover:bg-hover-gray">
       <div>
-        Eardrum
+        Jobs Park
         <ArrowDropDownIcon />
       </div>
     </div>

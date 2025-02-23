@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Eardrum",
+  title: "Job Spark",
   description: "School Management System",
 };
 

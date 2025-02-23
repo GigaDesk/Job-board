@@ -3,9 +3,10 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
 import Stack from "@mui/joy/Stack";
-import Input from "@mui/joy/Input";
+import BasicDatePicker from "./selectdate";
 import Button from "@mui/joy/Button";
-import MuiPhoneNumber from "mui-phone-number";
+import TextField from '@mui/material/TextField';
+import SelectSmall from "./selectlevel";
 import { useMutation } from "@apollo/client";
 import { gql } from "../../../__generated__/gql";
 
@@ -67,34 +68,39 @@ export default function AddStudentPopup() {
           style={{ fontFamily: "McLaren" }}
         >
           <Stack spacing={1}>
-            <Input
-              placeholder="Name"
-              sx={{ fontFamily: "McLaren" }}
+            <TextField
+              placeholder="Title"
               onChange={handleChangeName}
               value={name}
+              size="small"
             />
-            <Input
-              placeholder="Registration Number"
+            <TextField
+              placeholder="Description"
               sx={{ fontFamily: "McLaren" }}
               onChange={handleChangeRegistrationNumber}
               value={registrationNumber}
+              maxRows={4}
+              size="small"
+              multiline
             />
-            <Input
-              placeholder="Default Password"
+            <TextField
+              placeholder="Qualification"
               sx={{ fontFamily: "McLaren" }}
               onChange={handleChangePassword}
               value={password}
+              maxRows={4}
+              size="small"
+              multiline
             />
-            <MuiPhoneNumber
-              onChange={handleChangePhoneNumber}
-              defaultCountry={"ke"}
-              onlyCountries={["ke"]}
-              countryCodeEditable={false}
-              value={phoneNumber}
+            <SelectSmall />
+            <TextField
+              placeholder="Location"
+              sx={{ fontFamily: "McLaren" }}
+              size="small"
             />
+            <BasicDatePicker />
             <Button
               sx={{ fontFamily: "McLaren" }}
-              disabled={disableSubmit}
               loading={loading}
               onClick={(e) => {
                 e.preventDefault();
