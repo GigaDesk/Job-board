@@ -32,7 +32,7 @@ export default function SchoolPageLayout({ home }: { home: React.ReactNode }) {
   const handleSinceSignIn = () => {
     const hours = SinceSignIn();
     if (hours > 22) {
-      router.push(`/school-sign-in`);
+      router.push(`/admin-sign-in`);
     }
   };
 
@@ -41,11 +41,11 @@ export default function SchoolPageLayout({ home }: { home: React.ReactNode }) {
     if (data !== null) {
       const Parseddata: string = JSON.parse(data);
       if (Parseddata === "") {
-        router.push(`/school-sign-in`);
+        router.push(`/admin-sign-in`);
       }
       AuthenticationToken.token = Parseddata;
     } else {
-      router.push(`/school-sign-in`);
+      router.push(`/admin-sign-in`);
     }
   },[router]);
 
@@ -54,10 +54,10 @@ export default function SchoolPageLayout({ home }: { home: React.ReactNode }) {
     if (data !== null) {
       const Parseddata: string = JSON.parse(data);
       if (Parseddata !== "school") {
-        router.push(`/school-sign-in`);
+        router.push(`/admin-sign-in`);
       }
     } else {
-      router.push(`/school-sign-in`);
+      router.push(`/admin-sign-in`);
     }
   },[router]);
 
