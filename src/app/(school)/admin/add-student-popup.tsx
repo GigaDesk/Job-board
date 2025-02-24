@@ -5,10 +5,13 @@ import Card from "@mui/material/Card";
 import Stack from "@mui/joy/Stack";
 import BasicDatePicker from "./selectdate";
 import Button from "@mui/joy/Button";
-import TextField from '@mui/material/TextField';
-import SelectSmall from "./selectlevel";
+import TextField from "@mui/material/TextField";
+import SelectSmall from "./selectsenioritylevel";
 import { useMutation } from "@apollo/client";
 import { gql } from "../../../__generated__/gql";
+import PopupButton from "@/components/button/popup-button";
+import AddQualifications from "./add-qualifications";
+import QualificationsPopup from "./qualifications-popup";
 
 const ADD_STUDENT_MUTATION = gql(`
   mutation AddStudent($newstudents: [NewStudent!]!) {   
@@ -32,7 +35,9 @@ export default function AddStudentPopup() {
     setName(e.target.value);
   };
 
-  const handleChangeRegistrationNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeRegistrationNumber = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setRegistrationNumber(e.target.value);
   };
 
@@ -40,7 +45,9 @@ export default function AddStudentPopup() {
     setPassword(e.target.value);
   };
 
-  const handleChangePhoneNumber = (e: string | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChangePhoneNumber = (
+    e: string | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setPhoneNumber(e as string);
   };
 
@@ -57,8 +64,7 @@ export default function AddStudentPopup() {
     }
   }, [name, registrationNumber, password, phoneNumber]);
 
-  const [addStudent, { loading, error }] =
-    useMutation(ADD_STUDENT_MUTATION);
+  const [addStudent, { loading, error }] = useMutation(ADD_STUDENT_MUTATION);
 
   return (
     <div className="shadow-xl">
@@ -83,15 +89,13 @@ export default function AddStudentPopup() {
               size="small"
               multiline
             />
-            <TextField
-              placeholder="Qualification"
-              sx={{ fontFamily: "McLaren" }}
-              onChange={handleChangePassword}
-              value={password}
-              maxRows={4}
-              size="small"
-              multiline
-            />
+            <div className="px-16">
+              <PopupButton
+                button={<AddQualifications />}
+                popupElement={<QualificationsPopup />}
+                popupPlacement="left"
+              />
+            </div>
             <SelectSmall />
             <TextField
               placeholder="Location"
