@@ -19,3 +19,7 @@ export interface SchoolSignup {
   export const SchoolSignupInstance = proxy({
     instance: { name: "", phoneNumber: "", password: "" } as SchoolSignup,
   });
+
+  export const Qualifications = proxy({
+    qualifications: [""] as string[]
+  })
