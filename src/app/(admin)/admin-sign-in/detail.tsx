@@ -14,11 +14,10 @@ import { useMutation } from "@apollo/client";
 import { gql } from "@/__generated__";
 import { useRouter } from "next/navigation";
 
-
-const SCHOOL_LOGIN_MUTATION = gql(`
-mutation schoolLogin($schoollogin: SchoolLogin!) {   
-  schoolLogin(input: $schoollogin) 
-}
+const ADMIN_LOGIN_MUTATION = gql(`
+  mutation adminLogin($adminlogin: AdminLogin!) {   
+    adminLogin(input: $adminlogin) 
+  }
 `);
 
 export default function Detail() {
@@ -33,7 +32,9 @@ export default function Detail() {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleChangePhoneNumber = (e: string | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChangePhoneNumber = (
+    e: string | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setPhoneNumber(e as string);
   };
 
@@ -41,9 +42,8 @@ export default function Detail() {
     setPassword(event.target.value);
   };
 
-  const [schoolLogin, { data, loading, error }] = useMutation(
-    SCHOOL_LOGIN_MUTATION
-  );
+  const [adminLogin, { data, loading, error }] =
+    useMutation(ADMIN_LOGIN_MUTATION);
 
   useEffect(() => {
     const data = window.localStorage.getItem("AuthenticationToken");
@@ -51,7 +51,7 @@ export default function Detail() {
       const Parseddata: string = JSON.parse(data);
       AuthenticationToken.token = Parseddata;
     }
-  },[]);
+  }, []);
 
   useEffect(() => {
     window.localStorage.setItem(
@@ -62,8 +62,8 @@ export default function Detail() {
 
   useEffect(() => {
     if (data !== undefined && data !== null) {
-      AuthenticationToken.token = data.schoolLogin;
-      window.localStorage.setItem("LastSignedInAs", JSON.stringify("school"));
+      AuthenticationToken.token = data.adminLogin;
+      window.localStorage.setItem("LastSignedInAs", JSON.stringify("admin"));
       window.localStorage.setItem("LastSignInDate", JSON.stringify(new Date()));
       router.push(`/admin`);
     }
@@ -97,17 +97,17 @@ export default function Detail() {
           onChange={handleChangePassword}
           value={password}
         />
-        <div className="grid grid-cols-2">
-        <button
+        <div className="grid">
+          <button
             className="text-sky-600 cursor-pointer text-center"
             onClick={() => {
-              router.push(`/school-sign-in/forgot-password`);
+              router.push(`/admin-sign-in/forgot-password`);
             }}
           >
             Forgot password?
           </button>
           <button
-            className="text-sky-600 cursor-pointer text-center"
+            className="text-sky-600 cursor-pointer text-center hidden"
             onClick={() => {
               router.push(`/school-sign-up`);
             }}
@@ -131,9 +131,9 @@ export default function Detail() {
           loading={loading}
           onClick={(e) => {
             e.preventDefault();
-            schoolLogin({
+            adminLogin({
               variables: {
-                schoollogin: {
+                adminlogin: {
                   phone_number: phonenumber,
                   password: password,
                 },

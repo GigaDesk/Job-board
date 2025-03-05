@@ -14,9 +14,9 @@ import {
 } from "../../state/store";
 import { useRouter } from "next/navigation";
 
-const REQUEST_SCHOOL_PASSWORD_RESET_MUTATION = gql(`
-   mutation requestSchoolPasswordReset($verificationinfo: verificationinfo!){
-      requestSchoolPasswordReset(input: $verificationinfo)
+const REQUEST_ADMIN_PASSWORD_RESET_MUTATION = gql(`
+   mutation requestAdminPasswordReset($verificationinfo: verificationinfo!){
+      requestAdminPasswordReset(input: $verificationinfo)
    }
 `);
 
@@ -46,17 +46,17 @@ export default function Detail() {
     );
   }, [forgotschoolpasswordinstance.instance]);
 
-  const [requestSchoolPasswordReset, { data, loading, error }] = useMutation(
-    REQUEST_SCHOOL_PASSWORD_RESET_MUTATION
+  const [requestAdminPasswordReset, { data, loading, error }] = useMutation(
+    REQUEST_ADMIN_PASSWORD_RESET_MUTATION
   );
 
   useEffect(() => {
     if (data !== undefined && data !== null) {
       window.localStorage.setItem(
         "AuthenticationToken",
-        JSON.stringify(data.requestSchoolPasswordReset)
+        JSON.stringify(data.requestAdminPasswordReset)
       );
-      router.push(`/school-sign-in/reset-password`);
+      router.push(`/admin-sign-in/reset-password`);
     }
   }, [data, router]);
 
@@ -91,7 +91,7 @@ export default function Detail() {
           loading={loading}
           onClick={(e) => {
             e.preventDefault();
-            requestSchoolPasswordReset({
+            requestAdminPasswordReset({
               variables: {
                 verificationinfo: {
                   phone_number:
