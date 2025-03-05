@@ -14,10 +14,10 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
-    "\n   mutation resetSchoolPassword($new_password: String!){\n    resetSchoolPassword(new_password: $new_password){\n      id\n    }\n  }\n ": types.ResetSchoolPasswordDocument,
-    "\nmutation schoolLogin($schoollogin: SchoolLogin!) {   \n  schoolLogin(input: $schoollogin) \n}\n": types.SchoolLoginDocument,
-    "\nmutation forgotSchoolPassword($phone_number: String!){\n  forgotSchoolPassword(phone_number: $phone_number){\n    phone_number\n    success\n  }\n}\n": types.ForgotSchoolPasswordDocument,
-    "\n   mutation requestSchoolPasswordReset($verificationinfo: verificationinfo!){\n      requestSchoolPasswordReset(input: $verificationinfo)\n   }\n": types.RequestSchoolPasswordResetDocument,
+    "\n   mutation resetAdminPassword($new_password: String!){\n    resetAdminPassword(new_password: $new_password){\n      id\n    }\n  }\n ": types.ResetAdminPasswordDocument,
+    "\n  mutation adminLogin($adminlogin: AdminLogin!) {   \n    adminLogin(input: $adminlogin) \n  }\n": types.AdminLoginDocument,
+    "\nmutation forgotAdminPassword($phone_number: String!){\n  forgotAdminPassword(phone_number: $phone_number){\n    phone_number\n    success\n  }\n}\n": types.ForgotAdminPasswordDocument,
+    "\n   mutation requestAdminPasswordReset($verificationinfo: verificationinfo!){\n      requestAdminPasswordReset(input: $verificationinfo)\n   }\n": types.RequestAdminPasswordResetDocument,
     "\nquery getUnapprovedJobs{\n  getUnapprovedJobs{\n    id\n    title\n    industry\n    description\n  }\n}\n": types.GetUnapprovedJobsDocument,
     "\n  mutation AddStudent($newstudents: [NewStudent!]!) {   \n    AddStudents( students: $newstudents ) {    \n      name\n     }    \n }\n": types.AddStudentDocument,
     "\n  query SchoolProfile{\n     getSchoolProfile{\n         name\n         phone_number\n    }\n  }\n": types.SchoolProfileDocument,
@@ -51,19 +51,19 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n   mutation resetSchoolPassword($new_password: String!){\n    resetSchoolPassword(new_password: $new_password){\n      id\n    }\n  }\n "): (typeof documents)["\n   mutation resetSchoolPassword($new_password: String!){\n    resetSchoolPassword(new_password: $new_password){\n      id\n    }\n  }\n "];
+export function gql(source: "\n   mutation resetAdminPassword($new_password: String!){\n    resetAdminPassword(new_password: $new_password){\n      id\n    }\n  }\n "): (typeof documents)["\n   mutation resetAdminPassword($new_password: String!){\n    resetAdminPassword(new_password: $new_password){\n      id\n    }\n  }\n "];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\nmutation schoolLogin($schoollogin: SchoolLogin!) {   \n  schoolLogin(input: $schoollogin) \n}\n"): (typeof documents)["\nmutation schoolLogin($schoollogin: SchoolLogin!) {   \n  schoolLogin(input: $schoollogin) \n}\n"];
+export function gql(source: "\n  mutation adminLogin($adminlogin: AdminLogin!) {   \n    adminLogin(input: $adminlogin) \n  }\n"): (typeof documents)["\n  mutation adminLogin($adminlogin: AdminLogin!) {   \n    adminLogin(input: $adminlogin) \n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\nmutation forgotSchoolPassword($phone_number: String!){\n  forgotSchoolPassword(phone_number: $phone_number){\n    phone_number\n    success\n  }\n}\n"): (typeof documents)["\nmutation forgotSchoolPassword($phone_number: String!){\n  forgotSchoolPassword(phone_number: $phone_number){\n    phone_number\n    success\n  }\n}\n"];
+export function gql(source: "\nmutation forgotAdminPassword($phone_number: String!){\n  forgotAdminPassword(phone_number: $phone_number){\n    phone_number\n    success\n  }\n}\n"): (typeof documents)["\nmutation forgotAdminPassword($phone_number: String!){\n  forgotAdminPassword(phone_number: $phone_number){\n    phone_number\n    success\n  }\n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n   mutation requestSchoolPasswordReset($verificationinfo: verificationinfo!){\n      requestSchoolPasswordReset(input: $verificationinfo)\n   }\n"): (typeof documents)["\n   mutation requestSchoolPasswordReset($verificationinfo: verificationinfo!){\n      requestSchoolPasswordReset(input: $verificationinfo)\n   }\n"];
+export function gql(source: "\n   mutation requestAdminPasswordReset($verificationinfo: verificationinfo!){\n      requestAdminPasswordReset(input: $verificationinfo)\n   }\n"): (typeof documents)["\n   mutation requestAdminPasswordReset($verificationinfo: verificationinfo!){\n      requestAdminPasswordReset(input: $verificationinfo)\n   }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
