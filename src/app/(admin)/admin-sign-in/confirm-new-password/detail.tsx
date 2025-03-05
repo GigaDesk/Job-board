@@ -12,9 +12,9 @@ import {
 } from "../../state/store";
 import { useRouter } from "next/navigation";
 
-const RESET_SCHOOL_PASSWORD_MUTATION = gql(`
-   mutation resetSchoolPassword($new_password: String!){
-    resetSchoolPassword(new_password: $new_password){
+const RESET_ADMIN_PASSWORD_MUTATION = gql(`
+   mutation resetAdminPassword($new_password: String!){
+    resetAdminPassword(new_password: $new_password){
       id
     }
   }
@@ -41,15 +41,15 @@ export default function Detail() {
     }
   });
 
-  const [resetSchoolPassword, { loading, error, data }] = useMutation(
-    RESET_SCHOOL_PASSWORD_MUTATION
+  const [resetAdminPassword, { loading, error, data }] = useMutation(
+    RESET_ADMIN_PASSWORD_MUTATION
   );
 
   useEffect(() => {
     if (data !== undefined && data !== null) {
-      window.localStorage.setItem("LastSignedInAs", JSON.stringify("school"));
+      window.localStorage.setItem("LastSignedInAs", JSON.stringify("admin"));
       window.localStorage.setItem("LastSignInDate", JSON.stringify(new Date()));
-      router.push(`/school`);
+      router.push(`/admin`);
     }
   }, [data, router]);
 
@@ -74,7 +74,7 @@ export default function Detail() {
         disabled={password != forgotschoolpasswordinstance.instance.newpassword}
         onClick={(e) => {
           e.preventDefault();
-          resetSchoolPassword({
+          resetAdminPassword({
             variables: {
               new_password: forgotschoolpasswordinstance.instance.newpassword,
             },

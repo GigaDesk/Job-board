@@ -55,7 +55,7 @@ export default function Detail() {
         }}
         disabled={forgotschoolpasswordinstance.instance.newpassword.length < 8}
         onClick={() => {
-          router.push(`/school-sign-in/confirm-new-password`);
+          router.push(`/admin-sign-in/confirm-new-password`);
         }}
       >
         Submit
