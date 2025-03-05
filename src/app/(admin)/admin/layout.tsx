@@ -53,7 +53,7 @@ export default function SchoolPageLayout({ home }: { home: React.ReactNode }) {
     const data = window.localStorage.getItem("LastSignedInAs");
     if (data !== null) {
       const Parseddata: string = JSON.parse(data);
-      if (Parseddata !== "school") {
+      if (Parseddata !== "admin") {
         router.push(`/admin-sign-in`);
       }
     } else {
