@@ -12,6 +12,11 @@ export default function PagesSection() {
             Home
           </div>
         </Link>
+        <Link href="/admin/new-job">
+          <div className="pl-4 py-2 rounded-full bg-light-blue text-bright-blue hover:bg-hover-gray hover:text-black cursor-pointer">
+            New Job
+          </div>
+        </Link>
         <Link href="/admin/unapproved-jobs">
           <div className="pl-4 py-2 rounded-full bg-light-blue text-bright-blue hover:bg-hover-gray hover:text-black cursor-pointer">
             Unapproved Jobs
