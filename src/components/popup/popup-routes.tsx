@@ -20,6 +20,11 @@ export default function PopupRoutes() {
                 <h4 className="font-medium">Home</h4>
               </div>
             </Link>
+            <Link href="/admin/new-job">
+              <div className="rounded-full hover:bg-hover-gray hover:text-black cursor-pointer mx-2 px-4 p-2 bg-light-blue text-bright-blue">
+                <h4 className="font-medium">New Job</h4>
+              </div>
+            </Link>
             <Link href="/admin/unapproved-jobs">
               <div className="rounded-full hover:bg-hover-gray hover:text-black cursor-pointer mx-2 px-4 p-2 bg-light-blue text-bright-blue">
                 <h4 className="font-medium">Unapproved Jobs</h4>
