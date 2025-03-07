@@ -1,16 +1,15 @@
-import Main from "./main";
 import CompanyStatement from "@/components/splash/companystatement";
+import JobListings from "./job-listings";
 
 export default function Home() {
   return (
     <div
-      className="min-h-screen grid content-center bg-white relative"
+      className="h-screen grid bg-white relative"
       style={{ fontFamily: "Inter" }}
     >
-      <main className="h-96 grid content-center justify-items-center">
-        <Main />
-      </main>
-      <footer className="absolute bottom-0 w-full pb-4">
+      <div className="h-20"></div>
+      <JobListings />
+      <footer className="w-full pb-4 h-20">
         <CompanyStatement />
       </footer>
     </div>
