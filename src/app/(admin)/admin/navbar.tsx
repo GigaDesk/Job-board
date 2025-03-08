@@ -1,30 +1,14 @@
 import PopupButton from "@/components/button/popup-button";
-import SchoolProfile from "./school-profile";
 import EardrumStatement from "./eardrum-statement";
-import ProductContent from "./product-content";
 import MenuIcon from "@mui/icons-material/Menu";
 import RoutesToggle from "@/components/button/routes-toggle";
 import PopupRoutes from "@/components/popup/popup-routes";
-import SchoolProfilePopUp from "../../../components/popup/school-profile-popup";
 import { SideDrawerState } from "@/state/store";
-import { gql } from "../../../__generated__/gql";
-import { useQuery } from "@apollo/client";
-
-const GET_SCHOOL_PROFILE_QUERY = gql(`
-  query SchoolProfile{
-     getSchoolProfile{
-         name
-         phone_number
-    }
-  }
-`);
 
 export default function Navbar() {
   const handleMenuClick = () => {
     SideDrawerState.show = true;
   };
-
-  const { loading, data, error } = useQuery(GET_SCHOOL_PROFILE_QUERY);
 
   return (
     <div>
@@ -37,22 +21,10 @@ export default function Navbar() {
           </div>
           <PopupButton
             button={<EardrumStatement />}
-            popupElement={<ProductContent />}
+            popupElement={<></>}
             popupPlacement="bottom-start"
           />
         </div>
-        <PopupButton
-          button={<SchoolProfile />}
-          popupElement={
-            <SchoolProfilePopUp
-              name={data?.getSchoolProfile?.name}
-              phone_number={data?.getSchoolProfile?.phone_number}
-              loading={loading}
-              error={error}
-            />
-          }
-          popupPlacement="bottom-start"
-        />
       </div>
       <div className="grid justify-items-start">
         <PopupButton
