@@ -4,7 +4,7 @@ import Detail from "./detail";
 export default function Main() {
   return (
     <div className="grid content-center justify-items-center grid-rows-2 gap-8">
-      <Question question="Confirm new school password " />
+      <Question question="Confirm new admin password " />
       <Detail />
     </div>
   );
