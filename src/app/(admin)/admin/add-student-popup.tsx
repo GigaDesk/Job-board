@@ -9,12 +9,7 @@ import { useMutation } from "@apollo/client";
 import { gql } from "../../../__generated__/gql";
 import SelectEducationLevel from "./selecteducationlevel";
 import QualificationsPopup from "./qualifications-popup";
-import {
-  DateValidationError,
-  LocalizationProvider,
-  MobileDatePicker,
-  PickerChangeHandlerContext,
-} from "@mui/x-date-pickers";
+import { LocalizationProvider, MobileDatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { JobInstance } from "../state/store";
@@ -53,10 +48,7 @@ export default function AddStudentPopup() {
     JobInstance.instance.experience = e.target.value as unknown as number;
   };
 
-  const handleChangeDeadline = (
-    value: dayjs.Dayjs | null,
-    context: PickerChangeHandlerContext<DateValidationError>
-  ) => {
+  const handleChangeDeadline = (value: dayjs.Dayjs | null) => {
     if (value != null) {
       JobInstance.instance.deadline = value.toISOString();
     }
@@ -81,7 +73,7 @@ export default function AddStudentPopup() {
   };
 
   const handleStringArrayValue = (s: string[]) => {
-    let finalArray: string[] = [];
+    const finalArray: string[] = [];
     for (let i = 0; i < s.length; i++) {
       // append non empty strings
       if (s[i] !== "") {

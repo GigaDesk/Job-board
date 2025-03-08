@@ -26,10 +26,6 @@ export default function QualificationsPopup() {
     }
   };
 
-  const logger = () => {
-    console.log(jobinstance.instance);
-  };
-
   return (
     <div className="w-full">
       <div className="w-full">
