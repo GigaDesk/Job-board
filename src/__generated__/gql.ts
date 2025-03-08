@@ -33,6 +33,7 @@ const documents = {
     "\nquery SchoolsProfile{\n  getSchoolsProfile{\n    id\n    name\n  }\n}\n": types.SchoolsProfileDocument,
     "\nquery studentProfile{\n  getStudentProfile{\n    name\n    phone_number\n    registration_number\n    school{\n      name\n      phone_number\n    }\n  }\n}\n": types.StudentProfileDocument,
     "\nquery getlistingJobs {\n  getJobs {\n    id\n    title\n    description\n    location\n  }\n}\n  ": types.GetlistingJobsDocument,
+    "\n  query findJob($id: Int!){\n    findJob(id: $id){\n      id\n      title\n      industry\n      deadline\n      description\n      requirements\n      level\n      location\n      educationLevel\n      experience\n    }\n  }\n  ": types.FindJobDocument,
     "\n   mutation sendCode($phone_number: String!) {   \n    sendCode(phone_number: $phone_number) {    \n      phone_number\n      success\n     }    \n }\n": types.SendCodeDocument,
 };
 
@@ -126,6 +127,10 @@ export function gql(source: "\nquery studentProfile{\n  getStudentProfile{\n    
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\nquery getlistingJobs {\n  getJobs {\n    id\n    title\n    description\n    location\n  }\n}\n  "): (typeof documents)["\nquery getlistingJobs {\n  getJobs {\n    id\n    title\n    description\n    location\n  }\n}\n  "];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query findJob($id: Int!){\n    findJob(id: $id){\n      id\n      title\n      industry\n      deadline\n      description\n      requirements\n      level\n      location\n      educationLevel\n      experience\n    }\n  }\n  "): (typeof documents)["\n  query findJob($id: Int!){\n    findJob(id: $id){\n      id\n      title\n      industry\n      deadline\n      description\n      requirements\n      level\n      location\n      educationLevel\n      experience\n    }\n  }\n  "];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

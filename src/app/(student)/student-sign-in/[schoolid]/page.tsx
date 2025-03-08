@@ -3,11 +3,8 @@
 import React from "react";
 import Main from "./main";
 import CompanyStatement from "@/components/splash/companystatement";
-import {
-  ForgotStudentPasswordInstance,
-} from "../../state/store";
+import { ForgotStudentPasswordInstance } from "../../state/store";
 import { useEffect } from "react";
-
 import { useParams } from "next/navigation";
 import { StudentSignInInstance } from "../../state/store";
 

@@ -6,14 +6,22 @@ import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import CardActions from "@mui/joy/CardActions";
 import Typography from "@mui/joy/Typography";
+import { useRouter } from "next/navigation";
 
 export interface JobProps {
+  id: number;
   title: string;
   location: string | null | undefined;
   description: string;
 }
 
 export default function Job(props: JobProps) {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/${props.id}`);
+  };
+
   return (
     <Card
       variant="outlined"
@@ -42,7 +50,7 @@ export default function Job(props: JobProps) {
         </div>
       </CardContent>
       <CardActions buttonFlex="0 1 120px">
-        <Button variant="outlined" color="neutral">
+        <Button variant="outlined" color="neutral" onClick={handleClick}>
           View
         </Button>
       </CardActions>
