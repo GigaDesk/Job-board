@@ -5,6 +5,7 @@ import { gql } from "../../../../../__generated__/gql";
 import { useQuery } from "@apollo/client";
 import StudentListItem from "../../studentlistitem";
 import ApproveJobButton from "./approve-job-button";
+import { useRouter } from "next/navigation";
 
 const GET_UNAPPROVED_JOBS_QUERY = gql(`
 query getUnapprovedJobs{
@@ -18,7 +19,10 @@ query getUnapprovedJobs{
 `);
 
 export default function UnapprovedJobsTable() {
+  const router = useRouter();
+
   const { data } = useQuery(GET_UNAPPROVED_JOBS_QUERY);
+
   return (
     <div className="h-[350px] rounded-xl grid grid-rows-[40px_1fr] border border-border-table-gray">
       <div className="rounded-t-xl border-b border-border-table-gray px-2 md:px-4 flex justify-between items-center text-text-table-gray">
@@ -36,12 +40,18 @@ export default function UnapprovedJobsTable() {
         <StudentList>
           {data?.getUnapprovedJobs?.map((unapprovedjob) => (
             <div className="grid grid-cols-[1fr_100px]" key={unapprovedjob?.id}>
-              <StudentListItem
-                key={unapprovedjob?.id}
-                name={unapprovedjob?.title}
-                registration_number={unapprovedjob?.industry}
-                phone_number={unapprovedjob?.description}
-              />
+              <button
+                onClick={() => {
+                  router.push(`/admin/unapproved-jobs/${unapprovedjob.id}`);
+                }}
+              >
+                <StudentListItem
+                  key={unapprovedjob?.id}
+                  name={unapprovedjob?.title}
+                  registration_number={unapprovedjob?.industry}
+                  phone_number={unapprovedjob?.description}
+                />
+              </button>
               <div className="grid content-center ">
                 <ApproveJobButton id={unapprovedjob?.id} />
               </div>
