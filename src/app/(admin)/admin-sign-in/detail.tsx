@@ -99,7 +99,7 @@ export default function Detail() {
         />
         <div className="grid">
           <button
-            className="text-sky-600 cursor-pointer text-center"
+            className="text-sky-600 cursor-pointer text-center hidden"
             onClick={() => {
               router.push(`/admin-sign-in/forgot-password`);
             }}
