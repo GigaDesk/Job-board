@@ -4,9 +4,13 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import Stack from "@mui/joy/Stack";
 import Link from "next/link";
+import { ActiveRoute } from "@/app/(admin)/state/store";
+import { useSnapshot } from "valtio";
 
 //PopupRoutes displays navigable routes within the application
 export default function PopupRoutes() {
+  const route = useSnapshot(ActiveRoute);
+
   return (
     <div className="shadow-xl">
       <Card sx={{ backgroundColor: "#F0F4F9" }}>
@@ -16,19 +20,38 @@ export default function PopupRoutes() {
         >
           <Stack spacing={1}>
             <Link href="/admin">
-              <div className="rounded-full hover:bg-hover-gray hover:text-black cursor-pointer mx-2 px-4 p-2 bg-light-blue text-bright-blue">
-                <h4 className="font-medium">Home</h4>
-              </div>
+              {route.instance == "Home" ? (
+                <div className="rounded-full hover:bg-hover-gray hover:text-black cursor-pointer mx-2 px-4 p-2 bg-light-blue text-bright-blue">
+                  <h4 className="font-medium">Home</h4>
+                </div>
+              ) : (
+                <div className="rounded-full hover:bg-hover-gray hover:text-black cursor-pointer mx-2 px-4 p-2 text-black">
+                  <h4 className="font-medium">Home</h4>
+                </div>
+              )}
             </Link>
+
             <Link href="/admin/new-job">
-              <div className="rounded-full hover:bg-hover-gray hover:text-black cursor-pointer mx-2 px-4 p-2 bg-light-blue text-bright-blue">
-                <h4 className="font-medium">New Job</h4>
-              </div>
+              {route.instance == "New Job" ? (
+                <div className="rounded-full hover:bg-hover-gray hover:text-black cursor-pointer mx-2 px-4 p-2 bg-light-blue text-bright-blue">
+                  <h4 className="font-medium">New Job</h4>
+                </div>
+              ) : (
+                <div className="rounded-full hover:bg-hover-gray hover:text-black cursor-pointer mx-2 px-4 p-2 text-black">
+                  <h4 className="font-medium">New Job</h4>
+                </div>
+              )}
             </Link>
             <Link href="/admin/unapproved-jobs">
-              <div className="rounded-full hover:bg-hover-gray hover:text-black cursor-pointer mx-2 px-4 p-2 bg-light-blue text-bright-blue">
-                <h4 className="font-medium">Unapproved Jobs</h4>
-              </div>
+              {route.instance == "Unapproved Jobs" ? (
+                <div className="rounded-full hover:bg-hover-gray hover:text-black cursor-pointer mx-2 px-4 p-2 bg-light-blue text-bright-blue">
+                  <h4 className="font-medium">Unapproved Jobs</h4>
+                </div>
+              ) : (
+                <div className="rounded-full hover:bg-hover-gray hover:text-black cursor-pointer mx-2 px-4 p-2 text-black">
+                  <h4 className="font-medium">Unapproved Jobs</h4>
+                </div>
+              )}
             </Link>
           </Stack>
         </div>

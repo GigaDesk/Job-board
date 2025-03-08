@@ -2,9 +2,10 @@
 
 import { gql } from "@/__generated__/gql";
 import { useQuery } from "@apollo/client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "next/navigation";
 import ApproveJobButton from "../approve-job-button";
+import { ActiveRoute } from "@/app/(admin)/state/store";
 
 const FIND_UNAPPROVEDJOB_QUERY = gql(`
   query findUnapprovedJob($id: Int!){
@@ -25,6 +26,10 @@ const FIND_UNAPPROVEDJOB_QUERY = gql(`
 
 export default function UnapprovedJobListing() {
   const params = useParams();
+
+  useEffect(() => {
+    ActiveRoute.instance = "Unapproved Job"
+  }, []);
 
   const { data } = useQuery(FIND_UNAPPROVEDJOB_QUERY, {
     variables: { id: params.unapprovedjoblisting as unknown as number }, // Pass the id variable

@@ -53,3 +53,7 @@ export const JobInstance = proxy({
     requirements:[""],
   } as NewJob,
 });
+
+export const ActiveRoute = proxy({
+  instance: "Home"
+});
