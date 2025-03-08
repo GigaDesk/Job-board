@@ -25,6 +25,7 @@ export default function JobListings() {
           className="h-96 grid content-center justify-items-center"
         >
           <Job
+            id={job.id}
             title={job.title}
             location={job.location}
             description={job.description}
