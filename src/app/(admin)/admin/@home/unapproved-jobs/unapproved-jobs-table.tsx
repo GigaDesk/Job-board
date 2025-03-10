@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/client";
 import StudentListItem from "../../studentlistitem";
 import ApproveJobButton from "./approve-job-button";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const GET_UNAPPROVED_JOBS_QUERY = gql(`
 query getUnapprovedJobs{
@@ -21,7 +22,14 @@ query getUnapprovedJobs{
 export default function UnapprovedJobsTable() {
   const router = useRouter();
 
-  const { data } = useQuery(GET_UNAPPROVED_JOBS_QUERY);
+  const { data, refetch } = useQuery(GET_UNAPPROVED_JOBS_QUERY,{
+    fetchPolicy: 'network-only',
+  } );
+
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
+
 
   return (
     <div className="h-[350px] rounded-xl grid grid-rows-[40px_1fr] border border-border-table-gray">
@@ -40,18 +48,17 @@ export default function UnapprovedJobsTable() {
         <StudentList>
           {data?.getUnapprovedJobs?.map((unapprovedjob) => (
             <div className="grid grid-cols-[1fr_100px]" key={unapprovedjob?.id}>
-              <button
+              <div className="cursor-pointer"
                 onClick={() => {
                   router.push(`/admin/unapproved-jobs/${unapprovedjob.id}`);
                 }}
               >
                 <StudentListItem
-                  key={unapprovedjob?.id}
                   name={unapprovedjob?.title}
                   registration_number={unapprovedjob?.industry}
                   phone_number={unapprovedjob?.description}
                 />
-              </button>
+              </div>
               <div className="grid content-center ">
                 <ApproveJobButton id={unapprovedjob?.id} />
               </div>
