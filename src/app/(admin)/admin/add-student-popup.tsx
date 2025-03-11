@@ -99,7 +99,8 @@ export default function AddStudentPopup() {
     }
   }, [jobinstance.instance]);
 
-  const [createJob, { loading, error }] = useMutation(CREATE_JOB_MUTATION);
+  const [createJob, { data, loading, error }] =
+    useMutation(CREATE_JOB_MUTATION);
 
   return (
     <div className="p-4 text-sm" style={{ fontFamily: "McLaren" }}>
@@ -196,6 +197,9 @@ export default function AddStudentPopup() {
           Submit
         </Button>
         <div className="text-red-600">{error?.message}</div>
+        {data !== undefined ? (
+          <div className="bg-green-950">Job added successfully</div>
+        ) : null}
       </Stack>
     </div>
   );
