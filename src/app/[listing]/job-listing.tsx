@@ -4,6 +4,7 @@ import { gql } from "@/__generated__/gql";
 import { useQuery } from "@apollo/client";
 import React from "react";
 import { useParams } from "next/navigation";
+import Button from "@mui/joy/Button";
 
 const FIND_JOB_QUERY = gql(`
   query findJob($id: Int!){
@@ -74,6 +75,9 @@ export default function JobListing() {
             </ul>
           </div>
         </div>
+      </div>
+      <div>
+        <Button>Apply</Button>
       </div>
     </div>
   );
