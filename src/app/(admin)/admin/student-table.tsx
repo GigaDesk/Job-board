@@ -2,9 +2,7 @@
 
 import StudentList from "./studentlist";
 import StudentListItem from "./studentlistitem";
-import PopupButton from "@/components/button/popup-button";
 import AddStudent from "./add-student";
-import AddStudentPopup from "./add-student-popup";
 import { gql } from "../../../__generated__/gql";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/navigation";
