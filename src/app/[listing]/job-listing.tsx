@@ -4,6 +4,7 @@ import { gql } from "@/__generated__/gql";
 import { useQuery } from "@apollo/client";
 import React from "react";
 import { useParams } from "next/navigation";
+import Button from "@mui/joy/Button";
 
 const FIND_JOB_QUERY = gql(`
   query findJob($id: Int!){
@@ -38,11 +39,17 @@ export default function JobListing() {
           <div className="text-black font-bold text-xl">
             {data?.findJob.title}
           </div>
-          <div className="text-text-table-gray">{data?.findJob.level}</div>
+          <div className="text-text-table-gray">
+            Level: {data?.findJob.level}
+          </div>
         </div>
-        <div className="text-text-table-gray">{data?.findJob.location}</div>
-        <div className="text-black">{data?.findJob.industry}</div>
-        <div className="text-text-table-gray">{data?.findJob.deadline}</div>
+        <div className="text-text-table-gray">
+          Location: {data?.findJob.location}
+        </div>
+        <div className="text-black">Industry: {data?.findJob.industry}</div>
+        <div className="text-text-table-gray">
+          Deadline: {data?.findJob.deadline}
+        </div>
       </div>
       <div className="grid grid-rows-[50px_1fr]">
         <div className="text-black text-md font-bold">Job Description</div>
@@ -68,6 +75,9 @@ export default function JobListing() {
             </ul>
           </div>
         </div>
+      </div>
+      <div>
+        <Button>Apply</Button>
       </div>
     </div>
   );

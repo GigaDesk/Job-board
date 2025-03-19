@@ -28,7 +28,7 @@ export default function UnapprovedJobListing() {
   const params = useParams();
 
   useEffect(() => {
-    ActiveRoute.instance = "Unapproved Job"
+    ActiveRoute.instance = "Unapproved Job";
   }, []);
 
   const { data } = useQuery(FIND_UNAPPROVEDJOB_QUERY, {
@@ -45,15 +45,17 @@ export default function UnapprovedJobListing() {
             {data?.findUnapprovedJob.title}
           </div>
           <div className="text-text-table-gray">
-            {data?.findUnapprovedJob.level}
+            Level: {data?.findUnapprovedJob.level}
           </div>
         </div>
         <div className="text-text-table-gray">
-          {data?.findUnapprovedJob.location}
+          Location: {data?.findUnapprovedJob.location}
         </div>
-        <div className="text-black">{data?.findUnapprovedJob.industry}</div>
+        <div className="text-black">
+          Industry: {data?.findUnapprovedJob.industry}
+        </div>
         <div className="text-text-table-gray">
-          {data?.findUnapprovedJob.deadline}
+          Deadline: {data?.findUnapprovedJob.deadline}
         </div>
       </div>
       <div className="grid grid-rows-[50px_1fr]">
