@@ -53,6 +53,17 @@ export default function PopupRoutes() {
                 </div>
               )}
             </Link>
+            <Link href="/admin/employers">
+              {route.instance == "Employers" ? (
+                <div className="rounded-full hover:bg-hover-gray hover:text-black cursor-pointer mx-2 px-4 p-2 bg-light-blue text-bright-blue">
+                  <h4 className="font-medium">Employers</h4>
+                </div>
+              ) : (
+                <div className="rounded-full hover:bg-hover-gray hover:text-black cursor-pointer mx-2 px-4 p-2 text-black">
+                  <h4 className="font-medium">Employers</h4>
+                </div>
+              )}
+            </Link>
           </Stack>
         </div>
       </Card>
