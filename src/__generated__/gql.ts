@@ -23,6 +23,13 @@ const documents = {
     "\nquery getUnapprovedJobs{\n  getUnapprovedJobs{\n    id\n    title\n    industry\n    description\n  }\n}\n": types.GetUnapprovedJobsDocument,
     "\n  mutation createJob($newjob: NewJob!) {   \n    createJob( input: $newjob ) {    \n      id\n     }    \n }\n": types.CreateJobDocument,
     "\n  query getJobs{\n    getJobs{\n      id\n      title\n      industry\n      description\n    }\n  }\n  ": types.GetJobsDocument,
+    "\n   mutation resetEmployeePassword($new_password: String!){\n    resetEmployeePassword(new_password: $new_password){\n      id\n    }\n  }\n ": types.ResetEmployeePasswordDocument,
+    "\n  mutation employeeLogin($employeelogin: EmployeeLogin!) {   \n    employeeLogin(input: $employeelogin) \n  }\n": types.EmployeeLoginDocument,
+    "\nmutation forgotEmployeePassword($phone_number: String!){\n  forgotEmployeePassword(phone_number: $phone_number){\n    phone_number\n    success\n  }\n}\n": types.ForgotEmployeePasswordDocument,
+    "\n   mutation requestEmployeePasswordReset($verificationinfo: verificationinfo!){\n      requestEmployeePasswordReset(input: $verificationinfo)\n   }\n": types.RequestEmployeePasswordResetDocument,
+    "\n  mutation createEmployee($newemployee: NewEmployee!) {   \n    createEmployee( input: $newemployee ) {    \n      id\n     }    \n }\n": types.CreateEmployeeDocument,
+    "\n  query checkemployeephonenumber($phone_number: String!) {\n    employeePhoneNumberExists(phone_number: $phone_number) {\n      verified\n      unverified\n    }\n  }\n": types.CheckemployeephonenumberDocument,
+    "\n  mutation verifyEmployee ($verificationinfo: verificationinfo!) {   \n  verifyEmployee(input: $verificationinfo) {    \n    id\n   }    \n}\n": types.VerifyEmployeeDocument,
     "\n   mutation resetEmployerPassword($new_password: String!){\n    resetEmployerPassword(new_password: $new_password){\n      id\n    }\n  }\n ": types.ResetEmployerPasswordDocument,
     "\n  mutation employerLogin($employerlogin: EmployerLogin!) {   \n    employerLogin(input: $employerlogin) \n  }\n": types.EmployerLoginDocument,
     "\nmutation forgotEmployerPassword($phone_number: String!){\n  forgotEmployerPassword(phone_number: $phone_number){\n    phone_number\n    success\n  }\n}\n": types.ForgotEmployerPasswordDocument,
@@ -85,6 +92,34 @@ export function gql(source: "\n  mutation createJob($newjob: NewJob!) {   \n    
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  query getJobs{\n    getJobs{\n      id\n      title\n      industry\n      description\n    }\n  }\n  "): (typeof documents)["\n  query getJobs{\n    getJobs{\n      id\n      title\n      industry\n      description\n    }\n  }\n  "];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n   mutation resetEmployeePassword($new_password: String!){\n    resetEmployeePassword(new_password: $new_password){\n      id\n    }\n  }\n "): (typeof documents)["\n   mutation resetEmployeePassword($new_password: String!){\n    resetEmployeePassword(new_password: $new_password){\n      id\n    }\n  }\n "];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation employeeLogin($employeelogin: EmployeeLogin!) {   \n    employeeLogin(input: $employeelogin) \n  }\n"): (typeof documents)["\n  mutation employeeLogin($employeelogin: EmployeeLogin!) {   \n    employeeLogin(input: $employeelogin) \n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\nmutation forgotEmployeePassword($phone_number: String!){\n  forgotEmployeePassword(phone_number: $phone_number){\n    phone_number\n    success\n  }\n}\n"): (typeof documents)["\nmutation forgotEmployeePassword($phone_number: String!){\n  forgotEmployeePassword(phone_number: $phone_number){\n    phone_number\n    success\n  }\n}\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n   mutation requestEmployeePasswordReset($verificationinfo: verificationinfo!){\n      requestEmployeePasswordReset(input: $verificationinfo)\n   }\n"): (typeof documents)["\n   mutation requestEmployeePasswordReset($verificationinfo: verificationinfo!){\n      requestEmployeePasswordReset(input: $verificationinfo)\n   }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation createEmployee($newemployee: NewEmployee!) {   \n    createEmployee( input: $newemployee ) {    \n      id\n     }    \n }\n"): (typeof documents)["\n  mutation createEmployee($newemployee: NewEmployee!) {   \n    createEmployee( input: $newemployee ) {    \n      id\n     }    \n }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query checkemployeephonenumber($phone_number: String!) {\n    employeePhoneNumberExists(phone_number: $phone_number) {\n      verified\n      unverified\n    }\n  }\n"): (typeof documents)["\n  query checkemployeephonenumber($phone_number: String!) {\n    employeePhoneNumberExists(phone_number: $phone_number) {\n      verified\n      unverified\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation verifyEmployee ($verificationinfo: verificationinfo!) {   \n  verifyEmployee(input: $verificationinfo) {    \n    id\n   }    \n}\n"): (typeof documents)["\n  mutation verifyEmployee ($verificationinfo: verificationinfo!) {   \n  verifyEmployee(input: $verificationinfo) {    \n    id\n   }    \n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
