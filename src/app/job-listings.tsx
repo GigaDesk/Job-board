@@ -4,10 +4,13 @@ import { useQuery } from "@apollo/client";
 import Job from "./job";
 import { gql } from "@/__generated__";
 import CvPoster from "./cvposter";
+import { useSnapshot } from "valtio";
+import { FilterInstance } from "@/state/store";
+import { useEffect } from "react";
 
 const GET_JOB_LISTING_QUERY = gql(`
-query getlistingJobs {
-  getJobs {
+query getlistingJobs($filters: JobsFilterParameters) {
+  getJobs(filterparameters: $filters){
     id
     title
     description
@@ -17,12 +20,56 @@ query getlistingJobs {
   `);
 
 export default function JobListings() {
-  const { data } = useQuery(GET_JOB_LISTING_QUERY);
+  const filterinstance = useSnapshot(FilterInstance);
+
+  const handleStringValue = (s: string) => {
+    if (s == "") {
+      return undefined;
+    } else {
+      return s;
+    }
+  };
+
+  const handleNumberStringValue = (s: number | "") => {
+    if (s == "") {
+      return undefined;
+    } else if (s < 1) {
+      return undefined;
+    } else {
+      return s;
+    }
+  };
+
+  const { data, refetch } = useQuery(GET_JOB_LISTING_QUERY, {
+    fetchPolicy: "network-only",
+    variables: {
+      filters: {
+        educationLevel: handleStringValue(
+          filterinstance.instance.educationLevel
+        ),
+        industry: handleStringValue(filterinstance.instance.industry),
+        experience: handleNumberStringValue(filterinstance.instance.experience),
+      },
+    },
+  });
+
+  useEffect(() => {
+    refetch({
+      filters: {
+        educationLevel: handleStringValue(
+          filterinstance.instance.educationLevel
+        ),
+        industry: handleStringValue(filterinstance.instance.industry),
+        experience: handleNumberStringValue(filterinstance.instance.experience),
+      },
+    });
+  }, [filterinstance.instance, refetch]);
+
   return (
     <div className="w-full p-4 overflow-auto  [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-border-gray hover:[&::-webkit-scrollbar-thumb]:bg-hover-gray  [&::-webkit-scrollbar-thumb]:rounded-full">
-     <div className="px-8 md:px-8 lg:px-16">
-     <CvPoster/>
-     </div>
+      <div className="px-8 md:px-8 lg:px-16 z-0">
+        <CvPoster />
+      </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-3">
         {data?.getJobs?.map((job) => (
           <div
