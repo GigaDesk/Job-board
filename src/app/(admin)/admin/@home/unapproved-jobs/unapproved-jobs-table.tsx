@@ -37,17 +37,17 @@ export default function UnapprovedJobsTable() {
         Unapproved Jobs
       </div>
       <div className="rounded-b-xl grid  grid-rows-[50px_1fr] md:grid-rows-[30px_1fr]">
-        <div className="border-b border-border-table-gray grid grid-cols-[1fr_80px] px-4 md:px-4 md:pr-6 items-center text-text-table-gray">
-          <div className="grid grid-cols-3">
+        <div className="border-b border-border-table-gray grid md:grid-cols-[1fr_80px] px-4 md:px-4 md:pr-6 items-center text-text-table-gray">
+          <div className="grid grid-cols-2 md:grid-cols-3">
             <div className="">Title </div>
             <div className="">Industry </div>
-            <div className="">Description </div>
+            <div className="max-md:hidden">Description </div>
           </div>
-          <div className="grid justify-items-center">Status</div>
+          <div className="grid justify-items-center max-md:hidden">Status</div>
         </div>
         <StudentList>
           {data?.getUnapprovedJobs?.map((unapprovedjob) => (
-            <div className="grid grid-cols-[1fr_100px]" key={unapprovedjob?.id}>
+            <div className="grid md:grid-cols-[1fr_100px]" key={unapprovedjob?.id}>
               <div className="cursor-pointer"
                 onClick={() => {
                   router.push(`/admin/unapproved-jobs/${unapprovedjob.id}`);
@@ -59,7 +59,7 @@ export default function UnapprovedJobsTable() {
                   phone_number={unapprovedjob?.description}
                 />
               </div>
-              <div className="grid content-center ">
+              <div className="grid content-center max-md:hidden">
                 <ApproveJobButton id={unapprovedjob?.id} />
               </div>
             </div>
