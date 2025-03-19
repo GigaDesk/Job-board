@@ -22,17 +22,14 @@ const documents = {
     "\n  mutation approveJob($id: Int!) {   \n    approveJob( id: $id ) {    \n      id\n     }    \n }\n": types.ApproveJobDocument,
     "\nquery getUnapprovedJobs{\n  getUnapprovedJobs{\n    id\n    title\n    industry\n    description\n  }\n}\n": types.GetUnapprovedJobsDocument,
     "\n  mutation createJob($newjob: NewJob!) {   \n    createJob( input: $newjob ) {    \n      id\n     }    \n }\n": types.CreateJobDocument,
-    "\n  query SchoolProfile{\n     getSchoolProfile{\n         name\n         phone_number\n    }\n  }\n": types.SchoolProfileDocument,
     "\n  query getJobs{\n    getJobs{\n      id\n      title\n      industry\n      description\n    }\n  }\n  ": types.GetJobsDocument,
-    "\n  mutation createSchool($newschool: NewSchool!) {   \n    createSchool( input: $newschool ) {    \n      id\n     }    \n }\n": types.CreateSchoolDocument,
-    "\n  query checkphonenumber($phone_number: String!) {\n    schoolPhoneNumberExists(phone_number: $phone_number) {\n      verified\n      unverified\n    }\n  }\n": types.CheckphonenumberDocument,
-    "\n  mutation verifySchool ($verificationinfo: verificationinfo!) {   \n  verifySchool(input: $verificationinfo) {    \n    id\n   }    \n}\n": types.VerifySchoolDocument,
-    "\nmutation studentLogin($studentlogin: StudentLogin!) {   \n  studentLogin(input: $studentlogin)\n}\n": types.StudentLoginDocument,
-    "\n  mutation resetStudentPassword($new_password: String!) {   \n    resetStudentPassword(new_password: $new_password){\n      id\n    }\n  }\n": types.ResetStudentPasswordDocument,
-    "\nmutation forgotStudentPassword($schoolid: Int!, $registration_number: String!){\n  forgotStudentPassword(schoolid: $schoolid, registration_number: $registration_number){\n    phone_number\n    success\n  }\n}\n  ": types.ForgotStudentPasswordDocument,
-    "\nmutation requestStudentPasswordReset($schoolid: Int!, $registration_number: String!, $phone_number: String!, $otp: String!){\n  requestStudentPasswordReset(schoolid: $schoolid, registration_number: $registration_number, phone_number: $phone_number, otp: $otp)\n}\n  ": types.RequestStudentPasswordResetDocument,
-    "\nquery SchoolsProfile{\n  getSchoolsProfile{\n    id\n    name\n  }\n}\n": types.SchoolsProfileDocument,
-    "\nquery studentProfile{\n  getStudentProfile{\n    name\n    phone_number\n    registration_number\n    school{\n      name\n      phone_number\n    }\n  }\n}\n": types.StudentProfileDocument,
+    "\n   mutation resetEmployerPassword($new_password: String!){\n    resetEmployerPassword(new_password: $new_password){\n      id\n    }\n  }\n ": types.ResetEmployerPasswordDocument,
+    "\n  mutation employerLogin($employerlogin: EmployerLogin!) {   \n    employerLogin(input: $employerlogin) \n  }\n": types.EmployerLoginDocument,
+    "\nmutation forgotEmployerPassword($phone_number: String!){\n  forgotEmployerPassword(phone_number: $phone_number){\n    phone_number\n    success\n  }\n}\n": types.ForgotEmployerPasswordDocument,
+    "\n   mutation requestEmployerPasswordReset($verificationinfo: verificationinfo!){\n      requestEmployerPasswordReset(input: $verificationinfo)\n   }\n": types.RequestEmployerPasswordResetDocument,
+    "\n  mutation createEmployer($newemployer: NewEmployer!) {   \n    createEmployer( input: $newemployer ) {    \n      id\n     }    \n }\n": types.CreateEmployerDocument,
+    "\n  query checkcompanyphonenumber($phone_number: String!) {\n    employerPhoneNumberExists(phone_number: $phone_number) {\n      verified\n      unverified\n    }\n  }\n": types.CheckcompanyphonenumberDocument,
+    "\n  mutation verifyEmployer ($verificationinfo: verificationinfo!) {   \n  verifyEmployer(input: $verificationinfo) {    \n    id\n   }    \n}\n": types.VerifyEmployerDocument,
     "\n  query findJob($id: Int!){\n    findJob(id: $id){\n      id\n      title\n      industry\n      deadline\n      description\n      requirements\n      level\n      location\n      educationLevel\n      experience\n    }\n  }\n  ": types.FindJobDocument,
     "\nquery getlistingJobs {\n  getJobs {\n    id\n    title\n    description\n    location\n  }\n}\n  ": types.GetlistingJobsDocument,
     "\n   mutation sendCode($phone_number: String!) {   \n    sendCode(phone_number: $phone_number) {    \n      phone_number\n      success\n     }    \n }\n": types.SendCodeDocument,
@@ -87,47 +84,35 @@ export function gql(source: "\n  mutation createJob($newjob: NewJob!) {   \n    
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query SchoolProfile{\n     getSchoolProfile{\n         name\n         phone_number\n    }\n  }\n"): (typeof documents)["\n  query SchoolProfile{\n     getSchoolProfile{\n         name\n         phone_number\n    }\n  }\n"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
 export function gql(source: "\n  query getJobs{\n    getJobs{\n      id\n      title\n      industry\n      description\n    }\n  }\n  "): (typeof documents)["\n  query getJobs{\n    getJobs{\n      id\n      title\n      industry\n      description\n    }\n  }\n  "];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  mutation createSchool($newschool: NewSchool!) {   \n    createSchool( input: $newschool ) {    \n      id\n     }    \n }\n"): (typeof documents)["\n  mutation createSchool($newschool: NewSchool!) {   \n    createSchool( input: $newschool ) {    \n      id\n     }    \n }\n"];
+export function gql(source: "\n   mutation resetEmployerPassword($new_password: String!){\n    resetEmployerPassword(new_password: $new_password){\n      id\n    }\n  }\n "): (typeof documents)["\n   mutation resetEmployerPassword($new_password: String!){\n    resetEmployerPassword(new_password: $new_password){\n      id\n    }\n  }\n "];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query checkphonenumber($phone_number: String!) {\n    schoolPhoneNumberExists(phone_number: $phone_number) {\n      verified\n      unverified\n    }\n  }\n"): (typeof documents)["\n  query checkphonenumber($phone_number: String!) {\n    schoolPhoneNumberExists(phone_number: $phone_number) {\n      verified\n      unverified\n    }\n  }\n"];
+export function gql(source: "\n  mutation employerLogin($employerlogin: EmployerLogin!) {   \n    employerLogin(input: $employerlogin) \n  }\n"): (typeof documents)["\n  mutation employerLogin($employerlogin: EmployerLogin!) {   \n    employerLogin(input: $employerlogin) \n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  mutation verifySchool ($verificationinfo: verificationinfo!) {   \n  verifySchool(input: $verificationinfo) {    \n    id\n   }    \n}\n"): (typeof documents)["\n  mutation verifySchool ($verificationinfo: verificationinfo!) {   \n  verifySchool(input: $verificationinfo) {    \n    id\n   }    \n}\n"];
+export function gql(source: "\nmutation forgotEmployerPassword($phone_number: String!){\n  forgotEmployerPassword(phone_number: $phone_number){\n    phone_number\n    success\n  }\n}\n"): (typeof documents)["\nmutation forgotEmployerPassword($phone_number: String!){\n  forgotEmployerPassword(phone_number: $phone_number){\n    phone_number\n    success\n  }\n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\nmutation studentLogin($studentlogin: StudentLogin!) {   \n  studentLogin(input: $studentlogin)\n}\n"): (typeof documents)["\nmutation studentLogin($studentlogin: StudentLogin!) {   \n  studentLogin(input: $studentlogin)\n}\n"];
+export function gql(source: "\n   mutation requestEmployerPasswordReset($verificationinfo: verificationinfo!){\n      requestEmployerPasswordReset(input: $verificationinfo)\n   }\n"): (typeof documents)["\n   mutation requestEmployerPasswordReset($verificationinfo: verificationinfo!){\n      requestEmployerPasswordReset(input: $verificationinfo)\n   }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  mutation resetStudentPassword($new_password: String!) {   \n    resetStudentPassword(new_password: $new_password){\n      id\n    }\n  }\n"): (typeof documents)["\n  mutation resetStudentPassword($new_password: String!) {   \n    resetStudentPassword(new_password: $new_password){\n      id\n    }\n  }\n"];
+export function gql(source: "\n  mutation createEmployer($newemployer: NewEmployer!) {   \n    createEmployer( input: $newemployer ) {    \n      id\n     }    \n }\n"): (typeof documents)["\n  mutation createEmployer($newemployer: NewEmployer!) {   \n    createEmployer( input: $newemployer ) {    \n      id\n     }    \n }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\nmutation forgotStudentPassword($schoolid: Int!, $registration_number: String!){\n  forgotStudentPassword(schoolid: $schoolid, registration_number: $registration_number){\n    phone_number\n    success\n  }\n}\n  "): (typeof documents)["\nmutation forgotStudentPassword($schoolid: Int!, $registration_number: String!){\n  forgotStudentPassword(schoolid: $schoolid, registration_number: $registration_number){\n    phone_number\n    success\n  }\n}\n  "];
+export function gql(source: "\n  query checkcompanyphonenumber($phone_number: String!) {\n    employerPhoneNumberExists(phone_number: $phone_number) {\n      verified\n      unverified\n    }\n  }\n"): (typeof documents)["\n  query checkcompanyphonenumber($phone_number: String!) {\n    employerPhoneNumberExists(phone_number: $phone_number) {\n      verified\n      unverified\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\nmutation requestStudentPasswordReset($schoolid: Int!, $registration_number: String!, $phone_number: String!, $otp: String!){\n  requestStudentPasswordReset(schoolid: $schoolid, registration_number: $registration_number, phone_number: $phone_number, otp: $otp)\n}\n  "): (typeof documents)["\nmutation requestStudentPasswordReset($schoolid: Int!, $registration_number: String!, $phone_number: String!, $otp: String!){\n  requestStudentPasswordReset(schoolid: $schoolid, registration_number: $registration_number, phone_number: $phone_number, otp: $otp)\n}\n  "];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "\nquery SchoolsProfile{\n  getSchoolsProfile{\n    id\n    name\n  }\n}\n"): (typeof documents)["\nquery SchoolsProfile{\n  getSchoolsProfile{\n    id\n    name\n  }\n}\n"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "\nquery studentProfile{\n  getStudentProfile{\n    name\n    phone_number\n    registration_number\n    school{\n      name\n      phone_number\n    }\n  }\n}\n"): (typeof documents)["\nquery studentProfile{\n  getStudentProfile{\n    name\n    phone_number\n    registration_number\n    school{\n      name\n      phone_number\n    }\n  }\n}\n"];
+export function gql(source: "\n  mutation verifyEmployer ($verificationinfo: verificationinfo!) {   \n  verifyEmployer(input: $verificationinfo) {    \n    id\n   }    \n}\n"): (typeof documents)["\n  mutation verifyEmployer ($verificationinfo: verificationinfo!) {   \n  verifyEmployer(input: $verificationinfo) {    \n    id\n   }    \n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
