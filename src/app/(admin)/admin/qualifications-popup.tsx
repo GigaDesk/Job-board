@@ -49,7 +49,7 @@ export default function QualificationsPopup() {
           className="hover:text-bright-blue rounded-full"
           onClick={addMoreQualifications}
         >
-          Add more
+          Add more requirements
         </button>
       </div>
     </div>

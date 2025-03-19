@@ -8,6 +8,7 @@ import SelectSmall from "./selectsenioritylevel";
 import { useMutation } from "@apollo/client";
 import { gql } from "../../../__generated__/gql";
 import SelectEducationLevel from "./selecteducationlevel";
+import SelectIndustry from "./selectindustry";
 import QualificationsPopup from "./qualifications-popup";
 import { LocalizationProvider, MobileDatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
@@ -34,10 +35,6 @@ export default function AddStudentPopup() {
 
   const handleChangeDescription = (e: React.ChangeEvent<HTMLInputElement>) => {
     JobInstance.instance.description = e.target.value;
-  };
-
-  const handleChangeIndustry = (e: React.ChangeEvent<HTMLInputElement>) => {
-    JobInstance.instance.industry = e.target.value;
   };
 
   const handleChangeLocation = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -99,25 +96,19 @@ export default function AddStudentPopup() {
     }
   }, [jobinstance.instance]);
 
-  const [createJob, { data, loading, error }] =
-    useMutation(CREATE_JOB_MUTATION);
+  const [createJob, { loading, error }] = useMutation(CREATE_JOB_MUTATION);
 
   return (
     <div className="p-4 text-sm" style={{ fontFamily: "McLaren" }}>
       <Stack spacing={1}>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-3 gap-4">
           <TextField
             placeholder="Title"
             onChange={handleChangeTitle}
             value={jobinstance.instance.title}
             size="small"
           />
-          <TextField
-            placeholder="Industry"
-            onChange={handleChangeIndustry}
-            value={jobinstance.instance.industry}
-            size="small"
-          />
+          <SelectIndustry />
           <TextField
             placeholder="Location"
             onChange={handleChangeLocation}
@@ -135,7 +126,7 @@ export default function AddStudentPopup() {
           size="small"
           multiline
         />
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid md:grid-cols-3 gap-2">
           <SelectSmall />
           <TextField
             placeholder="Years of experience"
@@ -197,9 +188,6 @@ export default function AddStudentPopup() {
           Submit
         </Button>
         <div className="text-red-600">{error?.message}</div>
-        {data !== undefined ? (
-          <div className="bg-green-950">Job added successfully</div>
-        ) : null}
       </Stack>
     </div>
   );
