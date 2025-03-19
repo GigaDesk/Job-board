@@ -3,12 +3,14 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { FilterInstance } from "@/state/store";
+import { useSnapshot } from "valtio";
 
 export default function FilterIndustry() {
-  const [industry, setIndustry] = React.useState("")
+  const filterinstance = useSnapshot(FilterInstance);
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setIndustry(event.target.value)
+  const handleChangeIndustry = (event: SelectChangeEvent) => {
+    FilterInstance.instance.industry = event.target.value;
   };
 
   return (
@@ -17,16 +19,18 @@ export default function FilterIndustry() {
       <Select
         labelId="demo-select-small-label"
         id="demo-select-small"
-        value={industry}
+        value={filterinstance.instance.industry}
         label="Industry"
-        onChange={handleChange}
+        onChange={handleChangeIndustry}
       >
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        <MenuItem value={"Beginner"}>Technology</MenuItem>
-        <MenuItem value={"Intermediate"}>Retail</MenuItem>
-        <MenuItem value={"Senior"}>Automotive</MenuItem>
+        <MenuItem value={"Technology"}>Technology</MenuItem>
+        <MenuItem value={"Retail"}>Retail</MenuItem>
+        <MenuItem value={"Automotive"}>Automotive</MenuItem>
+        <MenuItem value={"Media"}>Media</MenuItem>
+        <MenuItem value={"Banking"}>Banking</MenuItem>
       </Select>
     </FormControl>
   );

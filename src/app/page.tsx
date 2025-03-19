@@ -5,10 +5,19 @@ import JobListings from "./job-listings";
 import { useRouter } from "next/navigation";
 import Button from "@mui/joy/Button";
 import FilterEducationLevel from "./filtereducationlevel";
-import FilterSeniorityLevel from "./filtersenioritylevel";
+import FilterExperience from "./filteryearsofexperience";
 import FilterIndustry from "./filterindustry";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import Modal from "@mui/material/Modal";
+import Card from "@mui/material/Card";
+import { useState } from "react";
 
 export default function Home() {
+  const [modalopen, setModalOpen] = useState(false);
+
+  const handleOpenModal = () => setModalOpen(true);
+  const handleCloseModal = () => setModalOpen(false);
+
   const router = useRouter();
 
   return (
@@ -28,21 +37,52 @@ export default function Home() {
             <button className="text-sky-600 text-center">Login</button>
             <Button
               onClick={() => {
-                router.push(`/admin`);
+                router.push(`/employer-sign-in`);
               }}
             >
               Post a job
             </Button>
           </div>
         </div>
-        <div className="grid grid-cols-5 content-center gap-4 text-text-table-gray max-md:hidden">
-          <div className="grid content-center">Find a Job</div>
-          <FilterEducationLevel />
-          <FilterIndustry />
-          <FilterSeniorityLevel />
-          <Button>Search</Button>
+        <div className="grid grid-cols-[100px_1fr] content-center gap-4 text-text-table-gray max-md:hidden">
+          <div className="grid grid-cols-2 content-center">
+            <div>Filter</div>
+            <FilterListIcon />
+          </div>
+          <div className="grid grid-cols-3 gap-4">
+            <FilterEducationLevel />
+            <FilterIndustry />
+            <FilterExperience />
+          </div>
+        </div>
+        <div className="grid grid-cols-[100px_1fr] content-center gap-4 text-text-table-gray md:hidden">
+          <button
+            className="grid grid-cols-2 content-center"
+            onClick={handleOpenModal}
+          >
+            <div>Filter</div>
+            <FilterListIcon />
+          </button>
         </div>
       </div>
+
+      <Modal
+        open={modalopen}
+        onClose={handleCloseModal}
+        aria-labelledby="parent-modal-title"
+        aria-describedby="parent-modal-description"
+      >
+        <div className="z-1 shadow-xl my-60 mx-4">
+          <Card sx={{ backgroundColor: "#F0F4F9" }}>
+            <div className="grid grid-rows-3 gap-4 rounded-xl p-8">
+              <FilterEducationLevel />
+              <FilterIndustry />
+              <FilterExperience />
+            </div>
+          </Card>
+        </div>
+      </Modal>
+
       <JobListings />
       <footer className="w-full pb-4 h-20">
         <CompanyStatement />
