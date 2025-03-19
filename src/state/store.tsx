@@ -24,3 +24,17 @@ export const SidebarState = proxy({
 export const SideDrawerState = proxy({
   show: false,
 });
+
+export interface FilterParameters {
+  industry: string;
+  educationLevel: string;
+  experience: number | "";
+}
+
+export const FilterInstance = proxy({
+  instance: {
+    industry: "",
+    educationLevel: "",
+    experience: "",
+  } as FilterParameters,
+});
