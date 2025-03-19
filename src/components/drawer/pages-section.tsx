@@ -43,6 +43,17 @@ export default function PagesSection() {
             </div>
           )}
         </Link>
+        <Link href="/admin/employers">
+          {route.instance == "Employers" ? (
+            <div className="pl-4 py-2 rounded-full bg-light-blue text-bright-blue hover:bg-hover-gray hover:text-black cursor-pointer">
+              Employers
+            </div>
+          ) : (
+            <div className="pl-4 py-2 rounded-full text-black hover:bg-hover-gray hover:text-black cursor-pointer">
+              Employers
+            </div>
+          )}
+        </Link>
       </Stack>
     </div>
   );
