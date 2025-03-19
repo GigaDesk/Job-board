@@ -39,10 +39,10 @@ export default function StudentTable() {
         </button>
       </div>
       <div className="rounded-b-xl grid  grid-rows-[50px_1fr] md:grid-rows-[30px_1fr]">
-        <div className="border-b border-border-table-gray grid grid-cols-3 px-4 md:px-4 md:pr-6 items-center text-text-table-gray">
+        <div className="border-b border-border-table-gray grid grid-cols-2 md:grid-cols-3 px-4 md:px-4 md:pr-6 items-center text-text-table-gray">
           <div className="">Title </div>
           <div className="">Industry </div>
-          <div className="">Description </div>
+          <div className="max-md:hidden">Description </div>
         </div>
         <StudentList>
           {data?.getJobs?.map((job) => (
