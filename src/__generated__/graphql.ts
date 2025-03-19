@@ -35,6 +35,40 @@ export type AddAdminPayloadAdminArgs = {
   order?: InputMaybe<AdminOrder>;
 };
 
+/** AddEmployee result with filterable data and affected rows */
+export type AddEmployeePayload = {
+  __typename?: 'AddEmployeePayload';
+  affected: Array<Employee>;
+  employee: EmployeeQueryResult;
+};
+
+
+/** AddEmployee result with filterable data and affected rows */
+export type AddEmployeePayloadEmployeeArgs = {
+  filter?: InputMaybe<EmployeeFiltersInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  group?: InputMaybe<Array<EmployeeGroup>>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<EmployeeOrder>;
+};
+
+/** AddEmployer result with filterable data and affected rows */
+export type AddEmployerPayload = {
+  __typename?: 'AddEmployerPayload';
+  affected: Array<Employer>;
+  employer: EmployerQueryResult;
+};
+
+
+/** AddEmployer result with filterable data and affected rows */
+export type AddEmployerPayloadEmployerArgs = {
+  filter?: InputMaybe<EmployerFiltersInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  group?: InputMaybe<Array<EmployerGroup>>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<EmployerOrder>;
+};
+
 /** AddJob result with filterable data and affected rows */
 export type AddJobPayload = {
   __typename?: 'AddJobPayload';
@@ -50,40 +84,6 @@ export type AddJobPayloadJobArgs = {
   group?: InputMaybe<Array<JobGroup>>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<JobOrder>;
-};
-
-/** AddSchool result with filterable data and affected rows */
-export type AddSchoolPayload = {
-  __typename?: 'AddSchoolPayload';
-  affected: Array<School>;
-  school: SchoolQueryResult;
-};
-
-
-/** AddSchool result with filterable data and affected rows */
-export type AddSchoolPayloadSchoolArgs = {
-  filter?: InputMaybe<SchoolFiltersInput>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  group?: InputMaybe<Array<SchoolGroup>>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order?: InputMaybe<SchoolOrder>;
-};
-
-/** AddStudent result with filterable data and affected rows */
-export type AddStudentPayload = {
-  __typename?: 'AddStudentPayload';
-  affected: Array<Student>;
-  student: StudentQueryResult;
-};
-
-
-/** AddStudent result with filterable data and affected rows */
-export type AddStudentPayloadStudentArgs = {
-  filter?: InputMaybe<StudentFiltersInput>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  group?: InputMaybe<Array<StudentGroup>>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order?: InputMaybe<StudentOrder>;
 };
 
 /** AddUnapprovedJob result with filterable data and affected rows */
@@ -120,21 +120,38 @@ export type AddUnverifiedAdminPayloadUnverifiedAdminArgs = {
   order?: InputMaybe<UnverifiedAdminOrder>;
 };
 
-/** AddUnverifiedSchool result with filterable data and affected rows */
-export type AddUnverifiedSchoolPayload = {
-  __typename?: 'AddUnverifiedSchoolPayload';
-  affected: Array<UnverifiedSchool>;
-  unverifiedSchool: UnverifiedSchoolQueryResult;
+/** AddUnverifiedEmployee result with filterable data and affected rows */
+export type AddUnverifiedEmployeePayload = {
+  __typename?: 'AddUnverifiedEmployeePayload';
+  affected: Array<UnverifiedEmployee>;
+  unverifiedEmployee: UnverifiedEmployeeQueryResult;
 };
 
 
-/** AddUnverifiedSchool result with filterable data and affected rows */
-export type AddUnverifiedSchoolPayloadUnverifiedSchoolArgs = {
-  filter?: InputMaybe<UnverifiedSchoolFiltersInput>;
+/** AddUnverifiedEmployee result with filterable data and affected rows */
+export type AddUnverifiedEmployeePayloadUnverifiedEmployeeArgs = {
+  filter?: InputMaybe<UnverifiedEmployeeFiltersInput>;
   first?: InputMaybe<Scalars['Int']['input']>;
-  group?: InputMaybe<Array<UnverifiedSchoolGroup>>;
+  group?: InputMaybe<Array<UnverifiedEmployeeGroup>>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order?: InputMaybe<UnverifiedSchoolOrder>;
+  order?: InputMaybe<UnverifiedEmployeeOrder>;
+};
+
+/** AddUnverifiedEmployer result with filterable data and affected rows */
+export type AddUnverifiedEmployerPayload = {
+  __typename?: 'AddUnverifiedEmployerPayload';
+  affected: Array<UnverifiedEmployer>;
+  unverifiedEmployer: UnverifiedEmployerQueryResult;
+};
+
+
+/** AddUnverifiedEmployer result with filterable data and affected rows */
+export type AddUnverifiedEmployerPayloadUnverifiedEmployerArgs = {
+  filter?: InputMaybe<UnverifiedEmployerFiltersInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  group?: InputMaybe<Array<UnverifiedEmployerGroup>>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<UnverifiedEmployerOrder>;
 };
 
 export type Admin = {
@@ -259,6 +276,44 @@ export type DeleteAdminPayloadAdminArgs = {
   order?: InputMaybe<AdminOrder>;
 };
 
+/** DeleteEmployee result with filterable data and count of affected entries */
+export type DeleteEmployeePayload = {
+  __typename?: 'DeleteEmployeePayload';
+  /** Count of deleted Employee entities */
+  count: Scalars['Int']['output'];
+  employee: EmployeeQueryResult;
+  msg?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** DeleteEmployee result with filterable data and count of affected entries */
+export type DeleteEmployeePayloadEmployeeArgs = {
+  filter?: InputMaybe<EmployeeFiltersInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  group?: InputMaybe<Array<EmployeeGroup>>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<EmployeeOrder>;
+};
+
+/** DeleteEmployer result with filterable data and count of affected entries */
+export type DeleteEmployerPayload = {
+  __typename?: 'DeleteEmployerPayload';
+  /** Count of deleted Employer entities */
+  count: Scalars['Int']['output'];
+  employer: EmployerQueryResult;
+  msg?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** DeleteEmployer result with filterable data and count of affected entries */
+export type DeleteEmployerPayloadEmployerArgs = {
+  filter?: InputMaybe<EmployerFiltersInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  group?: InputMaybe<Array<EmployerGroup>>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<EmployerOrder>;
+};
+
 /** DeleteJob result with filterable data and count of affected entries */
 export type DeleteJobPayload = {
   __typename?: 'DeleteJobPayload';
@@ -276,44 +331,6 @@ export type DeleteJobPayloadJobArgs = {
   group?: InputMaybe<Array<JobGroup>>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<JobOrder>;
-};
-
-/** DeleteSchool result with filterable data and count of affected entries */
-export type DeleteSchoolPayload = {
-  __typename?: 'DeleteSchoolPayload';
-  /** Count of deleted School entities */
-  count: Scalars['Int']['output'];
-  msg?: Maybe<Scalars['String']['output']>;
-  school: SchoolQueryResult;
-};
-
-
-/** DeleteSchool result with filterable data and count of affected entries */
-export type DeleteSchoolPayloadSchoolArgs = {
-  filter?: InputMaybe<SchoolFiltersInput>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  group?: InputMaybe<Array<SchoolGroup>>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order?: InputMaybe<SchoolOrder>;
-};
-
-/** DeleteStudent result with filterable data and count of affected entries */
-export type DeleteStudentPayload = {
-  __typename?: 'DeleteStudentPayload';
-  /** Count of deleted Student entities */
-  count: Scalars['Int']['output'];
-  msg?: Maybe<Scalars['String']['output']>;
-  student: StudentQueryResult;
-};
-
-
-/** DeleteStudent result with filterable data and count of affected entries */
-export type DeleteStudentPayloadStudentArgs = {
-  filter?: InputMaybe<StudentFiltersInput>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  group?: InputMaybe<Array<StudentGroup>>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order?: InputMaybe<StudentOrder>;
 };
 
 /** DeleteUnapprovedJob result with filterable data and count of affected entries */
@@ -354,29 +371,257 @@ export type DeleteUnverifiedAdminPayloadUnverifiedAdminArgs = {
   order?: InputMaybe<UnverifiedAdminOrder>;
 };
 
-/** DeleteUnverifiedSchool result with filterable data and count of affected entries */
-export type DeleteUnverifiedSchoolPayload = {
-  __typename?: 'DeleteUnverifiedSchoolPayload';
-  /** Count of deleted UnverifiedSchool entities */
+/** DeleteUnverifiedEmployee result with filterable data and count of affected entries */
+export type DeleteUnverifiedEmployeePayload = {
+  __typename?: 'DeleteUnverifiedEmployeePayload';
+  /** Count of deleted UnverifiedEmployee entities */
   count: Scalars['Int']['output'];
   msg?: Maybe<Scalars['String']['output']>;
-  unverifiedSchool: UnverifiedSchoolQueryResult;
+  unverifiedEmployee: UnverifiedEmployeeQueryResult;
 };
 
 
-/** DeleteUnverifiedSchool result with filterable data and count of affected entries */
-export type DeleteUnverifiedSchoolPayloadUnverifiedSchoolArgs = {
-  filter?: InputMaybe<UnverifiedSchoolFiltersInput>;
+/** DeleteUnverifiedEmployee result with filterable data and count of affected entries */
+export type DeleteUnverifiedEmployeePayloadUnverifiedEmployeeArgs = {
+  filter?: InputMaybe<UnverifiedEmployeeFiltersInput>;
   first?: InputMaybe<Scalars['Int']['input']>;
-  group?: InputMaybe<Array<UnverifiedSchoolGroup>>;
+  group?: InputMaybe<Array<UnverifiedEmployeeGroup>>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order?: InputMaybe<UnverifiedSchoolOrder>;
+  order?: InputMaybe<UnverifiedEmployeeOrder>;
+};
+
+/** DeleteUnverifiedEmployer result with filterable data and count of affected entries */
+export type DeleteUnverifiedEmployerPayload = {
+  __typename?: 'DeleteUnverifiedEmployerPayload';
+  /** Count of deleted UnverifiedEmployer entities */
+  count: Scalars['Int']['output'];
+  msg?: Maybe<Scalars['String']['output']>;
+  unverifiedEmployer: UnverifiedEmployerQueryResult;
+};
+
+
+/** DeleteUnverifiedEmployer result with filterable data and count of affected entries */
+export type DeleteUnverifiedEmployerPayloadUnverifiedEmployerArgs = {
+  filter?: InputMaybe<UnverifiedEmployerFiltersInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  group?: InputMaybe<Array<UnverifiedEmployerGroup>>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<UnverifiedEmployerOrder>;
 };
 
 export type Dummy = {
   __typename?: 'Dummy';
   id: Scalars['Int']['output'];
   name: Scalars['String']['output'];
+};
+
+export type Employee = {
+  __typename?: 'Employee';
+  createdAt: Scalars['Time']['output'];
+  deletedAt?: Maybe<Scalars['SoftDelete']['output']>;
+  id: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
+  password: Scalars['String']['output'];
+  phone_number: Scalars['String']['output'];
+  profilepicture?: Maybe<Scalars['String']['output']>;
+  updatedAt: Scalars['Time']['output'];
+};
+
+/**
+ * Filter input selection for Employee
+ * Can be used f.e.: by queryEmployee
+ */
+export type EmployeeFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<EmployeeFiltersInput>>>;
+  createdAt?: InputMaybe<TimeFilterInput>;
+  id?: InputMaybe<IntFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<EmployeeFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<EmployeeFiltersInput>>>;
+  password?: InputMaybe<StringFilterInput>;
+  phone_number?: InputMaybe<StringFilterInput>;
+  profilepicture?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<TimeFilterInput>;
+};
+
+/**
+ * Groupable data for  Employee
+ * Can be used f.e.: by queryEmployee
+ */
+export enum EmployeeGroup {
+  CreatedAt = 'createdAt',
+  Id = 'id',
+  Name = 'name',
+  Password = 'password',
+  PhoneNumber = 'phone_number',
+  Profilepicture = 'profilepicture',
+  UpdatedAt = 'updatedAt'
+}
+
+/** Employee Input value to add new Employee */
+export type EmployeeInput = {
+  name: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  phone_number: Scalars['String']['input'];
+  profilepicture?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type EmployeeLogin = {
+  password: Scalars['String']['input'];
+  phone_number: Scalars['String']['input'];
+};
+
+/** Order Employee by asc or desc  */
+export type EmployeeOrder = {
+  asc?: InputMaybe<EmployeeOrderable>;
+  desc?: InputMaybe<EmployeeOrderable>;
+};
+
+/**
+ * for Employee a enum of all orderable entities
+ * can be used f.e.: queryEmployee
+ */
+export enum EmployeeOrderable {
+  Id = 'id',
+  Name = 'name',
+  Password = 'password',
+  PhoneNumber = 'phone_number',
+  Profilepicture = 'profilepicture'
+}
+
+/** Employee Patch value all values are optional to update Employee entities */
+export type EmployeePatch = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  password?: InputMaybe<Scalars['String']['input']>;
+  phone_number?: InputMaybe<Scalars['String']['input']>;
+  profilepicture?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type EmployeeProfile = {
+  __typename?: 'EmployeeProfile';
+  createdAt: Scalars['Time']['output'];
+  id: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
+  phone_number: Scalars['String']['output'];
+  profilepicture?: Maybe<Scalars['String']['output']>;
+  updatedAt: Scalars['Time']['output'];
+};
+
+/** Employee result */
+export type EmployeeQueryResult = {
+  __typename?: 'EmployeeQueryResult';
+  count: Scalars['Int']['output'];
+  data: Array<Employee>;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type Employer = {
+  __typename?: 'Employer';
+  Website?: Maybe<Scalars['String']['output']>;
+  badge?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['Time']['output'];
+  deletedAt?: Maybe<Scalars['SoftDelete']['output']>;
+  id: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
+  password: Scalars['String']['output'];
+  phone_number: Scalars['String']['output'];
+  updatedAt: Scalars['Time']['output'];
+};
+
+/**
+ * Filter input selection for Employer
+ * Can be used f.e.: by queryEmployer
+ */
+export type EmployerFiltersInput = {
+  Website?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<EmployerFiltersInput>>>;
+  badge?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<TimeFilterInput>;
+  id?: InputMaybe<IntFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<EmployerFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<EmployerFiltersInput>>>;
+  password?: InputMaybe<StringFilterInput>;
+  phone_number?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<TimeFilterInput>;
+};
+
+/**
+ * Groupable data for  Employer
+ * Can be used f.e.: by queryEmployer
+ */
+export enum EmployerGroup {
+  Website = 'Website',
+  Badge = 'badge',
+  CreatedAt = 'createdAt',
+  Id = 'id',
+  Name = 'name',
+  Password = 'password',
+  PhoneNumber = 'phone_number',
+  UpdatedAt = 'updatedAt'
+}
+
+/** Employer Input value to add new Employer */
+export type EmployerInput = {
+  Website?: InputMaybe<Scalars['String']['input']>;
+  badge?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  phone_number: Scalars['String']['input'];
+};
+
+export type EmployerLogin = {
+  password: Scalars['String']['input'];
+  phone_number: Scalars['String']['input'];
+};
+
+/** Order Employer by asc or desc  */
+export type EmployerOrder = {
+  asc?: InputMaybe<EmployerOrderable>;
+  desc?: InputMaybe<EmployerOrderable>;
+};
+
+/**
+ * for Employer a enum of all orderable entities
+ * can be used f.e.: queryEmployer
+ */
+export enum EmployerOrderable {
+  Website = 'Website',
+  Badge = 'badge',
+  Id = 'id',
+  Name = 'name',
+  Password = 'password',
+  PhoneNumber = 'phone_number'
+}
+
+/** Employer Patch value all values are optional to update Employer entities */
+export type EmployerPatch = {
+  Website?: InputMaybe<Scalars['String']['input']>;
+  badge?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  password?: InputMaybe<Scalars['String']['input']>;
+  phone_number?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type EmployerProfile = {
+  __typename?: 'EmployerProfile';
+  Website?: Maybe<Scalars['String']['output']>;
+  badge?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['Time']['output'];
+  id: Scalars['Int']['output'];
+  jobs?: Maybe<Array<Maybe<JobProfile>>>;
+  name: Scalars['String']['output'];
+  phone_number: Scalars['String']['output'];
+  unapprovedJobs?: Maybe<Array<Maybe<UnapprovedJobProfile>>>;
+  updatedAt: Scalars['Time']['output'];
+};
+
+/** Employer result */
+export type EmployerQueryResult = {
+  __typename?: 'EmployerQueryResult';
+  count: Scalars['Int']['output'];
+  data: Array<Employer>;
+  totalCount: Scalars['Int']['output'];
 };
 
 /** Filter between start and end (start > value < end) */
@@ -447,9 +692,11 @@ export type Job = {
   deletedAt?: Maybe<Scalars['SoftDelete']['output']>;
   description: Scalars['String']['output'];
   educationLevel?: Maybe<Scalars['String']['output']>;
+  employerID?: Maybe<Scalars['Int']['output']>;
   experience?: Maybe<Scalars['Int']['output']>;
   id: Scalars['Int']['output'];
   industry?: Maybe<Scalars['String']['output']>;
+  jobUrl?: Maybe<Scalars['String']['output']>;
   level?: Maybe<Scalars['String']['output']>;
   location?: Maybe<Scalars['String']['output']>;
   maxSalary?: Maybe<Scalars['Int']['output']>;
@@ -469,9 +716,11 @@ export type JobFiltersInput = {
   deadline?: InputMaybe<TimeFilterInput>;
   description?: InputMaybe<StringFilterInput>;
   educationLevel?: InputMaybe<StringFilterInput>;
+  employerID?: InputMaybe<IntFilterInput>;
   experience?: InputMaybe<IntFilterInput>;
   id?: InputMaybe<IntFilterInput>;
   industry?: InputMaybe<StringFilterInput>;
+  jobUrl?: InputMaybe<StringFilterInput>;
   level?: InputMaybe<StringFilterInput>;
   location?: InputMaybe<StringFilterInput>;
   maxSalary?: InputMaybe<IntFilterInput>;
@@ -492,9 +741,11 @@ export enum JobGroup {
   Deadline = 'deadline',
   Description = 'description',
   EducationLevel = 'educationLevel',
+  EmployerId = 'employerID',
   Experience = 'experience',
   Id = 'id',
   Industry = 'industry',
+  JobUrl = 'jobUrl',
   Level = 'level',
   Location = 'location',
   MaxSalary = 'maxSalary',
@@ -509,8 +760,10 @@ export type JobInput = {
   deadline?: InputMaybe<Scalars['Time']['input']>;
   description: Scalars['String']['input'];
   educationLevel?: InputMaybe<Scalars['String']['input']>;
+  employerID?: InputMaybe<Scalars['Int']['input']>;
   experience?: InputMaybe<Scalars['Int']['input']>;
   industry?: InputMaybe<Scalars['String']['input']>;
+  jobUrl?: InputMaybe<Scalars['String']['input']>;
   level?: InputMaybe<Scalars['String']['input']>;
   location?: InputMaybe<Scalars['String']['input']>;
   maxSalary?: InputMaybe<Scalars['Int']['input']>;
@@ -532,9 +785,11 @@ export type JobOrder = {
 export enum JobOrderable {
   Description = 'description',
   EducationLevel = 'educationLevel',
+  EmployerId = 'employerID',
   Experience = 'experience',
   Id = 'id',
   Industry = 'industry',
+  JobUrl = 'jobUrl',
   Level = 'level',
   Location = 'location',
   MaxSalary = 'maxSalary',
@@ -548,8 +803,10 @@ export type JobPatch = {
   deadline?: InputMaybe<Scalars['Time']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   educationLevel?: InputMaybe<Scalars['String']['input']>;
+  employerID?: InputMaybe<Scalars['Int']['input']>;
   experience?: InputMaybe<Scalars['Int']['input']>;
   industry?: InputMaybe<Scalars['String']['input']>;
+  jobUrl?: InputMaybe<Scalars['String']['input']>;
   level?: InputMaybe<Scalars['String']['input']>;
   location?: InputMaybe<Scalars['String']['input']>;
   maxSalary?: InputMaybe<Scalars['Int']['input']>;
@@ -565,9 +822,11 @@ export type JobProfile = {
   deletedAt?: Maybe<Scalars['SoftDelete']['output']>;
   description: Scalars['String']['output'];
   educationLevel?: Maybe<Scalars['String']['output']>;
+  employer?: Maybe<EmployerProfile>;
   experience?: Maybe<Scalars['Int']['output']>;
   id: Scalars['Int']['output'];
   industry?: Maybe<Scalars['String']['output']>;
+  jobUrl?: Maybe<Scalars['String']['output']>;
   level?: Maybe<Scalars['String']['output']>;
   location?: Maybe<Scalars['String']['output']>;
   maxSalary?: Maybe<Scalars['Int']['output']>;
@@ -585,81 +844,89 @@ export type JobQueryResult = {
   totalCount: Scalars['Int']['output'];
 };
 
+export type JobsFilterParameters = {
+  educationLevel?: InputMaybe<Scalars['String']['input']>;
+  experience?: InputMaybe<Scalars['Int']['input']>;
+  industry?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
-  AddStudents?: Maybe<Array<Student>>;
   /** Add new Admin */
   addAdmin?: Maybe<AddAdminPayload>;
+  /** Add new Employee */
+  addEmployee?: Maybe<AddEmployeePayload>;
+  /** Add new Employer */
+  addEmployer?: Maybe<AddEmployerPayload>;
   /** Add new Job */
   addJob?: Maybe<AddJobPayload>;
-  /** Add new School */
-  addSchool?: Maybe<AddSchoolPayload>;
-  /** Add new Student */
-  addStudent?: Maybe<AddStudentPayload>;
   /** Add new UnapprovedJob */
   addUnapprovedJob?: Maybe<AddUnapprovedJobPayload>;
   /** Add new UnverifiedAdmin */
   addUnverifiedAdmin?: Maybe<AddUnverifiedAdminPayload>;
-  /** Add new UnverifiedSchool */
-  addUnverifiedSchool?: Maybe<AddUnverifiedSchoolPayload>;
+  /** Add new UnverifiedEmployee */
+  addUnverifiedEmployee?: Maybe<AddUnverifiedEmployeePayload>;
+  /** Add new UnverifiedEmployer */
+  addUnverifiedEmployer?: Maybe<AddUnverifiedEmployerPayload>;
   adminLogin?: Maybe<Scalars['String']['output']>;
   approveJob: JobProfile;
   createAdmin?: Maybe<UnverifiedAdmin>;
   createDummy?: Maybe<Dummy>;
+  createEmployee?: Maybe<UnverifiedEmployee>;
+  createEmployer?: Maybe<UnverifiedEmployer>;
   createJob: JobProfile;
-  createSchool?: Maybe<UnverifiedSchool>;
-  createUnapprovedJob: JobProfile;
+  createUnapprovedJob: UnapprovedJobProfile;
   /** delete Admin filtered by selection and delete all matched values */
   deleteAdmin?: Maybe<DeleteAdminPayload>;
+  /** delete Employee filtered by selection and delete all matched values */
+  deleteEmployee?: Maybe<DeleteEmployeePayload>;
+  /** delete Employer filtered by selection and delete all matched values */
+  deleteEmployer?: Maybe<DeleteEmployerPayload>;
   /** delete Job filtered by selection and delete all matched values */
   deleteJob?: Maybe<DeleteJobPayload>;
-  /** delete School filtered by selection and delete all matched values */
-  deleteSchool?: Maybe<DeleteSchoolPayload>;
-  /** delete Student filtered by selection and delete all matched values */
-  deleteStudent?: Maybe<DeleteStudentPayload>;
   /** delete UnapprovedJob filtered by selection and delete all matched values */
   deleteUnapprovedJob?: Maybe<DeleteUnapprovedJobPayload>;
   /** delete UnverifiedAdmin filtered by selection and delete all matched values */
   deleteUnverifiedAdmin?: Maybe<DeleteUnverifiedAdminPayload>;
-  /** delete UnverifiedSchool filtered by selection and delete all matched values */
-  deleteUnverifiedSchool?: Maybe<DeleteUnverifiedSchoolPayload>;
+  /** delete UnverifiedEmployee filtered by selection and delete all matched values */
+  deleteUnverifiedEmployee?: Maybe<DeleteUnverifiedEmployeePayload>;
+  /** delete UnverifiedEmployer filtered by selection and delete all matched values */
+  deleteUnverifiedEmployer?: Maybe<DeleteUnverifiedEmployerPayload>;
   editJob: JobProfile;
+  employeeLogin?: Maybe<Scalars['String']['output']>;
+  employerLogin?: Maybe<Scalars['String']['output']>;
   forgotAdminPassword?: Maybe<SendCodeStatus>;
-  forgotSchoolPassword?: Maybe<SendCodeStatus>;
-  forgotStudentPassword?: Maybe<SendCodeStatus>;
+  forgotEmployeePassword?: Maybe<SendCodeStatus>;
+  forgotEmployerPassword?: Maybe<SendCodeStatus>;
   refreshToken?: Maybe<Scalars['String']['output']>;
   removeJob: JobProfile;
-  removeUnapprovedJob: JobProfile;
+  removeUnapprovedJob: UnapprovedJobProfile;
   requestAdminPasswordReset?: Maybe<Scalars['String']['output']>;
-  requestSchoolPasswordReset?: Maybe<Scalars['String']['output']>;
-  requestStudentPasswordReset?: Maybe<Scalars['String']['output']>;
+  requestEmployeePasswordReset?: Maybe<Scalars['String']['output']>;
+  requestEmployerPasswordReset?: Maybe<Scalars['String']['output']>;
   resetAdminPassword?: Maybe<Admin>;
-  resetSchoolPassword?: Maybe<School>;
-  resetStudentPassword?: Maybe<Student>;
-  schoolLogin?: Maybe<Scalars['String']['output']>;
+  resetEmployeePassword?: Maybe<Employee>;
+  resetEmployerPassword?: Maybe<Employer>;
   sendCode?: Maybe<SendCodeStatus>;
-  studentLogin?: Maybe<Scalars['String']['output']>;
   /** update Admin filtered by selection and update all matched values */
   updateAdmin?: Maybe<UpdateAdminPayload>;
+  /** update Employee filtered by selection and update all matched values */
+  updateEmployee?: Maybe<UpdateEmployeePayload>;
+  /** update Employer filtered by selection and update all matched values */
+  updateEmployer?: Maybe<UpdateEmployerPayload>;
   /** update Job filtered by selection and update all matched values */
   updateJob?: Maybe<UpdateJobPayload>;
-  /** update School filtered by selection and update all matched values */
-  updateSchool?: Maybe<UpdateSchoolPayload>;
-  /** update Student filtered by selection and update all matched values */
-  updateStudent?: Maybe<UpdateStudentPayload>;
   /** update UnapprovedJob filtered by selection and update all matched values */
   updateUnapprovedJob?: Maybe<UpdateUnapprovedJobPayload>;
   /** update UnverifiedAdmin filtered by selection and update all matched values */
   updateUnverifiedAdmin?: Maybe<UpdateUnverifiedAdminPayload>;
-  /** update UnverifiedSchool filtered by selection and update all matched values */
-  updateUnverifiedSchool?: Maybe<UpdateUnverifiedSchoolPayload>;
+  /** update UnverifiedEmployee filtered by selection and update all matched values */
+  updateUnverifiedEmployee?: Maybe<UpdateUnverifiedEmployeePayload>;
+  /** update UnverifiedEmployer filtered by selection and update all matched values */
+  updateUnverifiedEmployer?: Maybe<UpdateUnverifiedEmployerPayload>;
   verifyAdmin?: Maybe<Admin>;
-  verifySchool?: Maybe<School>;
-};
-
-
-export type MutationAddStudentsArgs = {
-  students: Array<NewStudent>;
+  verifyEmployee?: Maybe<Employee>;
+  verifyEmployer?: Maybe<Employer>;
 };
 
 
@@ -668,18 +935,18 @@ export type MutationAddAdminArgs = {
 };
 
 
+export type MutationAddEmployeeArgs = {
+  input: Array<EmployeeInput>;
+};
+
+
+export type MutationAddEmployerArgs = {
+  input: Array<EmployerInput>;
+};
+
+
 export type MutationAddJobArgs = {
   input: Array<JobInput>;
-};
-
-
-export type MutationAddSchoolArgs = {
-  input: Array<SchoolInput>;
-};
-
-
-export type MutationAddStudentArgs = {
-  input: Array<StudentInput>;
 };
 
 
@@ -693,8 +960,13 @@ export type MutationAddUnverifiedAdminArgs = {
 };
 
 
-export type MutationAddUnverifiedSchoolArgs = {
-  input: Array<UnverifiedSchoolInput>;
+export type MutationAddUnverifiedEmployeeArgs = {
+  input: Array<UnverifiedEmployeeInput>;
+};
+
+
+export type MutationAddUnverifiedEmployerArgs = {
+  input: Array<UnverifiedEmployerInput>;
 };
 
 
@@ -718,13 +990,18 @@ export type MutationCreateDummyArgs = {
 };
 
 
-export type MutationCreateJobArgs = {
-  input: NewJob;
+export type MutationCreateEmployeeArgs = {
+  input: NewEmployee;
 };
 
 
-export type MutationCreateSchoolArgs = {
-  input: NewSchool;
+export type MutationCreateEmployerArgs = {
+  input: NewEmployer;
+};
+
+
+export type MutationCreateJobArgs = {
+  input: NewJob;
 };
 
 
@@ -738,18 +1015,18 @@ export type MutationDeleteAdminArgs = {
 };
 
 
+export type MutationDeleteEmployeeArgs = {
+  filter: EmployeeFiltersInput;
+};
+
+
+export type MutationDeleteEmployerArgs = {
+  filter: EmployerFiltersInput;
+};
+
+
 export type MutationDeleteJobArgs = {
   filter: JobFiltersInput;
-};
-
-
-export type MutationDeleteSchoolArgs = {
-  filter: SchoolFiltersInput;
-};
-
-
-export type MutationDeleteStudentArgs = {
-  filter: StudentFiltersInput;
 };
 
 
@@ -763,8 +1040,13 @@ export type MutationDeleteUnverifiedAdminArgs = {
 };
 
 
-export type MutationDeleteUnverifiedSchoolArgs = {
-  filter: UnverifiedSchoolFiltersInput;
+export type MutationDeleteUnverifiedEmployeeArgs = {
+  filter: UnverifiedEmployeeFiltersInput;
+};
+
+
+export type MutationDeleteUnverifiedEmployerArgs = {
+  filter: UnverifiedEmployerFiltersInput;
 };
 
 
@@ -774,19 +1056,28 @@ export type MutationEditJobArgs = {
 };
 
 
+export type MutationEmployeeLoginArgs = {
+  input: EmployeeLogin;
+};
+
+
+export type MutationEmployerLoginArgs = {
+  input: EmployerLogin;
+};
+
+
 export type MutationForgotAdminPasswordArgs = {
   phone_number: Scalars['String']['input'];
 };
 
 
-export type MutationForgotSchoolPasswordArgs = {
+export type MutationForgotEmployeePasswordArgs = {
   phone_number: Scalars['String']['input'];
 };
 
 
-export type MutationForgotStudentPasswordArgs = {
-  registration_number: Scalars['String']['input'];
-  schoolid: Scalars['Int']['input'];
+export type MutationForgotEmployerPasswordArgs = {
+  phone_number: Scalars['String']['input'];
 };
 
 
@@ -810,16 +1101,13 @@ export type MutationRequestAdminPasswordResetArgs = {
 };
 
 
-export type MutationRequestSchoolPasswordResetArgs = {
+export type MutationRequestEmployeePasswordResetArgs = {
   input?: InputMaybe<Verificationinfo>;
 };
 
 
-export type MutationRequestStudentPasswordResetArgs = {
-  otp: Scalars['String']['input'];
-  phone_number: Scalars['String']['input'];
-  registration_number: Scalars['String']['input'];
-  schoolid: Scalars['Int']['input'];
+export type MutationRequestEmployerPasswordResetArgs = {
+  input?: InputMaybe<Verificationinfo>;
 };
 
 
@@ -828,18 +1116,13 @@ export type MutationResetAdminPasswordArgs = {
 };
 
 
-export type MutationResetSchoolPasswordArgs = {
+export type MutationResetEmployeePasswordArgs = {
   new_password: Scalars['String']['input'];
 };
 
 
-export type MutationResetStudentPasswordArgs = {
+export type MutationResetEmployerPasswordArgs = {
   new_password: Scalars['String']['input'];
-};
-
-
-export type MutationSchoolLoginArgs = {
-  input: SchoolLogin;
 };
 
 
@@ -848,28 +1131,23 @@ export type MutationSendCodeArgs = {
 };
 
 
-export type MutationStudentLoginArgs = {
-  input: StudentLogin;
-};
-
-
 export type MutationUpdateAdminArgs = {
   input: UpdateAdminInput;
 };
 
 
+export type MutationUpdateEmployeeArgs = {
+  input: UpdateEmployeeInput;
+};
+
+
+export type MutationUpdateEmployerArgs = {
+  input: UpdateEmployerInput;
+};
+
+
 export type MutationUpdateJobArgs = {
   input: UpdateJobInput;
-};
-
-
-export type MutationUpdateSchoolArgs = {
-  input: UpdateSchoolInput;
-};
-
-
-export type MutationUpdateStudentArgs = {
-  input: UpdateStudentInput;
 };
 
 
@@ -883,8 +1161,13 @@ export type MutationUpdateUnverifiedAdminArgs = {
 };
 
 
-export type MutationUpdateUnverifiedSchoolArgs = {
-  input: UpdateUnverifiedSchoolInput;
+export type MutationUpdateUnverifiedEmployeeArgs = {
+  input: UpdateUnverifiedEmployeeInput;
+};
+
+
+export type MutationUpdateUnverifiedEmployerArgs = {
+  input: UpdateUnverifiedEmployerInput;
 };
 
 
@@ -893,11 +1176,31 @@ export type MutationVerifyAdminArgs = {
 };
 
 
-export type MutationVerifySchoolArgs = {
+export type MutationVerifyEmployeeArgs = {
+  input: Verificationinfo;
+};
+
+
+export type MutationVerifyEmployerArgs = {
   input: Verificationinfo;
 };
 
 export type NewAdmin = {
+  name: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  phone_number: Scalars['String']['input'];
+};
+
+export type NewEmployee = {
+  name: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  phone_number: Scalars['String']['input'];
+  profilepicture?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type NewEmployer = {
+  Website?: InputMaybe<Scalars['String']['input']>;
+  badge?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   password: Scalars['String']['input'];
   phone_number: Scalars['String']['input'];
@@ -909,30 +1212,13 @@ export type NewJob = {
   educationLevel?: InputMaybe<Scalars['String']['input']>;
   experience?: InputMaybe<Scalars['Int']['input']>;
   industry?: InputMaybe<Scalars['String']['input']>;
+  jobUrl?: InputMaybe<Scalars['String']['input']>;
   level?: InputMaybe<Scalars['String']['input']>;
   location?: InputMaybe<Scalars['String']['input']>;
   maxSalary?: InputMaybe<Scalars['Int']['input']>;
   minSalary?: InputMaybe<Scalars['Int']['input']>;
   requirements?: InputMaybe<Array<Scalars['String']['input']>>;
   title: Scalars['String']['input'];
-};
-
-export type NewSchool = {
-  Website?: InputMaybe<Scalars['String']['input']>;
-  badge?: InputMaybe<Scalars['String']['input']>;
-  name: Scalars['String']['input'];
-  password: Scalars['String']['input'];
-  phone_number: Scalars['String']['input'];
-};
-
-export type NewStudent = {
-  date_of_admission?: InputMaybe<Scalars['Time']['input']>;
-  date_of_birth?: InputMaybe<Scalars['Time']['input']>;
-  name: Scalars['String']['input'];
-  password: Scalars['String']['input'];
-  phone_number: Scalars['String']['input'];
-  profile_picture?: InputMaybe<Scalars['String']['input']>;
-  registration_number: Scalars['String']['input'];
 };
 
 export type PhoneNumberExists = {
@@ -944,50 +1230,71 @@ export type PhoneNumberExists = {
 export type Query = {
   __typename?: 'Query';
   adminPhoneNumberExists: PhoneNumberExists;
+  employeePhoneNumberExists: PhoneNumberExists;
+  employerPhoneNumberExists: PhoneNumberExists;
+  findEmployer: EmployerProfile;
   findJob: JobProfile;
-  findUnapprovedJob: JobProfile;
+  findUnapprovedJob: UnapprovedJobProfile;
   /** return one Admin selected by PrimaryKey(s) */
   getAdmin?: Maybe<Admin>;
   getDummy?: Maybe<Dummy>;
   getDummys: Array<Maybe<Dummy>>;
+  /** return one Employee selected by PrimaryKey(s) */
+  getEmployee?: Maybe<Employee>;
+  getEmployeeProfile?: Maybe<EmployeeProfile>;
+  getEmployeesProfile?: Maybe<Array<EmployeeProfile>>;
+  /** return one Employer selected by PrimaryKey(s) */
+  getEmployer?: Maybe<Employer>;
+  getEmployerProfile?: Maybe<EmployerProfile>;
+  getEmployersProfile?: Maybe<Array<EmployerProfile>>;
   /** return one Job selected by PrimaryKey(s) */
   getJob?: Maybe<Job>;
   getJobs?: Maybe<Array<JobProfile>>;
-  /** return one School selected by PrimaryKey(s) */
-  getSchool?: Maybe<School>;
-  getSchoolProfile?: Maybe<SchoolProfile>;
-  getSchoolsProfile?: Maybe<Array<SchoolProfile>>;
-  /** return one Student selected by PrimaryKey(s) */
-  getStudent?: Maybe<Student>;
-  getStudentProfile?: Maybe<StudentProfile>;
   /** return one UnapprovedJob selected by PrimaryKey(s) */
   getUnapprovedJob?: Maybe<UnapprovedJob>;
-  getUnapprovedJobs?: Maybe<Array<JobProfile>>;
+  getUnapprovedJobs?: Maybe<Array<UnapprovedJobProfile>>;
   /** return one UnverifiedAdmin selected by PrimaryKey(s) */
   getUnverifiedAdmin?: Maybe<UnverifiedAdmin>;
-  /** return one UnverifiedSchool selected by PrimaryKey(s) */
-  getUnverifiedSchool?: Maybe<UnverifiedSchool>;
-  getadminProfile?: Maybe<SchoolProfile>;
+  /** return one UnverifiedEmployee selected by PrimaryKey(s) */
+  getUnverifiedEmployee?: Maybe<UnverifiedEmployee>;
+  /** return one UnverifiedEmployer selected by PrimaryKey(s) */
+  getUnverifiedEmployer?: Maybe<UnverifiedEmployer>;
   /** return a list of  Admin filterable, pageination, orderbale, groupable ... */
   queryAdmin?: Maybe<AdminQueryResult>;
+  /** return a list of  Employee filterable, pageination, orderbale, groupable ... */
+  queryEmployee?: Maybe<EmployeeQueryResult>;
+  /** return a list of  Employer filterable, pageination, orderbale, groupable ... */
+  queryEmployer?: Maybe<EmployerQueryResult>;
   /** return a list of  Job filterable, pageination, orderbale, groupable ... */
   queryJob?: Maybe<JobQueryResult>;
-  /** return a list of  School filterable, pageination, orderbale, groupable ... */
-  querySchool?: Maybe<SchoolQueryResult>;
-  /** return a list of  Student filterable, pageination, orderbale, groupable ... */
-  queryStudent?: Maybe<StudentQueryResult>;
   /** return a list of  UnapprovedJob filterable, pageination, orderbale, groupable ... */
   queryUnapprovedJob?: Maybe<UnapprovedJobQueryResult>;
   /** return a list of  UnverifiedAdmin filterable, pageination, orderbale, groupable ... */
   queryUnverifiedAdmin?: Maybe<UnverifiedAdminQueryResult>;
-  /** return a list of  UnverifiedSchool filterable, pageination, orderbale, groupable ... */
-  queryUnverifiedSchool?: Maybe<UnverifiedSchoolQueryResult>;
-  schoolPhoneNumberExists: PhoneNumberExists;
+  /** return a list of  UnverifiedEmployee filterable, pageination, orderbale, groupable ... */
+  queryUnverifiedEmployee?: Maybe<UnverifiedEmployeeQueryResult>;
+  /** return a list of  UnverifiedEmployer filterable, pageination, orderbale, groupable ... */
+  queryUnverifiedEmployer?: Maybe<UnverifiedEmployerQueryResult>;
 };
 
 
 export type QueryAdminPhoneNumberExistsArgs = {
   phone_number: Scalars['String']['input'];
+};
+
+
+export type QueryEmployeePhoneNumberExistsArgs = {
+  phone_number: Scalars['String']['input'];
+};
+
+
+export type QueryEmployerPhoneNumberExistsArgs = {
+  phone_number: Scalars['String']['input'];
+};
+
+
+export type QueryFindEmployerArgs = {
+  id: Scalars['Int']['input'];
 };
 
 
@@ -1011,18 +1318,23 @@ export type QueryGetDummyArgs = {
 };
 
 
+export type QueryGetEmployeeArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type QueryGetEmployerArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
 export type QueryGetJobArgs = {
   id: Scalars['Int']['input'];
 };
 
 
-export type QueryGetSchoolArgs = {
-  id: Scalars['Int']['input'];
-};
-
-
-export type QueryGetStudentArgs = {
-  id: Scalars['Int']['input'];
+export type QueryGetJobsArgs = {
+  filterparameters?: InputMaybe<JobsFilterParameters>;
 };
 
 
@@ -1031,12 +1343,22 @@ export type QueryGetUnapprovedJobArgs = {
 };
 
 
+export type QueryGetUnapprovedJobsArgs = {
+  filterparameters?: InputMaybe<JobsFilterParameters>;
+};
+
+
 export type QueryGetUnverifiedAdminArgs = {
   id: Scalars['Int']['input'];
 };
 
 
-export type QueryGetUnverifiedSchoolArgs = {
+export type QueryGetUnverifiedEmployeeArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type QueryGetUnverifiedEmployerArgs = {
   id: Scalars['Int']['input'];
 };
 
@@ -1050,30 +1372,30 @@ export type QueryQueryAdminArgs = {
 };
 
 
+export type QueryQueryEmployeeArgs = {
+  filter?: InputMaybe<EmployeeFiltersInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  group?: InputMaybe<Array<EmployeeGroup>>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<EmployeeOrder>;
+};
+
+
+export type QueryQueryEmployerArgs = {
+  filter?: InputMaybe<EmployerFiltersInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  group?: InputMaybe<Array<EmployerGroup>>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<EmployerOrder>;
+};
+
+
 export type QueryQueryJobArgs = {
   filter?: InputMaybe<JobFiltersInput>;
   first?: InputMaybe<Scalars['Int']['input']>;
   group?: InputMaybe<Array<JobGroup>>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<JobOrder>;
-};
-
-
-export type QueryQuerySchoolArgs = {
-  filter?: InputMaybe<SchoolFiltersInput>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  group?: InputMaybe<Array<SchoolGroup>>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order?: InputMaybe<SchoolOrder>;
-};
-
-
-export type QueryQueryStudentArgs = {
-  filter?: InputMaybe<StudentFiltersInput>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  group?: InputMaybe<Array<StudentGroup>>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order?: InputMaybe<StudentOrder>;
 };
 
 
@@ -1095,129 +1417,25 @@ export type QueryQueryUnverifiedAdminArgs = {
 };
 
 
-export type QueryQueryUnverifiedSchoolArgs = {
-  filter?: InputMaybe<UnverifiedSchoolFiltersInput>;
+export type QueryQueryUnverifiedEmployeeArgs = {
+  filter?: InputMaybe<UnverifiedEmployeeFiltersInput>;
   first?: InputMaybe<Scalars['Int']['input']>;
-  group?: InputMaybe<Array<UnverifiedSchoolGroup>>;
+  group?: InputMaybe<Array<UnverifiedEmployeeGroup>>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order?: InputMaybe<UnverifiedSchoolOrder>;
+  order?: InputMaybe<UnverifiedEmployeeOrder>;
 };
 
 
-export type QuerySchoolPhoneNumberExistsArgs = {
-  phone_number: Scalars['String']['input'];
+export type QueryQueryUnverifiedEmployerArgs = {
+  filter?: InputMaybe<UnverifiedEmployerFiltersInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  group?: InputMaybe<Array<UnverifiedEmployerGroup>>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<UnverifiedEmployerOrder>;
 };
 
 export type RefreshTokenInput = {
   Token: Scalars['String']['input'];
-};
-
-export type School = {
-  __typename?: 'School';
-  Website?: Maybe<Scalars['String']['output']>;
-  badge?: Maybe<Scalars['String']['output']>;
-  createdAt: Scalars['Time']['output'];
-  deletedAt?: Maybe<Scalars['SoftDelete']['output']>;
-  id: Scalars['Int']['output'];
-  name: Scalars['String']['output'];
-  password: Scalars['String']['output'];
-  phone_number: Scalars['String']['output'];
-  updatedAt: Scalars['Time']['output'];
-};
-
-/**
- * Filter input selection for School
- * Can be used f.e.: by querySchool
- */
-export type SchoolFiltersInput = {
-  Website?: InputMaybe<StringFilterInput>;
-  and?: InputMaybe<Array<InputMaybe<SchoolFiltersInput>>>;
-  badge?: InputMaybe<StringFilterInput>;
-  createdAt?: InputMaybe<TimeFilterInput>;
-  id?: InputMaybe<IntFilterInput>;
-  name?: InputMaybe<StringFilterInput>;
-  not?: InputMaybe<SchoolFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<SchoolFiltersInput>>>;
-  password?: InputMaybe<StringFilterInput>;
-  phone_number?: InputMaybe<StringFilterInput>;
-  updatedAt?: InputMaybe<TimeFilterInput>;
-};
-
-/**
- * Groupable data for  School
- * Can be used f.e.: by querySchool
- */
-export enum SchoolGroup {
-  Website = 'Website',
-  Badge = 'badge',
-  CreatedAt = 'createdAt',
-  Id = 'id',
-  Name = 'name',
-  Password = 'password',
-  PhoneNumber = 'phone_number',
-  UpdatedAt = 'updatedAt'
-}
-
-/** School Input value to add new School */
-export type SchoolInput = {
-  Website?: InputMaybe<Scalars['String']['input']>;
-  badge?: InputMaybe<Scalars['String']['input']>;
-  name: Scalars['String']['input'];
-  password: Scalars['String']['input'];
-  phone_number: Scalars['String']['input'];
-};
-
-export type SchoolLogin = {
-  password: Scalars['String']['input'];
-  phone_number: Scalars['String']['input'];
-};
-
-/** Order School by asc or desc  */
-export type SchoolOrder = {
-  asc?: InputMaybe<SchoolOrderable>;
-  desc?: InputMaybe<SchoolOrderable>;
-};
-
-/**
- * for School a enum of all orderable entities
- * can be used f.e.: querySchool
- */
-export enum SchoolOrderable {
-  Website = 'Website',
-  Badge = 'badge',
-  Id = 'id',
-  Name = 'name',
-  Password = 'password',
-  PhoneNumber = 'phone_number'
-}
-
-/** School Patch value all values are optional to update School entities */
-export type SchoolPatch = {
-  Website?: InputMaybe<Scalars['String']['input']>;
-  badge?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  password?: InputMaybe<Scalars['String']['input']>;
-  phone_number?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type SchoolProfile = {
-  __typename?: 'SchoolProfile';
-  Website?: Maybe<Scalars['String']['output']>;
-  badge?: Maybe<Scalars['String']['output']>;
-  createdAt: Scalars['Time']['output'];
-  id: Scalars['Int']['output'];
-  name: Scalars['String']['output'];
-  phone_number: Scalars['String']['output'];
-  students?: Maybe<Array<Maybe<StudentProfile>>>;
-  updatedAt: Scalars['Time']['output'];
-};
-
-/** School result */
-export type SchoolQueryResult = {
-  __typename?: 'SchoolQueryResult';
-  count: Scalars['Int']['output'];
-  data: Array<School>;
-  totalCount: Scalars['Int']['output'];
 };
 
 export type SendCodeStatus = {
@@ -1282,129 +1500,6 @@ export type StringFilterInput = {
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Student = {
-  __typename?: 'Student';
-  createdAt: Scalars['Time']['output'];
-  date_of_admission?: Maybe<Scalars['Time']['output']>;
-  date_of_birth?: Maybe<Scalars['Time']['output']>;
-  deletedAt?: Maybe<Scalars['SoftDelete']['output']>;
-  id: Scalars['Int']['output'];
-  name: Scalars['String']['output'];
-  password: Scalars['String']['output'];
-  phone_number: Scalars['String']['output'];
-  profile_picture?: Maybe<Scalars['String']['output']>;
-  registration_number: Scalars['String']['output'];
-  updatedAt: Scalars['Time']['output'];
-};
-
-/**
- * Filter input selection for Student
- * Can be used f.e.: by queryStudent
- */
-export type StudentFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<StudentFiltersInput>>>;
-  createdAt?: InputMaybe<TimeFilterInput>;
-  date_of_admission?: InputMaybe<TimeFilterInput>;
-  date_of_birth?: InputMaybe<TimeFilterInput>;
-  id?: InputMaybe<IntFilterInput>;
-  name?: InputMaybe<StringFilterInput>;
-  not?: InputMaybe<StudentFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<StudentFiltersInput>>>;
-  password?: InputMaybe<StringFilterInput>;
-  phone_number?: InputMaybe<StringFilterInput>;
-  profile_picture?: InputMaybe<StringFilterInput>;
-  registration_number?: InputMaybe<StringFilterInput>;
-  updatedAt?: InputMaybe<TimeFilterInput>;
-};
-
-/**
- * Groupable data for  Student
- * Can be used f.e.: by queryStudent
- */
-export enum StudentGroup {
-  CreatedAt = 'createdAt',
-  DateOfAdmission = 'date_of_admission',
-  DateOfBirth = 'date_of_birth',
-  Id = 'id',
-  Name = 'name',
-  Password = 'password',
-  PhoneNumber = 'phone_number',
-  ProfilePicture = 'profile_picture',
-  RegistrationNumber = 'registration_number',
-  UpdatedAt = 'updatedAt'
-}
-
-/** Student Input value to add new Student */
-export type StudentInput = {
-  date_of_admission?: InputMaybe<Scalars['Time']['input']>;
-  date_of_birth?: InputMaybe<Scalars['Time']['input']>;
-  name: Scalars['String']['input'];
-  password: Scalars['String']['input'];
-  phone_number: Scalars['String']['input'];
-  profile_picture?: InputMaybe<Scalars['String']['input']>;
-  registration_number: Scalars['String']['input'];
-};
-
-export type StudentLogin = {
-  password: Scalars['String']['input'];
-  registration_number: Scalars['String']['input'];
-  schoolid: Scalars['Int']['input'];
-};
-
-/** Order Student by asc or desc  */
-export type StudentOrder = {
-  asc?: InputMaybe<StudentOrderable>;
-  desc?: InputMaybe<StudentOrderable>;
-};
-
-/**
- * for Student a enum of all orderable entities
- * can be used f.e.: queryStudent
- */
-export enum StudentOrderable {
-  Id = 'id',
-  Name = 'name',
-  Password = 'password',
-  PhoneNumber = 'phone_number',
-  ProfilePicture = 'profile_picture',
-  RegistrationNumber = 'registration_number'
-}
-
-/** Student Patch value all values are optional to update Student entities */
-export type StudentPatch = {
-  date_of_admission?: InputMaybe<Scalars['Time']['input']>;
-  date_of_birth?: InputMaybe<Scalars['Time']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  password?: InputMaybe<Scalars['String']['input']>;
-  phone_number?: InputMaybe<Scalars['String']['input']>;
-  profile_picture?: InputMaybe<Scalars['String']['input']>;
-  registration_number?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type StudentProfile = {
-  __typename?: 'StudentProfile';
-  createdAt: Scalars['Time']['output'];
-  date_of_admission?: Maybe<Scalars['Time']['output']>;
-  date_of_birth?: Maybe<Scalars['Time']['output']>;
-  deletedAt?: Maybe<Scalars['SoftDelete']['output']>;
-  id: Scalars['Int']['output'];
-  name: Scalars['String']['output'];
-  password: Scalars['String']['output'];
-  phone_number: Scalars['String']['output'];
-  profile_picture?: Maybe<Scalars['String']['output']>;
-  registration_number: Scalars['String']['output'];
-  school: SchoolProfile;
-  updatedAt: Scalars['Time']['output'];
-};
-
-/** Student result */
-export type StudentQueryResult = {
-  __typename?: 'StudentQueryResult';
-  count: Scalars['Int']['output'];
-  data: Array<Student>;
-  totalCount: Scalars['Int']['output'];
-};
-
 /** Filter between start and end (start > value < end) */
 export type TimeFilterBetween = {
   end: Scalars['Time']['input'];
@@ -1436,9 +1531,11 @@ export type UnapprovedJob = {
   deletedAt?: Maybe<Scalars['SoftDelete']['output']>;
   description: Scalars['String']['output'];
   educationLevel?: Maybe<Scalars['String']['output']>;
+  employerID?: Maybe<Scalars['Int']['output']>;
   experience?: Maybe<Scalars['Int']['output']>;
   id: Scalars['Int']['output'];
   industry?: Maybe<Scalars['String']['output']>;
+  jobUrl?: Maybe<Scalars['String']['output']>;
   level?: Maybe<Scalars['String']['output']>;
   location?: Maybe<Scalars['String']['output']>;
   maxSalary?: Maybe<Scalars['Int']['output']>;
@@ -1458,9 +1555,11 @@ export type UnapprovedJobFiltersInput = {
   deadline?: InputMaybe<TimeFilterInput>;
   description?: InputMaybe<StringFilterInput>;
   educationLevel?: InputMaybe<StringFilterInput>;
+  employerID?: InputMaybe<IntFilterInput>;
   experience?: InputMaybe<IntFilterInput>;
   id?: InputMaybe<IntFilterInput>;
   industry?: InputMaybe<StringFilterInput>;
+  jobUrl?: InputMaybe<StringFilterInput>;
   level?: InputMaybe<StringFilterInput>;
   location?: InputMaybe<StringFilterInput>;
   maxSalary?: InputMaybe<IntFilterInput>;
@@ -1481,9 +1580,11 @@ export enum UnapprovedJobGroup {
   Deadline = 'deadline',
   Description = 'description',
   EducationLevel = 'educationLevel',
+  EmployerId = 'employerID',
   Experience = 'experience',
   Id = 'id',
   Industry = 'industry',
+  JobUrl = 'jobUrl',
   Level = 'level',
   Location = 'location',
   MaxSalary = 'maxSalary',
@@ -1498,8 +1599,10 @@ export type UnapprovedJobInput = {
   deadline?: InputMaybe<Scalars['Time']['input']>;
   description: Scalars['String']['input'];
   educationLevel?: InputMaybe<Scalars['String']['input']>;
+  employerID?: InputMaybe<Scalars['Int']['input']>;
   experience?: InputMaybe<Scalars['Int']['input']>;
   industry?: InputMaybe<Scalars['String']['input']>;
+  jobUrl?: InputMaybe<Scalars['String']['input']>;
   level?: InputMaybe<Scalars['String']['input']>;
   location?: InputMaybe<Scalars['String']['input']>;
   maxSalary?: InputMaybe<Scalars['Int']['input']>;
@@ -1521,9 +1624,11 @@ export type UnapprovedJobOrder = {
 export enum UnapprovedJobOrderable {
   Description = 'description',
   EducationLevel = 'educationLevel',
+  EmployerId = 'employerID',
   Experience = 'experience',
   Id = 'id',
   Industry = 'industry',
+  JobUrl = 'jobUrl',
   Level = 'level',
   Location = 'location',
   MaxSalary = 'maxSalary',
@@ -1537,14 +1642,37 @@ export type UnapprovedJobPatch = {
   deadline?: InputMaybe<Scalars['Time']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   educationLevel?: InputMaybe<Scalars['String']['input']>;
+  employerID?: InputMaybe<Scalars['Int']['input']>;
   experience?: InputMaybe<Scalars['Int']['input']>;
   industry?: InputMaybe<Scalars['String']['input']>;
+  jobUrl?: InputMaybe<Scalars['String']['input']>;
   level?: InputMaybe<Scalars['String']['input']>;
   location?: InputMaybe<Scalars['String']['input']>;
   maxSalary?: InputMaybe<Scalars['Int']['input']>;
   minSalary?: InputMaybe<Scalars['Int']['input']>;
   requirements?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UnapprovedJobProfile = {
+  __typename?: 'UnapprovedJobProfile';
+  createdAt: Scalars['Time']['output'];
+  deadline?: Maybe<Scalars['Time']['output']>;
+  deletedAt?: Maybe<Scalars['SoftDelete']['output']>;
+  description: Scalars['String']['output'];
+  educationLevel?: Maybe<Scalars['String']['output']>;
+  employer?: Maybe<EmployerProfile>;
+  experience?: Maybe<Scalars['Int']['output']>;
+  id: Scalars['Int']['output'];
+  industry?: Maybe<Scalars['String']['output']>;
+  jobUrl?: Maybe<Scalars['String']['output']>;
+  level?: Maybe<Scalars['String']['output']>;
+  location?: Maybe<Scalars['String']['output']>;
+  maxSalary?: Maybe<Scalars['Int']['output']>;
+  minSalary?: Maybe<Scalars['Int']['output']>;
+  requirements?: Maybe<Array<Scalars['String']['output']>>;
+  title: Scalars['String']['output'];
+  updatedAt: Scalars['Time']['output'];
 };
 
 /** UnapprovedJob result */
@@ -1634,8 +1762,93 @@ export type UnverifiedAdminQueryResult = {
   totalCount: Scalars['Int']['output'];
 };
 
-export type UnverifiedSchool = {
-  __typename?: 'UnverifiedSchool';
+export type UnverifiedEmployee = {
+  __typename?: 'UnverifiedEmployee';
+  createdAt: Scalars['Time']['output'];
+  deletedAt?: Maybe<Scalars['SoftDelete']['output']>;
+  id: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
+  password: Scalars['String']['output'];
+  phone_number: Scalars['String']['output'];
+  profilepicture?: Maybe<Scalars['String']['output']>;
+  updatedAt: Scalars['Time']['output'];
+};
+
+/**
+ * Filter input selection for UnverifiedEmployee
+ * Can be used f.e.: by queryUnverifiedEmployee
+ */
+export type UnverifiedEmployeeFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<UnverifiedEmployeeFiltersInput>>>;
+  createdAt?: InputMaybe<TimeFilterInput>;
+  id?: InputMaybe<IntFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<UnverifiedEmployeeFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UnverifiedEmployeeFiltersInput>>>;
+  password?: InputMaybe<StringFilterInput>;
+  phone_number?: InputMaybe<StringFilterInput>;
+  profilepicture?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<TimeFilterInput>;
+};
+
+/**
+ * Groupable data for  UnverifiedEmployee
+ * Can be used f.e.: by queryUnverifiedEmployee
+ */
+export enum UnverifiedEmployeeGroup {
+  CreatedAt = 'createdAt',
+  Id = 'id',
+  Name = 'name',
+  Password = 'password',
+  PhoneNumber = 'phone_number',
+  Profilepicture = 'profilepicture',
+  UpdatedAt = 'updatedAt'
+}
+
+/** UnverifiedEmployee Input value to add new UnverifiedEmployee */
+export type UnverifiedEmployeeInput = {
+  name: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  phone_number: Scalars['String']['input'];
+  profilepicture?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Order UnverifiedEmployee by asc or desc  */
+export type UnverifiedEmployeeOrder = {
+  asc?: InputMaybe<UnverifiedEmployeeOrderable>;
+  desc?: InputMaybe<UnverifiedEmployeeOrderable>;
+};
+
+/**
+ * for UnverifiedEmployee a enum of all orderable entities
+ * can be used f.e.: queryUnverifiedEmployee
+ */
+export enum UnverifiedEmployeeOrderable {
+  Id = 'id',
+  Name = 'name',
+  Password = 'password',
+  PhoneNumber = 'phone_number',
+  Profilepicture = 'profilepicture'
+}
+
+/** UnverifiedEmployee Patch value all values are optional to update UnverifiedEmployee entities */
+export type UnverifiedEmployeePatch = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  password?: InputMaybe<Scalars['String']['input']>;
+  phone_number?: InputMaybe<Scalars['String']['input']>;
+  profilepicture?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** UnverifiedEmployee result */
+export type UnverifiedEmployeeQueryResult = {
+  __typename?: 'UnverifiedEmployeeQueryResult';
+  count: Scalars['Int']['output'];
+  data: Array<UnverifiedEmployee>;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type UnverifiedEmployer = {
+  __typename?: 'UnverifiedEmployer';
   Website?: Maybe<Scalars['String']['output']>;
   badge?: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['Time']['output'];
@@ -1648,28 +1861,28 @@ export type UnverifiedSchool = {
 };
 
 /**
- * Filter input selection for UnverifiedSchool
- * Can be used f.e.: by queryUnverifiedSchool
+ * Filter input selection for UnverifiedEmployer
+ * Can be used f.e.: by queryUnverifiedEmployer
  */
-export type UnverifiedSchoolFiltersInput = {
+export type UnverifiedEmployerFiltersInput = {
   Website?: InputMaybe<StringFilterInput>;
-  and?: InputMaybe<Array<InputMaybe<UnverifiedSchoolFiltersInput>>>;
+  and?: InputMaybe<Array<InputMaybe<UnverifiedEmployerFiltersInput>>>;
   badge?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<TimeFilterInput>;
   id?: InputMaybe<IntFilterInput>;
   name?: InputMaybe<StringFilterInput>;
-  not?: InputMaybe<UnverifiedSchoolFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<UnverifiedSchoolFiltersInput>>>;
+  not?: InputMaybe<UnverifiedEmployerFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UnverifiedEmployerFiltersInput>>>;
   password?: InputMaybe<StringFilterInput>;
   phone_number?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<TimeFilterInput>;
 };
 
 /**
- * Groupable data for  UnverifiedSchool
- * Can be used f.e.: by queryUnverifiedSchool
+ * Groupable data for  UnverifiedEmployer
+ * Can be used f.e.: by queryUnverifiedEmployer
  */
-export enum UnverifiedSchoolGroup {
+export enum UnverifiedEmployerGroup {
   Website = 'Website',
   Badge = 'badge',
   CreatedAt = 'createdAt',
@@ -1680,8 +1893,8 @@ export enum UnverifiedSchoolGroup {
   UpdatedAt = 'updatedAt'
 }
 
-/** UnverifiedSchool Input value to add new UnverifiedSchool */
-export type UnverifiedSchoolInput = {
+/** UnverifiedEmployer Input value to add new UnverifiedEmployer */
+export type UnverifiedEmployerInput = {
   Website?: InputMaybe<Scalars['String']['input']>;
   badge?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
@@ -1689,17 +1902,17 @@ export type UnverifiedSchoolInput = {
   phone_number: Scalars['String']['input'];
 };
 
-/** Order UnverifiedSchool by asc or desc  */
-export type UnverifiedSchoolOrder = {
-  asc?: InputMaybe<UnverifiedSchoolOrderable>;
-  desc?: InputMaybe<UnverifiedSchoolOrderable>;
+/** Order UnverifiedEmployer by asc or desc  */
+export type UnverifiedEmployerOrder = {
+  asc?: InputMaybe<UnverifiedEmployerOrderable>;
+  desc?: InputMaybe<UnverifiedEmployerOrderable>;
 };
 
 /**
- * for UnverifiedSchool a enum of all orderable entities
- * can be used f.e.: queryUnverifiedSchool
+ * for UnverifiedEmployer a enum of all orderable entities
+ * can be used f.e.: queryUnverifiedEmployer
  */
-export enum UnverifiedSchoolOrderable {
+export enum UnverifiedEmployerOrderable {
   Website = 'Website',
   Badge = 'badge',
   Id = 'id',
@@ -1708,8 +1921,8 @@ export enum UnverifiedSchoolOrderable {
   PhoneNumber = 'phone_number'
 }
 
-/** UnverifiedSchool Patch value all values are optional to update UnverifiedSchool entities */
-export type UnverifiedSchoolPatch = {
+/** UnverifiedEmployer Patch value all values are optional to update UnverifiedEmployer entities */
+export type UnverifiedEmployerPatch = {
   Website?: InputMaybe<Scalars['String']['input']>;
   badge?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
@@ -1717,11 +1930,11 @@ export type UnverifiedSchoolPatch = {
   phone_number?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** UnverifiedSchool result */
-export type UnverifiedSchoolQueryResult = {
-  __typename?: 'UnverifiedSchoolQueryResult';
+/** UnverifiedEmployer result */
+export type UnverifiedEmployerQueryResult = {
+  __typename?: 'UnverifiedEmployerQueryResult';
   count: Scalars['Int']['output'];
-  data: Array<UnverifiedSchool>;
+  data: Array<UnverifiedEmployer>;
   totalCount: Scalars['Int']['output'];
 };
 
@@ -1750,6 +1963,56 @@ export type UpdateAdminPayloadAdminArgs = {
   order?: InputMaybe<AdminOrder>;
 };
 
+/** Update rules for Employee multiupdates simple possible by global filtervalue */
+export type UpdateEmployeeInput = {
+  filter: EmployeeFiltersInput;
+  set: EmployeePatch;
+};
+
+/** UpdateEmployee result with filterable data and affected rows */
+export type UpdateEmployeePayload = {
+  __typename?: 'UpdateEmployeePayload';
+  affected: Array<Employee>;
+  /** Count of affected updates */
+  count: Scalars['Int']['output'];
+  employee: EmployeeQueryResult;
+};
+
+
+/** UpdateEmployee result with filterable data and affected rows */
+export type UpdateEmployeePayloadEmployeeArgs = {
+  filter?: InputMaybe<EmployeeFiltersInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  group?: InputMaybe<Array<EmployeeGroup>>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<EmployeeOrder>;
+};
+
+/** Update rules for Employer multiupdates simple possible by global filtervalue */
+export type UpdateEmployerInput = {
+  filter: EmployerFiltersInput;
+  set: EmployerPatch;
+};
+
+/** UpdateEmployer result with filterable data and affected rows */
+export type UpdateEmployerPayload = {
+  __typename?: 'UpdateEmployerPayload';
+  affected: Array<Employer>;
+  /** Count of affected updates */
+  count: Scalars['Int']['output'];
+  employer: EmployerQueryResult;
+};
+
+
+/** UpdateEmployer result with filterable data and affected rows */
+export type UpdateEmployerPayloadEmployerArgs = {
+  filter?: InputMaybe<EmployerFiltersInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  group?: InputMaybe<Array<EmployerGroup>>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<EmployerOrder>;
+};
+
 /** Update rules for Job multiupdates simple possible by global filtervalue */
 export type UpdateJobInput = {
   filter: JobFiltersInput;
@@ -1773,56 +2036,6 @@ export type UpdateJobPayloadJobArgs = {
   group?: InputMaybe<Array<JobGroup>>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<JobOrder>;
-};
-
-/** Update rules for School multiupdates simple possible by global filtervalue */
-export type UpdateSchoolInput = {
-  filter: SchoolFiltersInput;
-  set: SchoolPatch;
-};
-
-/** UpdateSchool result with filterable data and affected rows */
-export type UpdateSchoolPayload = {
-  __typename?: 'UpdateSchoolPayload';
-  affected: Array<School>;
-  /** Count of affected updates */
-  count: Scalars['Int']['output'];
-  school: SchoolQueryResult;
-};
-
-
-/** UpdateSchool result with filterable data and affected rows */
-export type UpdateSchoolPayloadSchoolArgs = {
-  filter?: InputMaybe<SchoolFiltersInput>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  group?: InputMaybe<Array<SchoolGroup>>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order?: InputMaybe<SchoolOrder>;
-};
-
-/** Update rules for Student multiupdates simple possible by global filtervalue */
-export type UpdateStudentInput = {
-  filter: StudentFiltersInput;
-  set: StudentPatch;
-};
-
-/** UpdateStudent result with filterable data and affected rows */
-export type UpdateStudentPayload = {
-  __typename?: 'UpdateStudentPayload';
-  affected: Array<Student>;
-  /** Count of affected updates */
-  count: Scalars['Int']['output'];
-  student: StudentQueryResult;
-};
-
-
-/** UpdateStudent result with filterable data and affected rows */
-export type UpdateStudentPayloadStudentArgs = {
-  filter?: InputMaybe<StudentFiltersInput>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  group?: InputMaybe<Array<StudentGroup>>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order?: InputMaybe<StudentOrder>;
 };
 
 /** Update rules for UnapprovedJob multiupdates simple possible by global filtervalue */
@@ -1875,29 +2088,54 @@ export type UpdateUnverifiedAdminPayloadUnverifiedAdminArgs = {
   order?: InputMaybe<UnverifiedAdminOrder>;
 };
 
-/** Update rules for UnverifiedSchool multiupdates simple possible by global filtervalue */
-export type UpdateUnverifiedSchoolInput = {
-  filter: UnverifiedSchoolFiltersInput;
-  set: UnverifiedSchoolPatch;
+/** Update rules for UnverifiedEmployee multiupdates simple possible by global filtervalue */
+export type UpdateUnverifiedEmployeeInput = {
+  filter: UnverifiedEmployeeFiltersInput;
+  set: UnverifiedEmployeePatch;
 };
 
-/** UpdateUnverifiedSchool result with filterable data and affected rows */
-export type UpdateUnverifiedSchoolPayload = {
-  __typename?: 'UpdateUnverifiedSchoolPayload';
-  affected: Array<UnverifiedSchool>;
+/** UpdateUnverifiedEmployee result with filterable data and affected rows */
+export type UpdateUnverifiedEmployeePayload = {
+  __typename?: 'UpdateUnverifiedEmployeePayload';
+  affected: Array<UnverifiedEmployee>;
   /** Count of affected updates */
   count: Scalars['Int']['output'];
-  unverifiedSchool: UnverifiedSchoolQueryResult;
+  unverifiedEmployee: UnverifiedEmployeeQueryResult;
 };
 
 
-/** UpdateUnverifiedSchool result with filterable data and affected rows */
-export type UpdateUnverifiedSchoolPayloadUnverifiedSchoolArgs = {
-  filter?: InputMaybe<UnverifiedSchoolFiltersInput>;
+/** UpdateUnverifiedEmployee result with filterable data and affected rows */
+export type UpdateUnverifiedEmployeePayloadUnverifiedEmployeeArgs = {
+  filter?: InputMaybe<UnverifiedEmployeeFiltersInput>;
   first?: InputMaybe<Scalars['Int']['input']>;
-  group?: InputMaybe<Array<UnverifiedSchoolGroup>>;
+  group?: InputMaybe<Array<UnverifiedEmployeeGroup>>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order?: InputMaybe<UnverifiedSchoolOrder>;
+  order?: InputMaybe<UnverifiedEmployeeOrder>;
+};
+
+/** Update rules for UnverifiedEmployer multiupdates simple possible by global filtervalue */
+export type UpdateUnverifiedEmployerInput = {
+  filter: UnverifiedEmployerFiltersInput;
+  set: UnverifiedEmployerPatch;
+};
+
+/** UpdateUnverifiedEmployer result with filterable data and affected rows */
+export type UpdateUnverifiedEmployerPayload = {
+  __typename?: 'UpdateUnverifiedEmployerPayload';
+  affected: Array<UnverifiedEmployer>;
+  /** Count of affected updates */
+  count: Scalars['Int']['output'];
+  unverifiedEmployer: UnverifiedEmployerQueryResult;
+};
+
+
+/** UpdateUnverifiedEmployer result with filterable data and affected rows */
+export type UpdateUnverifiedEmployerPayloadUnverifiedEmployerArgs = {
+  filter?: InputMaybe<UnverifiedEmployerFiltersInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  group?: InputMaybe<Array<UnverifiedEmployerGroup>>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<UnverifiedEmployerOrder>;
 };
 
 export type Verificationinfo = {
@@ -1938,7 +2176,7 @@ export type FindUnapprovedJobQueryVariables = Exact<{
 }>;
 
 
-export type FindUnapprovedJobQuery = { __typename?: 'Query', findUnapprovedJob: { __typename?: 'JobProfile', id: number, title: string, industry?: string | null, deadline?: any | null, description: string, requirements?: Array<string> | null, level?: string | null, location?: string | null, educationLevel?: string | null, experience?: number | null } };
+export type FindUnapprovedJobQuery = { __typename?: 'Query', findUnapprovedJob: { __typename?: 'UnapprovedJobProfile', id: number, title: string, industry?: string | null, deadline?: any | null, description: string, requirements?: Array<string> | null, level?: string | null, location?: string | null, educationLevel?: string | null, experience?: number | null } };
 
 export type ApproveJobMutationVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -1950,7 +2188,7 @@ export type ApproveJobMutation = { __typename?: 'Mutation', approveJob: { __type
 export type GetUnapprovedJobsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUnapprovedJobsQuery = { __typename?: 'Query', getUnapprovedJobs?: Array<{ __typename?: 'JobProfile', id: number, title: string, industry?: string | null, description: string }> | null };
+export type GetUnapprovedJobsQuery = { __typename?: 'Query', getUnapprovedJobs?: Array<{ __typename?: 'UnapprovedJobProfile', id: number, title: string, industry?: string | null, description: string }> | null };
 
 export type CreateJobMutationVariables = Exact<{
   newjob: NewJob;
@@ -1959,78 +2197,59 @@ export type CreateJobMutationVariables = Exact<{
 
 export type CreateJobMutation = { __typename?: 'Mutation', createJob: { __typename?: 'JobProfile', id: number } };
 
-export type SchoolProfileQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type SchoolProfileQuery = { __typename?: 'Query', getSchoolProfile?: { __typename?: 'SchoolProfile', name: string, phone_number: string } | null };
-
 export type GetJobsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetJobsQuery = { __typename?: 'Query', getJobs?: Array<{ __typename?: 'JobProfile', id: number, title: string, industry?: string | null, description: string }> | null };
 
-export type CreateSchoolMutationVariables = Exact<{
-  newschool: NewSchool;
-}>;
-
-
-export type CreateSchoolMutation = { __typename?: 'Mutation', createSchool?: { __typename?: 'UnverifiedSchool', id: number } | null };
-
-export type CheckphonenumberQueryVariables = Exact<{
-  phone_number: Scalars['String']['input'];
-}>;
-
-
-export type CheckphonenumberQuery = { __typename?: 'Query', schoolPhoneNumberExists: { __typename?: 'PhoneNumberExists', verified: boolean, unverified: boolean } };
-
-export type VerifySchoolMutationVariables = Exact<{
-  verificationinfo: Verificationinfo;
-}>;
-
-
-export type VerifySchoolMutation = { __typename?: 'Mutation', verifySchool?: { __typename?: 'School', id: number } | null };
-
-export type StudentLoginMutationVariables = Exact<{
-  studentlogin: StudentLogin;
-}>;
-
-
-export type StudentLoginMutation = { __typename?: 'Mutation', studentLogin?: string | null };
-
-export type ResetStudentPasswordMutationVariables = Exact<{
+export type ResetEmployerPasswordMutationVariables = Exact<{
   new_password: Scalars['String']['input'];
 }>;
 
 
-export type ResetStudentPasswordMutation = { __typename?: 'Mutation', resetStudentPassword?: { __typename?: 'Student', id: number } | null };
+export type ResetEmployerPasswordMutation = { __typename?: 'Mutation', resetEmployerPassword?: { __typename?: 'Employer', id: number } | null };
 
-export type ForgotStudentPasswordMutationVariables = Exact<{
-  schoolid: Scalars['Int']['input'];
-  registration_number: Scalars['String']['input'];
+export type EmployerLoginMutationVariables = Exact<{
+  employerlogin: EmployerLogin;
 }>;
 
 
-export type ForgotStudentPasswordMutation = { __typename?: 'Mutation', forgotStudentPassword?: { __typename?: 'SendCodeStatus', phone_number: string, success: boolean } | null };
+export type EmployerLoginMutation = { __typename?: 'Mutation', employerLogin?: string | null };
 
-export type RequestStudentPasswordResetMutationVariables = Exact<{
-  schoolid: Scalars['Int']['input'];
-  registration_number: Scalars['String']['input'];
+export type ForgotEmployerPasswordMutationVariables = Exact<{
   phone_number: Scalars['String']['input'];
-  otp: Scalars['String']['input'];
 }>;
 
 
-export type RequestStudentPasswordResetMutation = { __typename?: 'Mutation', requestStudentPasswordReset?: string | null };
+export type ForgotEmployerPasswordMutation = { __typename?: 'Mutation', forgotEmployerPassword?: { __typename?: 'SendCodeStatus', phone_number: string, success: boolean } | null };
 
-export type SchoolsProfileQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type SchoolsProfileQuery = { __typename?: 'Query', getSchoolsProfile?: Array<{ __typename?: 'SchoolProfile', id: number, name: string }> | null };
-
-export type StudentProfileQueryVariables = Exact<{ [key: string]: never; }>;
+export type RequestEmployerPasswordResetMutationVariables = Exact<{
+  verificationinfo: Verificationinfo;
+}>;
 
 
-export type StudentProfileQuery = { __typename?: 'Query', getStudentProfile?: { __typename?: 'StudentProfile', name: string, phone_number: string, registration_number: string, school: { __typename?: 'SchoolProfile', name: string, phone_number: string } } | null };
+export type RequestEmployerPasswordResetMutation = { __typename?: 'Mutation', requestEmployerPasswordReset?: string | null };
+
+export type CreateEmployerMutationVariables = Exact<{
+  newemployer: NewEmployer;
+}>;
+
+
+export type CreateEmployerMutation = { __typename?: 'Mutation', createEmployer?: { __typename?: 'UnverifiedEmployer', id: number } | null };
+
+export type CheckcompanyphonenumberQueryVariables = Exact<{
+  phone_number: Scalars['String']['input'];
+}>;
+
+
+export type CheckcompanyphonenumberQuery = { __typename?: 'Query', employerPhoneNumberExists: { __typename?: 'PhoneNumberExists', verified: boolean, unverified: boolean } };
+
+export type VerifyEmployerMutationVariables = Exact<{
+  verificationinfo: Verificationinfo;
+}>;
+
+
+export type VerifyEmployerMutation = { __typename?: 'Mutation', verifyEmployer?: { __typename?: 'Employer', id: number } | null };
 
 export type FindJobQueryVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -2060,17 +2279,14 @@ export const FindUnapprovedJobDocument = {"kind":"Document","definitions":[{"kin
 export const ApproveJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"approveJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"approveJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<ApproveJobMutation, ApproveJobMutationVariables>;
 export const GetUnapprovedJobsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getUnapprovedJobs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getUnapprovedJobs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"industry"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]} as unknown as DocumentNode<GetUnapprovedJobsQuery, GetUnapprovedJobsQueryVariables>;
 export const CreateJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newjob"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"NewJob"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newjob"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreateJobMutation, CreateJobMutationVariables>;
-export const SchoolProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SchoolProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getSchoolProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}}]}}]}}]} as unknown as DocumentNode<SchoolProfileQuery, SchoolProfileQueryVariables>;
 export const GetJobsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getJobs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getJobs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"industry"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]} as unknown as DocumentNode<GetJobsQuery, GetJobsQueryVariables>;
-export const CreateSchoolDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createSchool"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newschool"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"NewSchool"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createSchool"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newschool"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreateSchoolMutation, CreateSchoolMutationVariables>;
-export const CheckphonenumberDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"checkphonenumber"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"schoolPhoneNumberExists"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"phone_number"},"value":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"unverified"}}]}}]}}]} as unknown as DocumentNode<CheckphonenumberQuery, CheckphonenumberQueryVariables>;
-export const VerifySchoolDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"verifySchool"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"verificationinfo"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"verificationinfo"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verifySchool"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"verificationinfo"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<VerifySchoolMutation, VerifySchoolMutationVariables>;
-export const StudentLoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"studentLogin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"studentlogin"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"StudentLogin"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"studentLogin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"studentlogin"}}}]}]}}]} as unknown as DocumentNode<StudentLoginMutation, StudentLoginMutationVariables>;
-export const ResetStudentPasswordDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"resetStudentPassword"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"new_password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"resetStudentPassword"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"new_password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"new_password"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<ResetStudentPasswordMutation, ResetStudentPasswordMutationVariables>;
-export const ForgotStudentPasswordDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"forgotStudentPassword"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"schoolid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"registration_number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"forgotStudentPassword"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"schoolid"},"value":{"kind":"Variable","name":{"kind":"Name","value":"schoolid"}}},{"kind":"Argument","name":{"kind":"Name","value":"registration_number"},"value":{"kind":"Variable","name":{"kind":"Name","value":"registration_number"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"phone_number"}},{"kind":"Field","name":{"kind":"Name","value":"success"}}]}}]}}]} as unknown as DocumentNode<ForgotStudentPasswordMutation, ForgotStudentPasswordMutationVariables>;
-export const RequestStudentPasswordResetDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"requestStudentPasswordReset"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"schoolid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"registration_number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"otp"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"requestStudentPasswordReset"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"schoolid"},"value":{"kind":"Variable","name":{"kind":"Name","value":"schoolid"}}},{"kind":"Argument","name":{"kind":"Name","value":"registration_number"},"value":{"kind":"Variable","name":{"kind":"Name","value":"registration_number"}}},{"kind":"Argument","name":{"kind":"Name","value":"phone_number"},"value":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}}},{"kind":"Argument","name":{"kind":"Name","value":"otp"},"value":{"kind":"Variable","name":{"kind":"Name","value":"otp"}}}]}]}}]} as unknown as DocumentNode<RequestStudentPasswordResetMutation, RequestStudentPasswordResetMutationVariables>;
-export const SchoolsProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SchoolsProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getSchoolsProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<SchoolsProfileQuery, SchoolsProfileQueryVariables>;
-export const StudentProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"studentProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getStudentProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}},{"kind":"Field","name":{"kind":"Name","value":"registration_number"}},{"kind":"Field","name":{"kind":"Name","value":"school"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}}]}}]}}]}}]} as unknown as DocumentNode<StudentProfileQuery, StudentProfileQueryVariables>;
+export const ResetEmployerPasswordDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"resetEmployerPassword"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"new_password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"resetEmployerPassword"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"new_password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"new_password"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<ResetEmployerPasswordMutation, ResetEmployerPasswordMutationVariables>;
+export const EmployerLoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"employerLogin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"employerlogin"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"EmployerLogin"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"employerLogin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"employerlogin"}}}]}]}}]} as unknown as DocumentNode<EmployerLoginMutation, EmployerLoginMutationVariables>;
+export const ForgotEmployerPasswordDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"forgotEmployerPassword"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"forgotEmployerPassword"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"phone_number"},"value":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"phone_number"}},{"kind":"Field","name":{"kind":"Name","value":"success"}}]}}]}}]} as unknown as DocumentNode<ForgotEmployerPasswordMutation, ForgotEmployerPasswordMutationVariables>;
+export const RequestEmployerPasswordResetDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"requestEmployerPasswordReset"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"verificationinfo"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"verificationinfo"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"requestEmployerPasswordReset"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"verificationinfo"}}}]}]}}]} as unknown as DocumentNode<RequestEmployerPasswordResetMutation, RequestEmployerPasswordResetMutationVariables>;
+export const CreateEmployerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createEmployer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newemployer"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"NewEmployer"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createEmployer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newemployer"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreateEmployerMutation, CreateEmployerMutationVariables>;
+export const CheckcompanyphonenumberDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"checkcompanyphonenumber"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"employerPhoneNumberExists"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"phone_number"},"value":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"unverified"}}]}}]}}]} as unknown as DocumentNode<CheckcompanyphonenumberQuery, CheckcompanyphonenumberQueryVariables>;
+export const VerifyEmployerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"verifyEmployer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"verificationinfo"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"verificationinfo"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verifyEmployer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"verificationinfo"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<VerifyEmployerMutation, VerifyEmployerMutationVariables>;
 export const FindJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"findJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"industry"}},{"kind":"Field","name":{"kind":"Name","value":"deadline"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"requirements"}},{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"location"}},{"kind":"Field","name":{"kind":"Name","value":"educationLevel"}},{"kind":"Field","name":{"kind":"Name","value":"experience"}}]}}]}}]} as unknown as DocumentNode<FindJobQuery, FindJobQueryVariables>;
 export const GetlistingJobsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getlistingJobs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getJobs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"location"}}]}}]}}]} as unknown as DocumentNode<GetlistingJobsQuery, GetlistingJobsQueryVariables>;
 export const SendCodeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"sendCode"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sendCode"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"phone_number"},"value":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"phone_number"}},{"kind":"Field","name":{"kind":"Name","value":"success"}}]}}]}}]} as unknown as DocumentNode<SendCodeMutation, SendCodeMutationVariables>;
