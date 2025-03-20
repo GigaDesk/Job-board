@@ -4,7 +4,6 @@ import { gql } from "@/__generated__/gql";
 import { useQuery } from "@apollo/client";
 import React, { useEffect } from "react";
 import { useParams } from "next/navigation";
-import ApproveJobButton from "../approve-job-button";
 import { ActiveRoute } from "@/app/(admin)/state/store";
 
 const FIND_UNAPPROVEDJOB_QUERY = gql(`
@@ -24,7 +23,7 @@ const FIND_UNAPPROVEDJOB_QUERY = gql(`
   }
   `);
 
-export default function UnapprovedJobListing() {
+export default function JobListing() {
   const params = useParams();
 
   useEffect(() => {
@@ -32,7 +31,7 @@ export default function UnapprovedJobListing() {
   }, []);
 
   const { data } = useQuery(FIND_UNAPPROVEDJOB_QUERY, {
-    variables: { id: params.unapprovedjoblisting as unknown as number }, // Pass the id variable
+    variables: { id: params.job as unknown as number }, // Pass the id variable
   });
   return (
     <div
@@ -86,9 +85,6 @@ export default function UnapprovedJobListing() {
             </ul>
           </div>
         </div>
-      </div>
-      <div className="">
-        <ApproveJobButton id={data?.findUnapprovedJob.id as number} />
       </div>
     </div>
   );
