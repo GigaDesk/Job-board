@@ -34,7 +34,14 @@ export default function Home() {
             <div>Jobs Park</div>
           </div>
           <div className="grid grid-cols-2">
-            <button className="text-sky-600 text-center">Login</button>
+            <button
+              className="text-sky-600 text-center"
+              onClick={() => {
+                router.push(`/employee-sign-in`);
+              }}
+            >
+              Login
+            </button>
             <Button
               onClick={() => {
                 router.push(`/employer-sign-in`);

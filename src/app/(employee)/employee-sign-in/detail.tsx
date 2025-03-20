@@ -66,7 +66,7 @@ export default function Detail() {
       AuthenticationToken.token = data.employeeLogin;
       window.localStorage.setItem("LastSignedInAs", JSON.stringify("employee"));
       window.localStorage.setItem("LastSignInDate", JSON.stringify(new Date()));
-      router.push(`/employee`);
+      router.push(`/`);
     }
   }, [data, router]);
 
