@@ -14,7 +14,9 @@ query getUnapprovedJobs{
     id
     title
     industry
-    description
+    employer{
+      name
+    }
   }
 }
 `);
@@ -40,8 +42,8 @@ export default function UnapprovedJobsTable() {
         <div className="border-b border-border-table-gray grid md:grid-cols-[1fr_80px] px-4 md:px-4 md:pr-6 items-center text-text-table-gray">
           <div className="grid grid-cols-2 md:grid-cols-3">
             <div className="">Title </div>
-            <div className="">Industry </div>
-            <div className="max-md:hidden">Description </div>
+            <div className="">Company </div>
+            <div className="max-md:hidden">Industry </div>
           </div>
           <div className="grid justify-items-center max-md:hidden">Status</div>
         </div>
@@ -55,8 +57,8 @@ export default function UnapprovedJobsTable() {
               >
                 <StudentListItem
                   name={unapprovedjob?.title}
-                  registration_number={unapprovedjob?.industry}
-                  phone_number={unapprovedjob?.description}
+                  registration_number={unapprovedjob?.employer?.name}
+                  phone_number={unapprovedjob?.industry}
                 />
               </div>
               <div className="grid content-center max-md:hidden">

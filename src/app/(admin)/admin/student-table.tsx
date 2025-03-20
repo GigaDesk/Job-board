@@ -14,7 +14,9 @@ const GET_JOBS_QUERY = gql(`
       id
       title
       industry
-      description
+      employer{
+      name
+    }
     }
   }
   `);
@@ -41,8 +43,8 @@ export default function StudentTable() {
       <div className="rounded-b-xl grid  grid-rows-[50px_1fr] md:grid-rows-[30px_1fr]">
         <div className="border-b border-border-table-gray grid grid-cols-2 md:grid-cols-3 px-4 md:px-4 md:pr-6 items-center text-text-table-gray">
           <div className="">Title </div>
-          <div className="">Industry </div>
-          <div className="max-md:hidden">Description </div>
+          <div className="">Company </div>
+          <div className="max-md:hidden">Industry </div>
         </div>
         <StudentList>
           {data?.getJobs?.map((job) => (
@@ -56,8 +58,8 @@ export default function StudentTable() {
                 <StudentListItem
                   key={job?.id}
                   name={job?.title}
-                  registration_number={job?.industry}
-                  phone_number={job?.description}
+                  registration_number={job?.employer?.name}
+                  phone_number={job?.industry}
                 />
               </div>
             </div>
