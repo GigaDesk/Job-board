@@ -1,6 +1,5 @@
 import * as React from "react";
 import Avatar from "@mui/joy/Avatar";
-import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
@@ -13,6 +12,7 @@ export interface JobProps {
   title: string;
   location: string | null | undefined;
   description: string;
+  company?: string | null;
 }
 
 export default function Job(props: JobProps) {
@@ -33,15 +33,12 @@ export default function Job(props: JobProps) {
         resize: "horizontal",
       }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <Avatar src="/static/images/avatar/1.jpg" size="lg" />
-      </Box>
+      <div className="grid grid-cols-[50px_1fr]">
+        <div className="">
+          <Avatar src="/static/images/avatar/1.jpg" size="lg" />
+        </div>
+        <div className=" grid content-center pl-4">{props.company}</div>
+      </div>
       <CardContent>
         <Typography level="title-lg">{props.title}</Typography>
         <Typography level="body-md"> {props.location} </Typography>

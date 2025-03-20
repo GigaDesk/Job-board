@@ -19,6 +19,9 @@ const FIND_JOB_QUERY = gql(`
       location
       educationLevel
       experience
+      employer{
+        name
+      }
     }
   }
   `);
@@ -35,11 +38,12 @@ export default function JobListing() {
       style={{ fontFamily: "McLaren" }}
     >
       <div className="grid gap-4">
+      <div className="text-black">{data?.findJob.employer?.name}</div>
         <div className="grid grid-cols-2">
-          <div className="text-black font-bold text-xl">
+          <div className="text-black font-bold text-xl grid content-center">
             {data?.findJob.title}
           </div>
-          <div className="text-text-table-gray">
+          <div className="text-text-table-gray grid content-center">
             Level: {data?.findJob.level}
           </div>
         </div>
