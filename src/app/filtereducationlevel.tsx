@@ -27,8 +27,8 @@ export default function FilterEducationLevel() {
           <em>None</em>
         </MenuItem>
         <MenuItem value={"Diploma"}>Diploma</MenuItem>
-        <MenuItem value={"Bachelor's Degree"}>Bachelor's Degree</MenuItem>
-        <MenuItem value={"Master's Degree"}>Master's Degree</MenuItem>
+        <MenuItem value={"Bachelor's Degree"}>Bachelor&apos;s Degree</MenuItem>
+        <MenuItem value={"Master's Degree"}>Master&apos;s Degree</MenuItem>
         <MenuItem value={"PhD"}>PhD</MenuItem>
       </Select>
     </FormControl>
