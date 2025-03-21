@@ -25,7 +25,7 @@ export default function Home() {
       className="h-screen grid bg-white relative"
       style={{ fontFamily: "Inter" }}
     >
-      <div className="h-28 px-2 md:px-20 py-8 md:py-2 grid md:grid-rows-2 gap-4">
+      <div className="h-32 px-2 md:px-20 py-8 md:py-2 grid md:grid-rows-2 gap-4">
         <div className="flex justify-between">
           <div
             className="grid content-center p-2 rounded-lg text-black text-xl"
