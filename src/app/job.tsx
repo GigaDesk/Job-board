@@ -26,8 +26,6 @@ export default function Job(props: JobProps) {
     <Card
       variant="outlined"
       sx={{
-        width: 320,
-        height: 320,
         // to make the card resizable
         overflow: "auto",
         resize: "horizontal",
@@ -42,7 +40,7 @@ export default function Job(props: JobProps) {
       <CardContent>
         <Typography level="title-lg">{props.title}</Typography>
         <Typography level="body-md"> {props.location} </Typography>
-        <div className="h-20 overflow-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-border-gray hover:[&::-webkit-scrollbar-thumb]:bg-hover-gray  [&::-webkit-scrollbar-thumb]:rounded-full">
+        <div className="mt-4 h-40 overflow-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-border-gray hover:[&::-webkit-scrollbar-thumb]:bg-hover-gray  [&::-webkit-scrollbar-thumb]:rounded-full">
           <Typography level="body-sm">{props.description}</Typography>
         </div>
       </CardContent>
