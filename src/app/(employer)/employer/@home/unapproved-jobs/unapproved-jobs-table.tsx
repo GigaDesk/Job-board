@@ -44,16 +44,8 @@ export default function UnapprovedJobsTable() {
         </div>
         <StudentList>
           {data?.getEmployerProfile?.unapprovedJobs?.map((unapprovedjob) => (
-            <div
-              className="grid"
-              key={unapprovedjob?.id}
-            >
-              <div
-                className="cursor-pointer"
-                onClick={() => {
-                  router.push(`/employer/unapproved-jobs/${unapprovedjob?.id}`);
-                }}
-              >
+            <div className="grid" key={unapprovedjob?.id}>
+              <div className="cursor-pointer">
                 <StudentListItem
                   name={unapprovedjob?.title}
                   registration_number={unapprovedjob?.level}
