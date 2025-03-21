@@ -28,27 +28,10 @@ export default function Home() {
       <div className="h-28 px-2 md:px-20 py-8 md:py-2 grid md:grid-rows-2 gap-4">
         <div className="flex justify-between">
           <div
-            className="grid content-center p-2 rounded-lg text-black text-xl"
+            className="grid justify-items-start content-center p-2 rounded-lg text-black text-xl"
             style={{ fontFamily: "McLaren" }}
           >
             <div>Jobs Park</div>
-          </div>
-          <div className="grid grid-cols-2">
-            <button
-              className="text-sky-600 text-center"
-              onClick={() => {
-                router.push(`/employee-sign-in`);
-              }}
-            >
-              Login
-            </button>
-            <Button
-              onClick={() => {
-                router.push(`/employer-sign-in`);
-              }}
-            >
-              Post a job
-            </Button>
           </div>
         </div>
         <div className="grid grid-cols-[100px_1fr] content-center gap-4 text-text-table-gray max-md:hidden">
