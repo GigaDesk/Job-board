@@ -18,8 +18,6 @@ export default function Home() {
   const handleOpenModal = () => setModalOpen(true);
   const handleCloseModal = () => setModalOpen(false);
 
-  const router = useRouter();
-
   return (
     <div
       className="h-screen grid bg-white relative"
