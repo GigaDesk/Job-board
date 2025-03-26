@@ -3,7 +3,6 @@
 import { useQuery } from "@apollo/client";
 import Job from "./unapproved-job";
 import { gql } from "@/__generated__";
-import CvPoster from "../../cvposter";
 import { useSnapshot } from "valtio";
 import { FilterInstance } from "@/state/store";
 import { useEffect } from "react";

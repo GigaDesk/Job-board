@@ -4,7 +4,6 @@ import StudentList from "../../studentlist";
 import { gql } from "../../../../../__generated__/gql";
 import { useQuery } from "@apollo/client";
 import StudentListItem from "../../studentlistitem";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 const GET_EMPLOYER_UNAPPROVED_JOBS_QUERY = gql(`
@@ -21,7 +20,6 @@ query getEmployerProfile2{
 `);
 
 export default function UnapprovedJobsTable() {
-  const router = useRouter();
 
   const { data, refetch } = useQuery(GET_EMPLOYER_UNAPPROVED_JOBS_QUERY, {
     fetchPolicy: "network-only",

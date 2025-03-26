@@ -2,8 +2,6 @@
 
 import CompanyStatement from "@/components/splash/companystatement";
 import JobListings from "./unapproved-job-listings";
-import { useRouter } from "next/navigation";
-import Button from "@mui/joy/Button";
 import FilterEducationLevel from "../../filtereducationlevel";
 import FilterExperience from "../../filteryearsofexperience";
 import FilterIndustry from "../../filterindustry";
