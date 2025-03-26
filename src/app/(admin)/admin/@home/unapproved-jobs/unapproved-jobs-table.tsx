@@ -63,7 +63,7 @@ export default function UnapprovedJobsTable() {
               <div
                 className="cursor-pointer"
                 onClick={() => {
-                  router.push(`/admin-unapproved-jobs/${unapprovedjob.id}`);
+                  router.push(`/admin/unapproved-jobs/${unapprovedjob.id}`);
                 }}
               >
                 <StudentListItem
