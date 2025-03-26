@@ -38,9 +38,11 @@ export default function Job(props: JobProps) {
         <div className=" grid content-center pl-4">{props.company}</div>
       </div>
       <CardContent>
-        <Typography level="title-lg">{props.title}</Typography>
+        <div className="h-12 overflow-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-border-gray hover:[&::-webkit-scrollbar-thumb]:bg-hover-gray  [&::-webkit-scrollbar-thumb]:rounded-full">
+          <Typography level="title-lg">{props.title}</Typography>
+        </div>
         <Typography level="body-md"> {props.location} </Typography>
-        <div className="mt-4 h-40 overflow-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-border-gray hover:[&::-webkit-scrollbar-thumb]:bg-hover-gray  [&::-webkit-scrollbar-thumb]:rounded-full">
+        <div className="mt-4 h-32 overflow-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-border-gray hover:[&::-webkit-scrollbar-thumb]:bg-hover-gray  [&::-webkit-scrollbar-thumb]:rounded-full">
           <Typography level="body-sm">{props.description}</Typography>
         </div>
       </CardContent>
