@@ -39,15 +39,10 @@ export default function JobListing() {
     >
       <div className="grid gap-4">
         <div className="text-black">{data?.findJob.employer?.name}</div>
-        <div className="grid md:grid-cols-2">
-          <div className="text-black font-bold text-xl grid content-center">
-            {data?.findJob.title}
-          </div>
-          <div className="text-text-table-gray grid content-center max-md:hidden">
-            Level: {data?.findJob.level}
-          </div>
+        <div className="text-black font-bold text-xl grid content-center">
+          {data?.findJob.title}
         </div>
-        <div className="text-text-table-gray grid content-center md:hidden">
+        <div className="text-text-table-gray grid content-center">
           Level: {data?.findJob.level}
         </div>
         <div className="text-text-table-gray">

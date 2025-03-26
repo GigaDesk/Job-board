@@ -42,17 +42,12 @@ export default function JobListing() {
         <div className="text-black">
           {data?.findUnapprovedJob.employer?.name}
         </div>
-        <div className="grid md:grid-cols-2">
-          <div className="text-black font-bold text-xl grid content-center">
-            {data?.findUnapprovedJob.title}
-          </div>
-          <div className="text-text-table-gray grid content-center max-md:hidden">
-            Level: {data?.findUnapprovedJob.level}
-          </div>
+        <div className="text-black font-bold text-xl grid content-center">
+          {data?.findUnapprovedJob.title}
         </div>
-        <div className="text-text-table-gray grid content-center md:hidden">
-            Level: {data?.findUnapprovedJob.level}
-          </div>
+        <div className="text-text-table-gray grid content-center">
+          Level: {data?.findUnapprovedJob.level}
+        </div>
         <div className="text-text-table-gray">
           Location: {data?.findUnapprovedJob.location}
         </div>
@@ -94,8 +89,10 @@ export default function JobListing() {
       </div>
       <div>
         <div className="grid grid-cols-[100px_100px]">
-        <ApproveJobButton id={data?.findUnapprovedJob.id as number} />
-        <DeleteUnapprovedJobButton id={data?.findUnapprovedJob.id as number} />
+          <ApproveJobButton id={data?.findUnapprovedJob.id as number} />
+          <DeleteUnapprovedJobButton
+            id={data?.findUnapprovedJob.id as number}
+          />
         </div>
       </div>
     </div>
