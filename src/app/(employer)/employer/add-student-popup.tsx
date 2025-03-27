@@ -27,6 +27,8 @@ const CREATE_UNAPPROVED_JOB_MUTATION = gql(`
 export default function AddStudentPopup() {
   const [disableSubmit, setDisableSubmit] = React.useState(true);
 
+  const [message, setMessage] = React.useState("Submit");
+
   const jobinstance = useSnapshot(JobInstance);
 
   const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,6 +86,24 @@ export default function AddStudentPopup() {
     }
   };
 
+
+  const [createUnapprovedJob, { data, loading, error }] = useMutation(
+    CREATE_UNAPPROVED_JOB_MUTATION
+  );
+
+  React.useEffect(() => {
+    if (data !== undefined) {
+      setDisableSubmit(true);
+      setMessage("Submission Successful");
+
+    }
+  }, [data]);
+
+  React.useEffect(() => {
+    setMessage("Submit");
+  }, [jobinstance.instance]);
+
+
   React.useEffect(() => {
     if (
       jobinstance.instance.industry !== "" &&
@@ -95,10 +115,6 @@ export default function AddStudentPopup() {
       setDisableSubmit(true);
     }
   }, [jobinstance.instance]);
-
-  const [createUnapprovedJob, { loading, error }] = useMutation(
-    CREATE_UNAPPROVED_JOB_MUTATION
-  );
 
   return (
     <div className="p-4 text-sm" style={{ fontFamily: "McLaren" }}>
@@ -187,7 +203,7 @@ export default function AddStudentPopup() {
             });
           }}
         >
-          Submit
+          {message}
         </Button>
         <div className="text-red-600">{error?.message}</div>
       </Stack>

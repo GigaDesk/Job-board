@@ -5,6 +5,7 @@ import { gql } from "../../../../../__generated__/gql";
 import { useQuery } from "@apollo/client";
 import StudentListItem from "../../studentlistitem";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const GET_EMPLOYER_UNAPPROVED_JOBS_QUERY = gql(`
 query getEmployerProfile2{
@@ -20,6 +21,7 @@ query getEmployerProfile2{
 `);
 
 export default function UnapprovedJobsTable() {
+  const router = useRouter();
 
   const { data, refetch } = useQuery(GET_EMPLOYER_UNAPPROVED_JOBS_QUERY, {
     fetchPolicy: "network-only",
@@ -43,7 +45,12 @@ export default function UnapprovedJobsTable() {
         <StudentList>
           {data?.getEmployerProfile?.unapprovedJobs?.map((unapprovedjob) => (
             <div className="grid" key={unapprovedjob?.id}>
-              <div className="cursor-pointer">
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  router.push(`/employer/unapproved-jobs/${unapprovedjob?.id}`);
+                }}
+              >
                 <StudentListItem
                   name={unapprovedjob?.title}
                   registration_number={unapprovedjob?.level}
