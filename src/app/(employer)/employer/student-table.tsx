@@ -52,7 +52,7 @@ export default function StudentTable() {
               <div
                 className="cursor-pointer"
                 onClick={() => {
-                  router.push(`/${job?.id}`);
+                  router.push(`/employer/${job?.id}`);
                 }}
               >
                 <StudentListItem
