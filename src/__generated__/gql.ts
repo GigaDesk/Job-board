@@ -18,6 +18,8 @@ const documents = {
     "\n  mutation adminLogin($adminlogin: AdminLogin!) {   \n    adminLogin(input: $adminlogin) \n  }\n": types.AdminLoginDocument,
     "\nmutation forgotAdminPassword($phone_number: String!){\n  forgotAdminPassword(phone_number: $phone_number){\n    phone_number\n    success\n  }\n}\n": types.ForgotAdminPasswordDocument,
     "\n   mutation requestAdminPasswordReset($verificationinfo: verificationinfo!){\n      requestAdminPasswordReset(input: $verificationinfo)\n   }\n": types.RequestAdminPasswordResetDocument,
+    "\n  mutation removeJob($id: Int!) {   \n    removeJob( id: $id ) {    \n      id\n     }    \n }\n": types.RemoveJobDocument,
+    "\n  query findAdminJob($id: Int!){\n    findJob(id: $id){\n      id\n      title\n      industry\n      deadline\n      description\n      requirements\n      level\n      location\n      educationLevel\n      experience\n      employer{\n        name\n      }\n    }\n  }\n  ": types.FindAdminJobDocument,
     "\n  query getEmployersProfile{\n    getEmployersProfile{\n      id\n      name\n      phone_number\n    }\n  }\n  ": types.GetEmployersProfileDocument,
     "\n  query findAdminUnapprovedJob($id: Int!){\n    findUnapprovedJob(id: $id){\n      id\n      title\n      industry\n      deadline\n      description\n      requirements\n      level\n      location\n      educationLevel\n      experience\n      employer{\n            name\n        }\n    }\n  }\n  ": types.FindAdminUnapprovedJobDocument,
     "\n  mutation approveJob($id: Int!) {   \n    approveJob( id: $id ) {    \n      id\n     }    \n }\n": types.ApproveJobDocument,
@@ -79,6 +81,14 @@ export function gql(source: "\nmutation forgotAdminPassword($phone_number: Strin
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n   mutation requestAdminPasswordReset($verificationinfo: verificationinfo!){\n      requestAdminPasswordReset(input: $verificationinfo)\n   }\n"): (typeof documents)["\n   mutation requestAdminPasswordReset($verificationinfo: verificationinfo!){\n      requestAdminPasswordReset(input: $verificationinfo)\n   }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation removeJob($id: Int!) {   \n    removeJob( id: $id ) {    \n      id\n     }    \n }\n"): (typeof documents)["\n  mutation removeJob($id: Int!) {   \n    removeJob( id: $id ) {    \n      id\n     }    \n }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query findAdminJob($id: Int!){\n    findJob(id: $id){\n      id\n      title\n      industry\n      deadline\n      description\n      requirements\n      level\n      location\n      educationLevel\n      experience\n      employer{\n        name\n      }\n    }\n  }\n  "): (typeof documents)["\n  query findAdminJob($id: Int!){\n    findJob(id: $id){\n      id\n      title\n      industry\n      deadline\n      description\n      requirements\n      level\n      location\n      educationLevel\n      experience\n      employer{\n        name\n      }\n    }\n  }\n  "];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
