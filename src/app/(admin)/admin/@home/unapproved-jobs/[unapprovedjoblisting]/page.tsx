@@ -46,8 +46,11 @@ export default function UnapprovedJobListing() {
       <div className="w-full md:w-[700px] lg:w-[750px] text-black">
         <div className="grid gap-8">
           <div className="grid gap-4">
-            <div className="text-black">
-              {data?.findUnapprovedJob.employer?.name}
+            <div className="grid grid-cols-2">
+              <div className="text-black">
+                {data?.findUnapprovedJob.employer?.name}
+              </div>
+              <div className="">Posted: 1 day ago</div>
             </div>
             <div className="text-black font-bold text-xl grid content-center">
               {data?.findUnapprovedJob.title}
