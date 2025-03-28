@@ -1,15 +1,16 @@
 "use client";
 
 import { useQuery } from "@apollo/client";
-import Job from "./unapproved-job";
+import Job from "./job";
 import { gql } from "@/__generated__";
+import CvPoster from "../../cvposter";
 import { useSnapshot } from "valtio";
 import { FilterInstance } from "@/state/store";
 import { useEffect } from "react";
 
-const GET_UNAPPROVEDJOB_LISTING_QUERY = gql(`
-query getunapprovedlistingJobs($filters: JobsFilterParameters) {
-  getUnapprovedJobs(filterparameters: $filters){
+const GET_JOB_LISTING_QUERY = gql(`
+query getlistingJobs($filters: JobsFilterParameters) {
+  getJobs(filterparameters: $filters){
     id
     title
     description
@@ -42,7 +43,7 @@ export default function JobListings() {
     }
   };
 
-  const { data, refetch } = useQuery(GET_UNAPPROVEDJOB_LISTING_QUERY, {
+  const { data, refetch } = useQuery(GET_JOB_LISTING_QUERY, {
     fetchPolicy: "network-only",
     variables: {
       filters: {
@@ -69,11 +70,14 @@ export default function JobListings() {
 
   return (
     <div className="w-full p-4 overflow-auto  [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-border-gray hover:[&::-webkit-scrollbar-thumb]:bg-hover-gray  [&::-webkit-scrollbar-thumb]:rounded-full">
-      <div className="grid md:grid-cols-2 lg:grid-cols-3">
-        {data?.getUnapprovedJobs?.map((job) => (
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="md:col-span-2 lg:col-span-3">
+        <CvPoster />
+      </div>
+        {data?.getJobs?.map((job) => (
           <div
             key={job.id}
-            className="h-96 grid content-center justify-items-center"
+            className="h-96 grid justify-items-stretch"
           >
             <Job
               id={job.id}

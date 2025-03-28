@@ -4,13 +4,11 @@ import { gql } from "@/__generated__/gql";
 import { useQuery } from "@apollo/client";
 import React, { useEffect } from "react";
 import { useParams } from "next/navigation";
-import ApproveJobButton from "../approve-job-button";
-import { ActiveRoute } from "@/app/(admin)/state/store";
-import DeleteUnapprovedJobButton from "../delete-unapprovedjob-button";
+import { ActiveRoute } from "@/app/(employer)/state/store";
 
-const FIND_UNAPPROVEDJOB_QUERY = gql(`
-  query findAdminUnapprovedJob($id: Int!){
-    findUnapprovedJob(id: $id){
+const FIND_EMPLOYER_JOB_QUERY = gql(`
+  query findEmployerJob($id: Int!){
+    findJob(id: $id){
       id
       title
       industry
@@ -21,22 +19,19 @@ const FIND_UNAPPROVEDJOB_QUERY = gql(`
       location
       educationLevel
       experience
-      employer{
-            name
-        }
     }
   }
   `);
 
-export default function UnapprovedJobListing() {
+export default function JobListing() {
   const params = useParams();
 
   useEffect(() => {
-    ActiveRoute.instance = "Unapproved Job";
+    ActiveRoute.instance = "Job";
   }, []);
 
-  const { data } = useQuery(FIND_UNAPPROVEDJOB_QUERY, {
-    variables: { id: params.unapprovedjoblisting as unknown as number }, // Pass the id variable
+  const { data } = useQuery(FIND_EMPLOYER_JOB_QUERY, {
+    variables: { id: params.job as unknown as number }, // Pass the id variable
   });
   return (
     <div
@@ -46,63 +41,46 @@ export default function UnapprovedJobListing() {
       <div className="w-full md:w-[700px] lg:w-[750px] text-black">
         <div className="grid gap-8">
           <div className="grid gap-4">
-            <div className="grid grid-cols-2">
-              <div className="text-black">
-                {data?.findUnapprovedJob.employer?.name}
-              </div>
-              <div className="">Posted: 1 day ago</div>
-            </div>
+            <div className="">Posted: 1 day ago</div>
             <div className="text-black font-bold text-xl grid content-center">
-              {data?.findUnapprovedJob.title}
+              {data?.findJob.title}
             </div>
             <div className="text-text-table-gray grid content-center">
-              Level: {data?.findUnapprovedJob.level}
+              Level: {data?.findJob.level}
             </div>
             <div className="text-text-table-gray">
-              Location: {data?.findUnapprovedJob.location}
+              Location: {data?.findJob.location}
             </div>
-            <div className="text-black">
-              Industry: {data?.findUnapprovedJob.industry}
-            </div>
+            <div className="text-black">Industry: {data?.findJob.industry}</div>
             <div className="text-text-table-gray">
-              Deadline: {data?.findUnapprovedJob.deadline}
+              Deadline: {data?.findJob.deadline}
             </div>
           </div>
           <div className="grid grid-rows-[50px_1fr]">
             <div className="text-black text-md font-bold">Job Description</div>
             <div className="text-text-table-gray ">
-              {data?.findUnapprovedJob.description}
+              {data?.findJob.description}
             </div>
           </div>
           <div className="grid grid-rows-[50px_50px_50px_1fr]">
             <div className="text-black text-md font-bold">Job Requirements</div>
             <div className="text-text-table-gray">
-              Education: {data?.findUnapprovedJob.educationLevel}
+              Education: {data?.findJob.educationLevel}
             </div>
             <div className="text-text-table-gray">
-              Experience in years: {data?.findUnapprovedJob.experience}
+              Experience in years: {data?.findJob.experience}
             </div>
             <div className="text-black grid grid-rows-[20px_1fr]">
               <div className="text-black"> Other: </div>
               <div className="">
                 <ul className="list-disc p-4">
-                  {data?.findUnapprovedJob.requirements?.map(
-                    (requirement, index) => (
-                      <li key={index} className="text-text-table-gray">
-                        {requirement}
-                      </li>
-                    )
-                  )}
+                  {data?.findJob.requirements?.map((requirement, index) => (
+                    <li key={index} className="text-text-table-gray">
+                      {requirement}
+                    </li>
+                  ))}
                 </ul>
               </div>
-            </div>
-          </div>
-          <div>
-            <div className="grid grid-cols-[100px_100px]">
-              <ApproveJobButton id={data?.findUnapprovedJob.id as number} />
-              <DeleteUnapprovedJobButton
-                id={data?.findUnapprovedJob.id as number}
-              />
             </div>
           </div>
         </div>

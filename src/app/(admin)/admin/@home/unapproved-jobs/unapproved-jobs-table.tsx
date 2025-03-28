@@ -36,14 +36,6 @@ export default function UnapprovedJobsTable() {
     <div className="h-[350px] rounded-xl grid grid-rows-[40px_1fr] border border-border-table-gray">
       <div className="rounded-t-xl border-b border-border-table-gray px-2 md:px-4 flex justify-between items-center text-text-table-gray">
         Unapproved Jobs
-        <button
-          className="hover:text-bright-blue"
-          onClick={() => {
-            router.push(`/admin-unapproved-jobs`);
-          }}
-        >
-          expand
-        </button>
       </div>
       <div className="rounded-b-xl grid  grid-rows-[50px_1fr] md:grid-rows-[30px_1fr]">
         <div className="border-b border-border-table-gray grid md:grid-cols-[1fr_80px] px-4 md:px-4 md:pr-6 items-center text-text-table-gray">

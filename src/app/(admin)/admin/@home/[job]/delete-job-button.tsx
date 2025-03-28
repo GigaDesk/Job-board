@@ -5,30 +5,30 @@ import { useMutation } from "@apollo/client";
 import Button from "@mui/joy/Button";
 import { useEffect, useState } from "react";
 
-const APPROVE_JOB_MUTATION = gql(`
-  mutation approveJob($id: Int!) {   
-    approveJob( id: $id ) {    
+const DELETE_JOB_MUTATION = gql(`
+  mutation removeJob($id: Int!) {   
+    removeJob( id: $id ) {    
       id
      }    
  }
 `);
 
-export interface ApproveJobButtonProps {
+export interface RemoveJobButtonProps {
   id: number;
 }
 
-export default function ApproveJobButton(props: ApproveJobButtonProps) {
+export default function DeleteJobButton(props: RemoveJobButtonProps) {
   const [disable, setDisable] = useState(false);
 
-  const [message, setMessage] = useState("Approve");
+  const [message, setMessage] = useState("Delete");
 
-  const [approveJob, { loading, error, data }] =
-    useMutation(APPROVE_JOB_MUTATION);
+  const [deleteJob, { loading, error, data }] =
+    useMutation(DELETE_JOB_MUTATION);
 
   useEffect(() => {
-    if (data?.approveJob.id != undefined) {
+    if (data?.removeJob.id != undefined) {
       setDisable(true);
-      setMessage("Approved");
+      setMessage("Deleted");
     }
   }, [data]);
 
@@ -42,9 +42,10 @@ export default function ApproveJobButton(props: ApproveJobButtonProps) {
   return (
     <div>
       <Button
+        color="danger"
         onClick={(e) => {
           e.preventDefault();
-          approveJob({
+          deleteJob({
             variables: {
               id: props.id,
             },

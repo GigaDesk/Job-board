@@ -4,12 +4,10 @@ import { gql } from "@/__generated__/gql";
 import { useQuery } from "@apollo/client";
 import React, { useEffect } from "react";
 import { useParams } from "next/navigation";
-import ApproveJobButton from "../approve-job-button";
-import { ActiveRoute } from "@/app/(admin)/state/store";
-import DeleteUnapprovedJobButton from "../delete-unapprovedjob-button";
+import { ActiveRoute } from "../../../../state/store";
 
 const FIND_UNAPPROVEDJOB_QUERY = gql(`
-  query findAdminUnapprovedJob($id: Int!){
+  query findUnapprovedJob($id: Int!){
     findUnapprovedJob(id: $id){
       id
       title
@@ -21,14 +19,11 @@ const FIND_UNAPPROVEDJOB_QUERY = gql(`
       location
       educationLevel
       experience
-      employer{
-            name
-        }
     }
   }
   `);
 
-export default function UnapprovedJobListing() {
+export default function JobListing() {
   const params = useParams();
 
   useEffect(() => {
@@ -36,7 +31,7 @@ export default function UnapprovedJobListing() {
   }, []);
 
   const { data } = useQuery(FIND_UNAPPROVEDJOB_QUERY, {
-    variables: { id: params.unapprovedjoblisting as unknown as number }, // Pass the id variable
+    variables: { id: params.job as unknown as number }, // Pass the id variable
   });
   return (
     <div
@@ -46,12 +41,7 @@ export default function UnapprovedJobListing() {
       <div className="w-full md:w-[700px] lg:w-[750px] text-black">
         <div className="grid gap-8">
           <div className="grid gap-4">
-            <div className="grid grid-cols-2">
-              <div className="text-black">
-                {data?.findUnapprovedJob.employer?.name}
-              </div>
-              <div className="">Posted: 1 day ago</div>
-            </div>
+            <div className="">Posted: 1 day ago</div>
             <div className="text-black font-bold text-xl grid content-center">
               {data?.findUnapprovedJob.title}
             </div>
@@ -95,14 +85,6 @@ export default function UnapprovedJobListing() {
                   )}
                 </ul>
               </div>
-            </div>
-          </div>
-          <div>
-            <div className="grid grid-cols-[100px_100px]">
-              <ApproveJobButton id={data?.findUnapprovedJob.id as number} />
-              <DeleteUnapprovedJobButton
-                id={data?.findUnapprovedJob.id as number}
-              />
             </div>
           </div>
         </div>

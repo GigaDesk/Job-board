@@ -49,7 +49,7 @@ export default function Detail() {
     if (data !== undefined && data !== null) {
       window.localStorage.setItem("LastSignedInAs", JSON.stringify("employee"));
       window.localStorage.setItem("LastSignInDate", JSON.stringify(new Date()));
-      router.push(`/`);
+      router.push(`/employee`);
     }
   }, [data, router]);
 
