@@ -1,7 +1,7 @@
 export interface StudentListItemProps {
   name?: string;
   registration_number?: string | null;
-  phone_number?: string;
+  phone_number?: string | null;
 }
 
 export default function StudentListItem(props: StudentListItemProps) {
