@@ -49,13 +49,13 @@ export default function ApplicationForm(props: ApplicationFormProps) {
 
   const applicationinstance = useSnapshot(ApplicationInstance);
 
-  const handleSelectedCoverLetter = (files: any) => {
+  const handleSelectedCoverLetter = (files: FileList | null) => {
     if (files && files[0].size < 10000000) {
       setCoverLetterFile(files[0]);
     }
   };
 
-  const handleSelectedResumee = (files: any) => {
+  const handleSelectedResumee = (files: FileList | null) => {
     if (files && files[0].size < 10000000) {
       setResumeeFile(files[0]);
     }
@@ -187,7 +187,14 @@ export default function ApplicationForm(props: ApplicationFormProps) {
         });
       });
     }
-  }, [coverLetterDownloadURL, resumeeDownloadURL]);
+  }, [
+    coverLetterDownloadURL,
+    resumeeDownloadURL,
+    applicationinstance.instance.educationLevel,
+    applicationinstance.instance.experience,
+    createApplication,
+    props.job_id,
+  ]);
 
   return (
     <div className="p-4 text-sm" style={{ fontFamily: "McLaren" }}>

@@ -51,14 +51,16 @@ export default function JobListing() {
           <div className="text-black text-md font-bold">
             Application Details
           </div>
-          <div
-            className="text-text-table-gray cursor-pointer"
-            onClick={() => {
-              router.push(`/employee/${data?.findApplication.job.id}`);
-            }}
-          >
+          <div className="text-text-table-gray">
             <span className="text-black"> Job: </span>
-            {data?.findApplication.job.title}
+            <Button
+              variant="plain"
+              onClick={() => {
+                router.push(`/employee/${data?.findApplication.job.id}`);
+              }}
+            >
+              {data?.findApplication.job.title}{" "}
+            </Button>
           </div>
           <div className="text-text-table-gray">
             <span className="text-black"> Company: </span>
