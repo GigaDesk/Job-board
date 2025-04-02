@@ -1073,7 +1073,6 @@ export type Mutation = {
   editJob: JobProfile;
   employeeLogin?: Maybe<Scalars['String']['output']>;
   employerLogin?: Maybe<Scalars['String']['output']>;
-  findApplication: ApplicationProfile;
   forgotAdminPassword?: Maybe<SendCodeStatus>;
   forgotEmployeePassword?: Maybe<SendCodeStatus>;
   forgotEmployerPassword?: Maybe<SendCodeStatus>;
@@ -1269,11 +1268,6 @@ export type MutationEmployerLoginArgs = {
 };
 
 
-export type MutationFindApplicationArgs = {
-  id: Scalars['Int']['input'];
-};
-
-
 export type MutationForgotAdminPasswordArgs = {
   phone_number: Scalars['String']['input'];
 };
@@ -1453,6 +1447,7 @@ export type Query = {
   adminPhoneNumberExists: PhoneNumberExists;
   employeePhoneNumberExists: PhoneNumberExists;
   employerPhoneNumberExists: PhoneNumberExists;
+  findApplication: ApplicationProfile;
   findEmployer: EmployerProfile;
   findJob: JobProfile;
   findUnapprovedJob: UnapprovedJobProfile;
@@ -1515,6 +1510,11 @@ export type QueryEmployeePhoneNumberExistsArgs = {
 
 export type QueryEmployerPhoneNumberExistsArgs = {
   phone_number: Scalars['String']['input'];
+};
+
+
+export type QueryFindApplicationArgs = {
+  id: Scalars['Int']['input'];
 };
 
 
@@ -2553,6 +2553,13 @@ export type CreateApplicationMutationVariables = Exact<{
 
 export type CreateApplicationMutation = { __typename?: 'Mutation', createApplication: { __typename?: 'ApplicationProfile', id: number } };
 
+export type FindApplicationQueryVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type FindApplicationQuery = { __typename?: 'Query', findApplication: { __typename?: 'ApplicationProfile', id: number, experience: number, educationLevel: string, coverLetterUrl: string, resumeeUrl: string, status: ApplicationStatus, job: { __typename?: 'JobProfile', id: number, title: string, employer?: { __typename?: 'EmployerProfile', id: number, name: string } | null } } };
+
 export type GetEmployeeAcceptedApplicationsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -2697,6 +2704,7 @@ export const CheckemployeephonenumberDocument = {"kind":"Document","definitions"
 export const VerifyEmployeeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"verifyEmployee"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"verificationinfo"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"verificationinfo"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verifyEmployee"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"verificationinfo"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<VerifyEmployeeMutation, VerifyEmployeeMutationVariables>;
 export const GetEmployeeProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getEmployeeProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getEmployeeProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<GetEmployeeProfileQuery, GetEmployeeProfileQueryVariables>;
 export const CreateApplicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createApplication"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newapplication"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"NewApplication"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createApplication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newapplication"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreateApplicationMutation, CreateApplicationMutationVariables>;
+export const FindApplicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"findApplication"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findApplication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"job"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"employer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}},{"kind":"Field","name":{"kind":"Name","value":"experience"}},{"kind":"Field","name":{"kind":"Name","value":"educationLevel"}},{"kind":"Field","name":{"kind":"Name","value":"coverLetterUrl"}},{"kind":"Field","name":{"kind":"Name","value":"resumeeUrl"}},{"kind":"Field","name":{"kind":"Name","value":"status"}}]}}]}}]} as unknown as DocumentNode<FindApplicationQuery, FindApplicationQueryVariables>;
 export const GetEmployeeAcceptedApplicationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getEmployeeAcceptedApplications"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getEmployeeProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"applications"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"status"},"value":{"kind":"EnumValue","value":"ACCEPTED"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"job"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"location"}},{"kind":"Field","name":{"kind":"Name","value":"employer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetEmployeeAcceptedApplicationsQuery, GetEmployeeAcceptedApplicationsQueryVariables>;
 export const GetEmployeeApplicationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getEmployeeApplications"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getEmployeeProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"applications"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"job"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"employer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"status"}}]}}]}}]}}]} as unknown as DocumentNode<GetEmployeeApplicationsQuery, GetEmployeeApplicationsQueryVariables>;
 export const GetEmployeePendingApplicationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getEmployeePendingApplications"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getEmployeeProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"applications"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"status"},"value":{"kind":"EnumValue","value":"PENDING"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"job"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"location"}},{"kind":"Field","name":{"kind":"Name","value":"employer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetEmployeePendingApplicationsQuery, GetEmployeePendingApplicationsQueryVariables>;

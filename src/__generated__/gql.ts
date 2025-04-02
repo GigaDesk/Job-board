@@ -36,6 +36,7 @@ const documents = {
     "\n  mutation verifyEmployee ($verificationinfo: verificationinfo!) {   \n  verifyEmployee(input: $verificationinfo) {    \n    id\n   }    \n}\n": types.VerifyEmployeeDocument,
     "\n  query getEmployeeProfile{\n    getEmployeeProfile{\n      id\n    }\n  }\n    ": types.GetEmployeeProfileDocument,
     "\n  mutation createApplication($newapplication: NewApplication!) {   \n    createApplication( input: $newapplication ) {    \n      id\n     }    \n }\n": types.CreateApplicationDocument,
+    "\n query findApplication($id: Int!){\n  findApplication(id: $id){\n    id\n    job{\n      id\n      employer{\n        id\n        name\n      }\n      title\n    }\n    experience\n    educationLevel\n    coverLetterUrl\n    resumeeUrl\n    status\n  }\n}\n  ": types.FindApplicationDocument,
     "\n query getEmployeeAcceptedApplications {\n  getEmployeeProfile {\n    applications(status: ACCEPTED){\n    id\n    job{\n      title\n      location\n      employer{\n        name\n      }\n    }\n  }\n}\n}\n  ": types.GetEmployeeAcceptedApplicationsDocument,
     "\n query getEmployeeApplications {\n  getEmployeeProfile {\n    applications{\n    id\n    job{\n      title\n      employer{\n        name\n      }\n    }\n    status\n  }\n}\n}\n  ": types.GetEmployeeApplicationsDocument,
     "\n query getEmployeePendingApplications {\n  getEmployeeProfile {\n    applications(status: PENDING){\n    id\n    job{\n      title\n      location\n      employer{\n        name\n      }\n    }\n  }\n}\n}\n  ": types.GetEmployeePendingApplicationsDocument,
@@ -159,6 +160,10 @@ export function gql(source: "\n  query getEmployeeProfile{\n    getEmployeeProfi
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  mutation createApplication($newapplication: NewApplication!) {   \n    createApplication( input: $newapplication ) {    \n      id\n     }    \n }\n"): (typeof documents)["\n  mutation createApplication($newapplication: NewApplication!) {   \n    createApplication( input: $newapplication ) {    \n      id\n     }    \n }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n query findApplication($id: Int!){\n  findApplication(id: $id){\n    id\n    job{\n      id\n      employer{\n        id\n        name\n      }\n      title\n    }\n    experience\n    educationLevel\n    coverLetterUrl\n    resumeeUrl\n    status\n  }\n}\n  "): (typeof documents)["\n query findApplication($id: Int!){\n  findApplication(id: $id){\n    id\n    job{\n      id\n      employer{\n        id\n        name\n      }\n      title\n    }\n    experience\n    educationLevel\n    coverLetterUrl\n    resumeeUrl\n    status\n  }\n}\n  "];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
