@@ -2,10 +2,13 @@
 
 import { gql } from "@/__generated__/gql";
 import { useQuery } from "@apollo/client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { ActiveRoute } from "../../../state/store";
 import { Button } from "@mui/joy";
+import Modal from "@mui/material/Modal";
+import Card from "@mui/material/Card";
+import ApplicationForm from "./application-form";
 
 const FIND_ADMIN_JOB_QUERY = gql(`
   query findAdminJob($id: Int!){
@@ -29,6 +32,11 @@ const FIND_ADMIN_JOB_QUERY = gql(`
 
 export default function JobListing() {
   const params = useParams();
+
+  const [modalopen, setModalOpen] = useState(false);
+
+  const handleOpenModal = () => setModalOpen(true);
+  const handleCloseModal = () => setModalOpen(false);
 
   useEffect(() => {
     ActiveRoute.instance = "Job";
@@ -91,10 +99,22 @@ export default function JobListing() {
             </div>
           </div>
           <div>
-            <Button>Apply</Button>
+            <Button onClick={handleOpenModal}>Apply</Button>
           </div>
         </div>
       </div>
+      <Modal
+        open={modalopen}
+        onClose={handleCloseModal}
+        aria-labelledby="parent-modal-title"
+        aria-describedby="parent-modal-description"
+      >
+        <div className="z-1 shadow-xl my-72 md:my-92 lg:my-52 mx-4 md:mx-12">
+          <Card sx={{  }}>
+            <ApplicationForm job_id={params.job as unknown as number}/>
+          </Card>
+        </div>
+      </Modal>
     </div>
   );
 }

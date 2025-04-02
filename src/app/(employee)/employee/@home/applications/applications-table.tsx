@@ -1,11 +1,39 @@
 "use client";
 
+import { gql } from "@/__generated__/gql";
 import StudentList from "../../studentlist";
 import StudentListItem from "../../studentlistitem";
 import { useRouter } from "next/navigation";
+import { useQuery } from "@apollo/client";
+import { useEffect } from "react";
+
+const GET_PENDING_APPLICATIONS_QUERY = gql(`
+ query getEmployeePendingApplications {
+  getEmployeeProfile {
+    applications(status: PENDING){
+    id
+    job{
+      title
+      employer{
+        name
+      }
+    }
+    status
+  }
+}
+}
+  `);
 
 export default function ApplicationsTable() {
   const router = useRouter();
+
+  const { data, refetch } = useQuery(GET_PENDING_APPLICATIONS_QUERY, {
+    fetchPolicy: "network-only",
+  });
+
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
 
   return (
     <div className="h-[350px] rounded-xl grid grid-rows-[40px_1fr] border border-border-table-gray">
@@ -19,7 +47,8 @@ export default function ApplicationsTable() {
           <div className="max-md:hidden">Status </div>
         </div>
         <StudentList>
-          <div className="grid">
+        {data?.getEmployeeProfile?.applications?.map((application) => (
+          <div className="grid" key={application.id}>
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -27,12 +56,13 @@ export default function ApplicationsTable() {
               }}
             >
               <StudentListItem
-                name={"Machine Learning Engineer"}
-                registration_number={"Safaricom"}
-                phone_number={"Pending"}
+                name={application.job.title}
+                registration_number={application.job.employer?.name}
+                phone_number={application.status}
               />
             </div>
           </div>
+          ))}
         </StudentList>
       </div>
     </div>

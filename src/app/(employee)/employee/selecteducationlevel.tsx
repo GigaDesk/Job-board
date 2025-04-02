@@ -3,14 +3,14 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { JobInstance } from "../state/store";
+import { ApplicationInstance } from "../state/store";
 import { useSnapshot } from "valtio";
 
 export default function SelectEducationLevel() {
-  const jobinstance = useSnapshot(JobInstance);
+  const jobinstance = useSnapshot(ApplicationInstance);
 
   const handleChange = (event: SelectChangeEvent) => {
-    JobInstance.instance.educationLevel = event.target.value;
+    ApplicationInstance.instance.educationLevel = event.target.value;
   };
 
   return (

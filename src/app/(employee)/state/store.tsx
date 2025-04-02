@@ -26,6 +26,13 @@ export interface NewJob {
   requirements: string[];
 }
 
+export interface NewApplication {
+  educationLevel: string;
+  experience: number | "";
+  coverLetterUrl: string;
+  resumeeUrl: string;
+}
+
 export const ForgotSchoolPasswordInstance = proxy({
   instance: {
     phoneNumber: "",
@@ -50,10 +57,19 @@ export const JobInstance = proxy({
     experience: "",
     minSalary: undefined,
     maxSalary: undefined,
-    requirements:[""],
+    requirements: [""],
   } as NewJob,
 });
 
+export const ApplicationInstance = proxy({
+  instance: {
+    educationLevel: "",
+    experience: "",
+    coverLetterUrl: "",
+    resumeeUrl: "",
+  } as NewApplication,
+});
+
 export const ActiveRoute = proxy({
-  instance: "Home"
+  instance: "Home",
 });
