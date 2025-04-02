@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Job Spark",
-  description: "School Management System",
+  description: "Job Board",
 };
 
 export default function RootLayout({
