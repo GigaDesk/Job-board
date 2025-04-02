@@ -20,6 +20,7 @@
     "@mui/material": "^6.2.0",
     "@mui/x-date-pickers": "^7.27.0",
     "dayjs": "^1.11.13",
+    "firebase": "^11.5.0",
     "mui-phone-number": "^3.0.3",
     "next": "15.1.0",
     "react": "^19.0.0",
