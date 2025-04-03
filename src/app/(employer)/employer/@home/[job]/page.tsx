@@ -3,8 +3,9 @@
 import { gql } from "@/__generated__/gql";
 import { useQuery } from "@apollo/client";
 import React, { useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { ActiveRoute } from "@/app/(employer)/state/store";
+import Button from "@mui/joy/Button";
 
 const FIND_EMPLOYER_JOB_QUERY = gql(`
   query findEmployerJob($id: Int!){
@@ -25,6 +26,8 @@ const FIND_EMPLOYER_JOB_QUERY = gql(`
 
 export default function JobListing() {
   const params = useParams();
+
+  const router = useRouter();
 
   useEffect(() => {
     ActiveRoute.instance = "Job";
@@ -83,6 +86,13 @@ export default function JobListing() {
               </div>
             </div>
           </div>
+          <Button
+            onClick={() => {
+              router.push(`/employer/${data?.findJob.id}/applications`)
+            }}
+          >
+            View Applicants
+          </Button>
         </div>
       </div>
     </div>
