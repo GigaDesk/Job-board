@@ -52,7 +52,10 @@ const documents = {
     "\n  query checkcompanyphonenumber($phone_number: String!) {\n    employerPhoneNumberExists(phone_number: $phone_number) {\n      verified\n      unverified\n    }\n  }\n": types.CheckcompanyphonenumberDocument,
     "\n  mutation verifyEmployer ($verificationinfo: verificationinfo!) {   \n  verifyEmployer(input: $verificationinfo) {    \n    id\n   }    \n}\n": types.VerifyEmployerDocument,
     "\n query findEmployerApplication($id: Int!){\n  findApplication(id: $id){\n    id\n    job{\n      id\n      title\n    }\n    employee{\n        id\n        name\n        phone_number\n    }\n    experience\n    educationLevel\n    coverLetterUrl\n    resumeeUrl\n    status\n  }\n}\n  ": types.FindEmployerApplicationDocument,
+    "\n  query findAcceptedEmployerJobApplications($id: Int!){\n    findJob(id: $id){\n      id\n      applications(status: ACCEPTED){\n        id\n        employee{\n          name\n          phone_number\n        }\n        educationLevel\n      }\n    }\n  }\n  ": types.FindAcceptedEmployerJobApplicationsDocument,
     "\n  query findEmployerJobApplications($id: Int!){\n    findJob(id: $id){\n      id\n      applications{\n        id\n        employee{\n          name\n          phone_number\n        }\n        status\n      }\n    }\n  }\n  ": types.FindEmployerJobApplicationsDocument,
+    "\n  query findPendingEmployerJobApplications($id: Int!){\n    findJob(id: $id){\n      id\n      applications(status: PENDING){\n        id\n        employee{\n          name\n          phone_number\n        }\n        educationLevel\n      }\n    }\n  }\n  ": types.FindPendingEmployerJobApplicationsDocument,
+    "\n  query findRejectedEmployerJobApplications($id: Int!){\n    findJob(id: $id){\n      id\n      applications(status: ACCEPTED){\n        id\n        employee{\n          name\n          phone_number\n        }\n        educationLevel\n      }\n    }\n  }\n  ": types.FindRejectedEmployerJobApplicationsDocument,
     "\n  query findEmployerJob($id: Int!){\n    findJob(id: $id){\n      id\n      title\n      industry\n      deadline\n      description\n      requirements\n      level\n      location\n      educationLevel\n      experience\n    }\n  }\n  ": types.FindEmployerJobDocument,
     "\n  query findUnapprovedJob($id: Int!){\n    findUnapprovedJob(id: $id){\n      id\n      title\n      industry\n      deadline\n      description\n      requirements\n      level\n      location\n      educationLevel\n      experience\n    }\n  }\n  ": types.FindUnapprovedJobDocument,
     "\nquery getEmployerProfile2{\n  getEmployerProfile{\n    unapprovedJobs{\n      id\n      title\n      level\n      deadline\n    }\n  }\n}\n": types.GetEmployerProfile2Document,
@@ -229,7 +232,19 @@ export function gql(source: "\n query findEmployerApplication($id: Int!){\n  fin
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "\n  query findAcceptedEmployerJobApplications($id: Int!){\n    findJob(id: $id){\n      id\n      applications(status: ACCEPTED){\n        id\n        employee{\n          name\n          phone_number\n        }\n        educationLevel\n      }\n    }\n  }\n  "): (typeof documents)["\n  query findAcceptedEmployerJobApplications($id: Int!){\n    findJob(id: $id){\n      id\n      applications(status: ACCEPTED){\n        id\n        employee{\n          name\n          phone_number\n        }\n        educationLevel\n      }\n    }\n  }\n  "];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "\n  query findEmployerJobApplications($id: Int!){\n    findJob(id: $id){\n      id\n      applications{\n        id\n        employee{\n          name\n          phone_number\n        }\n        status\n      }\n    }\n  }\n  "): (typeof documents)["\n  query findEmployerJobApplications($id: Int!){\n    findJob(id: $id){\n      id\n      applications{\n        id\n        employee{\n          name\n          phone_number\n        }\n        status\n      }\n    }\n  }\n  "];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query findPendingEmployerJobApplications($id: Int!){\n    findJob(id: $id){\n      id\n      applications(status: PENDING){\n        id\n        employee{\n          name\n          phone_number\n        }\n        educationLevel\n      }\n    }\n  }\n  "): (typeof documents)["\n  query findPendingEmployerJobApplications($id: Int!){\n    findJob(id: $id){\n      id\n      applications(status: PENDING){\n        id\n        employee{\n          name\n          phone_number\n        }\n        educationLevel\n      }\n    }\n  }\n  "];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query findRejectedEmployerJobApplications($id: Int!){\n    findJob(id: $id){\n      id\n      applications(status: ACCEPTED){\n        id\n        employee{\n          name\n          phone_number\n        }\n        educationLevel\n      }\n    }\n  }\n  "): (typeof documents)["\n  query findRejectedEmployerJobApplications($id: Int!){\n    findJob(id: $id){\n      id\n      applications(status: ACCEPTED){\n        id\n        employee{\n          name\n          phone_number\n        }\n        educationLevel\n      }\n    }\n  }\n  "];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
