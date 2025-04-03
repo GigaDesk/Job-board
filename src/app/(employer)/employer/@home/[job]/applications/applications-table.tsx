@@ -11,6 +11,7 @@ import { useEffect } from "react";
 const FIND_EMPLOYER_JOB_APPLICATIONS_QUERY = gql(`
   query findEmployerJobApplications($id: Int!){
     findJob(id: $id){
+      id
       applications{
         id
         employee{
@@ -53,7 +54,7 @@ export default function ApplicationsTable() {
               <div
                 className="cursor-pointer"
                 onClick={() => {
-                  router.push(`/employee/applications/${application.id}`);
+                  router.push(`/employer/${data?.findJob.id}/applications/${application.id}`);
                 }}
               >
                 <StudentListItem
