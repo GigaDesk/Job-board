@@ -12,7 +12,7 @@ const FIND_REJECTED_EMPLOYER_JOB_APPLICATIONS_QUERY = gql(`
   query findRejectedEmployerJobApplications($id: Int!){
     findJob(id: $id){
       id
-      applications(status: ACCEPTED){
+      applications(status: REJECTED){
         id
         employee{
           name
