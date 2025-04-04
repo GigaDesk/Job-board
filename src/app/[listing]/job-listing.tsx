@@ -5,6 +5,7 @@ import { useQuery } from "@apollo/client";
 import React from "react";
 import { useParams } from "next/navigation";
 import Button from "@mui/joy/Button";
+import { useRouter } from "next/navigation";
 
 const FIND_JOB_QUERY = gql(`
   query findJob($id: Int!){
@@ -29,9 +30,15 @@ const FIND_JOB_QUERY = gql(`
 export default function JobListing() {
   const params = useParams();
 
+  const router = useRouter();
+
   const { data } = useQuery(FIND_JOB_QUERY, {
     variables: { id: params.listing as unknown as number }, // Pass the id variable
   });
+
+  const handleClick = () => {
+    router.push(`/employee/${data?.findJob.id}`);
+  };
   return (
     <div
       className="w-full p-4  lg:px-52 overflow-auto grid gap-4 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-border-gray hover:[&::-webkit-scrollbar-thumb]:bg-hover-gray  [&::-webkit-scrollbar-thumb]:rounded-full"
@@ -82,7 +89,7 @@ export default function JobListing() {
         </div>
       </div>
       <div>
-        <Button>Apply</Button>
+        <Button onClick={handleClick}>Apply</Button>
       </div>
     </div>
   );
