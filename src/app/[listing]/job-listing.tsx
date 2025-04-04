@@ -40,7 +40,7 @@ export default function JobListing() {
       <div className="grid gap-4">
         <div className="grid grid-cols-2">
           <div className="text-black">{data?.findJob.employer?.name}</div>
-          <div className="">Posted: 1 day ago</div>
+          <div className="text-black">Posted: 1 day ago</div>
         </div>
         <div className="text-black font-bold text-xl grid content-center">
           {data?.findJob.title}
