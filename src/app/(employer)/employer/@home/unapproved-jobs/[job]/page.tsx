@@ -92,7 +92,7 @@ export default function JobListing() {
           </div>
           <Button
             onClick={() => {
-              router.push(`/employer/unapproved-jobs/${data?.findUnapprovedJob.id}/edit-job`)
+              router.push(`/employer/unapproved-jobs/${data?.findUnapprovedJob.id}/edit-unapproved-job`)
             }}
           >
             Edit

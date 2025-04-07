@@ -88,6 +88,13 @@ export default function JobListing() {
           </div>
           <Button
             onClick={() => {
+              router.push(`/employer/${data?.findJob.id}/edit-job`)
+            }}
+          >
+            Edit
+          </Button>
+          <Button
+            onClick={() => {
               router.push(`/employer/${data?.findJob.id}/applications`)
             }}
           >
