@@ -3,9 +3,10 @@
 import { gql } from "@/__generated__/gql";
 import { useQuery } from "@apollo/client";
 import React, { useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useParams,  useRouter } from "next/navigation";
 import { ActiveRoute } from "@/app/(admin)/state/store";
 import DeleteJobButton from "./delete-job-button";
+import Button from "@mui/joy/Button";
 
 const FIND_ADMIN_JOB_QUERY = gql(`
   query findAdminJob($id: Int!){
@@ -29,6 +30,8 @@ const FIND_ADMIN_JOB_QUERY = gql(`
 
 export default function JobListing() {
   const params = useParams();
+
+  const router = useRouter();
 
   useEffect(() => {
     ActiveRoute.instance = "Job";
@@ -90,12 +93,15 @@ export default function JobListing() {
               </div>
             </div>
           </div>
-          <div>
-            <div className="">
-              <DeleteJobButton
-                id={data?.findJob.id as number}
-              />
-            </div>
+          <div className="grid grid-cols-[100px_100px]">
+          <DeleteJobButton id={data?.findJob.id as number} />
+          <Button
+            onClick={() => {
+              router.push(`/admin/${data?.findJob.id}/edit-job`);
+            }}
+          >
+            Edit
+          </Button>
           </div>
         </div>
       </div>

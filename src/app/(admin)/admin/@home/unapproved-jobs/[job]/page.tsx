@@ -3,10 +3,11 @@
 import { gql } from "@/__generated__/gql";
 import { useQuery } from "@apollo/client";
 import React, { useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import ApproveJobButton from "../approve-job-button";
 import { ActiveRoute } from "@/app/(admin)/state/store";
 import DeleteUnapprovedJobButton from "../delete-unapprovedjob-button";
+import Button from "@mui/joy/Button";
 
 const FIND_UNAPPROVEDJOB_QUERY = gql(`
   query findAdminUnapprovedJob($id: Int!){
@@ -30,13 +31,14 @@ const FIND_UNAPPROVEDJOB_QUERY = gql(`
 
 export default function UnapprovedJobListing() {
   const params = useParams();
+  const router = useRouter();
 
   useEffect(() => {
     ActiveRoute.instance = "Unapproved Job";
   }, []);
 
   const { data } = useQuery(FIND_UNAPPROVEDJOB_QUERY, {
-    variables: { id: params.unapprovedjoblisting as unknown as number }, // Pass the id variable
+    variables: { id: params.job as unknown as number }, // Pass the id variable
   });
   return (
     <div
@@ -98,11 +100,20 @@ export default function UnapprovedJobListing() {
             </div>
           </div>
           <div>
-            <div className="grid grid-cols-[100px_100px]">
+            <div className="grid grid-cols-[100px_100px_100px]">
               <ApproveJobButton id={data?.findUnapprovedJob.id as number} />
               <DeleteUnapprovedJobButton
                 id={data?.findUnapprovedJob.id as number}
               />
+              <Button
+                onClick={() => {
+                  router.push(
+                    `/admin/unapproved-jobs/${data?.findUnapprovedJob.id}/edit-unapproved-job`
+                  );
+                }}
+              >
+                Edit
+              </Button>
             </div>
           </div>
         </div>
