@@ -62,6 +62,8 @@ const documents = {
     "\n  query findEmployerJob($id: Int!){\n    findJob(id: $id){\n      id\n      title\n      industry\n      deadline\n      description\n      requirements\n      level\n      location\n      educationLevel\n      experience\n    }\n  }\n  ": types.FindEmployerJobDocument,
     "\n  query findUnapprovedJob($id: Int!){\n    findUnapprovedJob(id: $id){\n      id\n      title\n      industry\n      deadline\n      description\n      requirements\n      level\n      location\n      educationLevel\n      experience\n    }\n  }\n  ": types.FindUnapprovedJobDocument,
     "\nquery getEmployerProfile2{\n  getEmployerProfile{\n    unapprovedJobs{\n      id\n      title\n      level\n      deadline\n    }\n  }\n}\n": types.GetEmployerProfile2Document,
+    "\n    query findEemployerEditJob($id: Int!){\n      findJob(id: $id){\n        id\n        title\n        industry\n        deadline\n        description\n        requirements\n        level\n        location\n        educationLevel\n        experience\n      }\n    }\n    ": types.FindEemployerEditJobDocument,
+    "\n  mutation editJob($id: Int!, $newjob: NewJob!) {   \n    editJob( id: $id, input: $newjob ) {    \n      id\n     }    \n }\n": types.EditJobDocument,
     "\n    query findUnapprovedJob($id: Int!){\n      findUnapprovedJob(id: $id){\n        id\n        title\n        industry\n        deadline\n        description\n        requirements\n        level\n        location\n        educationLevel\n        experience\n      }\n    }\n  ": types.FindUnapprovedJobDocument,
     "\n  mutation editUnapprovedJob($id: Int!, $newjob: NewJob!) {   \n    editUnapprovedJob( id: $id, input: $newjob ) {    \n      id\n     }    \n }\n": types.EditUnapprovedJobDocument,
     "\n  query findJob($id: Int!){\n    findJob(id: $id){\n      id\n      title\n      industry\n      deadline\n      description\n      requirements\n      level\n      location\n      educationLevel\n      experience\n      employer{\n        name\n      }\n    }\n  }\n  ": types.FindJobDocument,
@@ -274,6 +276,14 @@ export function gql(source: "\n  query findUnapprovedJob($id: Int!){\n    findUn
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\nquery getEmployerProfile2{\n  getEmployerProfile{\n    unapprovedJobs{\n      id\n      title\n      level\n      deadline\n    }\n  }\n}\n"): (typeof documents)["\nquery getEmployerProfile2{\n  getEmployerProfile{\n    unapprovedJobs{\n      id\n      title\n      level\n      deadline\n    }\n  }\n}\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n    query findEemployerEditJob($id: Int!){\n      findJob(id: $id){\n        id\n        title\n        industry\n        deadline\n        description\n        requirements\n        level\n        location\n        educationLevel\n        experience\n      }\n    }\n    "): (typeof documents)["\n    query findEemployerEditJob($id: Int!){\n      findJob(id: $id){\n        id\n        title\n        industry\n        deadline\n        description\n        requirements\n        level\n        location\n        educationLevel\n        experience\n      }\n    }\n    "];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation editJob($id: Int!, $newjob: NewJob!) {   \n    editJob( id: $id, input: $newjob ) {    \n      id\n     }    \n }\n"): (typeof documents)["\n  mutation editJob($id: Int!, $newjob: NewJob!) {   \n    editJob( id: $id, input: $newjob ) {    \n      id\n     }    \n }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
