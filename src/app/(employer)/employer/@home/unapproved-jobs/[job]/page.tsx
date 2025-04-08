@@ -6,6 +6,7 @@ import React, { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { ActiveRoute } from "../../../../state/store";
 import Button from "@mui/joy/Button";
+import DeleteUnapprovedJobButton from "../delete-unapprovedjob-button";
 
 const FIND_UNAPPROVEDJOB_QUERY = gql(`
   query findUnapprovedJob($id: Int!){
@@ -90,13 +91,19 @@ export default function JobListing() {
               </div>
             </div>
           </div>
+
           <Button
             onClick={() => {
-              router.push(`/employer/unapproved-jobs/${data?.findUnapprovedJob.id}/edit-unapproved-job`)
+              router.push(
+                `/employer/unapproved-jobs/${data?.findUnapprovedJob.id}/edit-unapproved-job`
+              );
             }}
           >
             Edit
           </Button>
+          <DeleteUnapprovedJobButton
+            id={data?.findUnapprovedJob.id as number}
+          />
         </div>
       </div>
     </div>
