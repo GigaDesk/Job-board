@@ -7,6 +7,7 @@ import { gql } from "../../../__generated__/gql";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { ToLocalDate } from "@/utils/time-manipulation/toLocal";
 
 const GET_EMPLOYER_JOBS_QUERY = gql(`
   query getEmployerProfile{
@@ -59,7 +60,7 @@ export default function StudentTable() {
                   key={job?.id}
                   name={job?.title}
                   registration_number={job?.level}
-                  phone_number={job?.deadline}
+                  phone_number={ToLocalDate(job?.deadline)}
                 />
               </div>
             </div>
