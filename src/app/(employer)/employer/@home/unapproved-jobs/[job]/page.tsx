@@ -7,6 +7,7 @@ import { useParams, useRouter } from "next/navigation";
 import { ActiveRoute } from "../../../../state/store";
 import Button from "@mui/joy/Button";
 import DeleteUnapprovedJobButton from "../delete-unapprovedjob-button";
+import { ToLocalDate } from "@/utils/time-manipulation/toLocal";
 
 const FIND_UNAPPROVEDJOB_QUERY = gql(`
   query findUnapprovedJob($id: Int!){
@@ -59,7 +60,8 @@ export default function JobListing() {
               Industry: {data?.findUnapprovedJob.industry}
             </div>
             <div className="text-text-table-gray">
-              Deadline: {data?.findUnapprovedJob.deadline}
+              Deadline:
+              {ToLocalDate(data?.findUnapprovedJob.deadline as string)}
             </div>
           </div>
           <div className="grid grid-rows-[50px_1fr]">

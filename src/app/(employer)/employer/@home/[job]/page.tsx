@@ -7,6 +7,7 @@ import { useParams, useRouter } from "next/navigation";
 import { ActiveRoute } from "@/app/(employer)/state/store";
 import Button from "@mui/joy/Button";
 import DeleteJobButton from "./delete-job-button";
+import { ToLocalDate } from "@/utils/time-manipulation/toLocal";
 
 const FIND_EMPLOYER_JOB_QUERY = gql(`
   query findEmployerJob($id: Int!){
@@ -57,7 +58,7 @@ export default function JobListing() {
             </div>
             <div className="text-black">Industry: {data?.findJob.industry}</div>
             <div className="text-text-table-gray">
-              Deadline: {data?.findJob.deadline}
+              Deadline: {ToLocalDate(data?.findJob.deadline)}
             </div>
           </div>
           <div className="grid grid-rows-[50px_1fr]">

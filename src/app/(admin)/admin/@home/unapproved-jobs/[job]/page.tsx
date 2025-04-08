@@ -8,6 +8,7 @@ import ApproveJobButton from "../approve-job-button";
 import { ActiveRoute } from "@/app/(admin)/state/store";
 import DeleteUnapprovedJobButton from "../delete-unapprovedjob-button";
 import Button from "@mui/joy/Button";
+import { ToLocalDate } from "@/utils/time-manipulation/toLocal";
 
 const FIND_UNAPPROVEDJOB_QUERY = gql(`
   query findAdminUnapprovedJob($id: Int!){
@@ -67,7 +68,7 @@ export default function UnapprovedJobListing() {
               Industry: {data?.findUnapprovedJob.industry}
             </div>
             <div className="text-text-table-gray">
-              Deadline: {data?.findUnapprovedJob.deadline}
+              Deadline: {ToLocalDate(data?.findUnapprovedJob.deadline as string)}
             </div>
           </div>
           <div className="grid grid-rows-[50px_1fr]">
