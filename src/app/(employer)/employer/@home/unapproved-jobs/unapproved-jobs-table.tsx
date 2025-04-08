@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/client";
 import StudentListItem from "../../studentlistitem";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { ToLocalDate } from "@/utils/time-manipulation/toLocal";
 
 const GET_EMPLOYER_UNAPPROVED_JOBS_QUERY = gql(`
 query getEmployerProfile2{
@@ -54,7 +55,7 @@ export default function UnapprovedJobsTable() {
                 <StudentListItem
                   name={unapprovedjob?.title}
                   registration_number={unapprovedjob?.level}
-                  phone_number={unapprovedjob?.deadline}
+                  phone_number={ToLocalDate(unapprovedjob?.deadline)}
                 />
               </div>
             </div>

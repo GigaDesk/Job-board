@@ -3,8 +3,11 @@
 import { gql } from "@/__generated__/gql";
 import { useQuery } from "@apollo/client";
 import React, { useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { ActiveRoute } from "../../../../state/store";
+import Button from "@mui/joy/Button";
+import DeleteUnapprovedJobButton from "../delete-unapprovedjob-button";
+import { ToLocalDate } from "@/utils/time-manipulation/toLocal";
 
 const FIND_UNAPPROVEDJOB_QUERY = gql(`
   query findUnapprovedJob($id: Int!){
@@ -25,6 +28,8 @@ const FIND_UNAPPROVEDJOB_QUERY = gql(`
 
 export default function JobListing() {
   const params = useParams();
+
+  const router = useRouter();
 
   useEffect(() => {
     ActiveRoute.instance = "Unapproved Job";
@@ -55,7 +60,8 @@ export default function JobListing() {
               Industry: {data?.findUnapprovedJob.industry}
             </div>
             <div className="text-text-table-gray">
-              Deadline: {data?.findUnapprovedJob.deadline}
+              Deadline:
+              {ToLocalDate(data?.findUnapprovedJob.deadline as string)}
             </div>
           </div>
           <div className="grid grid-rows-[50px_1fr]">
@@ -87,6 +93,19 @@ export default function JobListing() {
               </div>
             </div>
           </div>
+
+          <Button
+            onClick={() => {
+              router.push(
+                `/employer/unapproved-jobs/${data?.findUnapprovedJob.id}/edit-unapproved-job`
+              );
+            }}
+          >
+            Edit
+          </Button>
+          <DeleteUnapprovedJobButton
+            id={data?.findUnapprovedJob.id as number}
+          />
         </div>
       </div>
     </div>
