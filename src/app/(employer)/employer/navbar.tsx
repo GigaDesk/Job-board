@@ -2,7 +2,6 @@ import PopupButton from "@/components/button/popup-button";
 import EardrumStatement from "./eardrum-statement";
 import MenuIcon from "@mui/icons-material/Menu";
 import RoutesToggle from "./routes-toggle";
-import PopupRoutes from "./popup-routes";
 import { SideDrawerState } from "@/state/store";
 
 export default function Navbar() {
@@ -29,7 +28,7 @@ export default function Navbar() {
       <div className="grid justify-items-start">
         <PopupButton
           button={<RoutesToggle />}
-          popupElement={<PopupRoutes />}
+          popupElement={<></>}
           popupPlacement="bottom-start"
         />
       </div>
