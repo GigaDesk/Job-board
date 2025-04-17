@@ -52,6 +52,14 @@ export default function EditUnApprovedJob() {
   });
 
 
+  const handleNullStringValue = (s: string | undefined | null) => {
+    if (s == null || s == undefined) {
+      return "";
+    } else {
+      return s;
+    }
+  };
+
 
   React.useEffect(() => {
 
@@ -68,8 +76,8 @@ export default function EditUnApprovedJob() {
       JobInstance.instance.deadline = dayjs(ToLocalDate(
         UnApprovedJob.findUnapprovedJob.deadline
       )).toISOString();
-      JobInstance.instance.location = UnApprovedJob.findUnapprovedJob
-        .location as string;
+      JobInstance.instance.location = handleNullStringValue(UnApprovedJob.findUnapprovedJob
+        .location)
       JobInstance.instance.level = UnApprovedJob.findUnapprovedJob
         .level as string;
       JobInstance.instance.requirements = [
@@ -115,6 +123,7 @@ export default function EditUnApprovedJob() {
       return s;
     }
   };
+
 
   const handleNumberStringValue = (s: number | "") => {
     if (s == "") {

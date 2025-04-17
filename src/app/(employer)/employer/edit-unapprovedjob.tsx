@@ -51,13 +51,16 @@ export default function EditUnApprovedJob() {
     variables: { id: params.job as unknown as number }, // Pass the id variable
   });
 
-
+  const handleNullStringValue = (s: string | undefined | null) => {
+    if (s == null || s == undefined) {
+      return "";
+    } else {
+      return s;
+    }
+  };
 
   React.useEffect(() => {
-
-
     if (UnApprovedJob !== undefined) {
-     
       JobInstance.instance.title = UnApprovedJob.findUnapprovedJob.title;
       JobInstance.instance.industry = UnApprovedJob.findUnapprovedJob
         .industry as string;
@@ -65,11 +68,12 @@ export default function EditUnApprovedJob() {
         .educationLevel as string;
       JobInstance.instance.description =
         UnApprovedJob.findUnapprovedJob.description;
-      JobInstance.instance.deadline = dayjs(ToLocalDate(
-        UnApprovedJob.findUnapprovedJob.deadline
-      )).toISOString();
-      JobInstance.instance.location = UnApprovedJob.findUnapprovedJob
-        .location as string;
+      JobInstance.instance.deadline = dayjs(
+        ToLocalDate(UnApprovedJob.findUnapprovedJob.deadline)
+      ).toISOString();
+      JobInstance.instance.location = handleNullStringValue(
+        UnApprovedJob.findUnapprovedJob.location
+      );
       JobInstance.instance.level = UnApprovedJob.findUnapprovedJob
         .level as string;
       JobInstance.instance.requirements = [
@@ -166,6 +170,11 @@ export default function EditUnApprovedJob() {
     } else {
       setDisableSubmit(true);
     }
+  }, [jobinstance.instance]);
+
+  React.useEffect(() => {
+    console.log(jobinstance.instance.level);
+    console.log(jobinstance.instance.educationLevel);
   }, [jobinstance.instance]);
 
   return (
