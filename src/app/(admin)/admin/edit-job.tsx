@@ -51,32 +51,32 @@ export default function EditJob() {
     variables: { id: params.job as unknown as number }, // Pass the id variable
   });
 
-
+  const handleNullStringValue = (s: string | undefined | null) => {
+    if (s == null || s == undefined) {
+      return "";
+    } else {
+      return s;
+    }
+  };
 
   React.useEffect(() => {
-
-
     if (Job !== undefined) {
-     
       JobInstance.instance.title = Job.findJob.title;
-      JobInstance.instance.industry = Job.findJob
-        .industry as string;
+      JobInstance.instance.industry = Job.findJob.industry as string;
       JobInstance.instance.educationLevel = Job.findJob
         .educationLevel as string;
-      JobInstance.instance.description =
-        Job.findJob.description;
-      JobInstance.instance.deadline = dayjs(ToLocalDate(
-        Job.findJob.deadline
-      )).toISOString();
-      JobInstance.instance.location = Job.findJob
-        .location as string;
-      JobInstance.instance.level = Job.findJob
-        .level as string;
+      JobInstance.instance.description = Job.findJob.description;
+      JobInstance.instance.deadline = dayjs(
+        ToLocalDate(Job.findJob.deadline)
+      ).toISOString();
+      JobInstance.instance.location = handleNullStringValue(
+        Job.findJob.location
+      );
+      JobInstance.instance.level = Job.findJob.level as string;
       JobInstance.instance.requirements = [
         ...(Job.findJob.requirements as string[]),
       ];
-      JobInstance.instance.experience = Job.findJob
-        .experience as number;
+      JobInstance.instance.experience = Job.findJob.experience as number;
     }
   }, [Job]);
 
@@ -141,9 +141,7 @@ export default function EditJob() {
     }
   };
 
-  const [editJob, { data, loading, error }] = useMutation(
-    EDIT_JOB_MUTATION
-  );
+  const [editJob, { data, loading, error }] = useMutation(EDIT_JOB_MUTATION);
 
   React.useEffect(() => {
     if (data !== undefined) {

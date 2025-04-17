@@ -51,6 +51,14 @@ export default function EditJob() {
     variables: { id: params.job as unknown as number }, // Pass the id variable
   });
 
+  const handleNullStringValue = (s: string | undefined | null) => {
+    if (s == null || s == undefined) {
+      return "";
+    } else {
+      return s;
+    }
+  };
+
   React.useEffect(() => {
     if (Job !== undefined) {
       JobInstance.instance.title = Job.findJob.title;
@@ -61,7 +69,7 @@ export default function EditJob() {
       JobInstance.instance.deadline = dayjs(
         ToLocalDate(Job.findJob.deadline)
       ).toISOString();
-      JobInstance.instance.location = Job.findJob.location as string;
+      JobInstance.instance.location = handleNullStringValue(Job.findJob.location);
       JobInstance.instance.level = Job.findJob.level as string;
       JobInstance.instance.requirements = [
         ...(Job.findJob.requirements as string[]),
