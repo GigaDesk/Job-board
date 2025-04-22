@@ -52,7 +52,7 @@ export default function Analytics() {
     <div>
       <Stack spacing={4}>
         <div>
-          <h3>Applied Jobs' Education Level Distribution: </h3>
+          <h3>Applied Jobs&apos; Education Level Distribution: </h3>
           <PieChart
             series={[
               {
@@ -97,7 +97,7 @@ export default function Analytics() {
           />
         </div>
         <div>
-          <h3>Applied Jobs' Seniority Distribution: </h3>
+          <h3>Applied Jobs&apos; Seniority Distribution: </h3>
           <PieChart
             series={[
               {
@@ -172,7 +172,7 @@ export default function Analytics() {
           />
         </div>
         <div>
-          <h3>Applied Jobs' Experience Distribution: </h3>
+          <h3>Applied Jobs&apos; Experience Distribution: </h3>
           <BarChart
             xAxis={[
               {
