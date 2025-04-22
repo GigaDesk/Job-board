@@ -20,12 +20,17 @@ const documents = {
     "\n   mutation requestAdminPasswordReset($verificationinfo: verificationinfo!){\n      requestAdminPasswordReset(input: $verificationinfo)\n   }\n": types.RequestAdminPasswordResetDocument,
     "\n  mutation removeJob($id: Int!) {   \n    removeJob( id: $id ) {    \n      id\n     }    \n }\n": types.RemoveJobDocument,
     "\n  query findAdminJob($id: Int!){\n    findJob(id: $id){\n      id\n      title\n      industry\n      deadline\n      description\n      requirements\n      level\n      location\n      educationLevel\n      experience\n      employer{\n        name\n      }\n    }\n  }\n  ": types.FindAdminJobDocument,
+    "\nquery getAnalytics{\n  getAnalytics{\n    jobs_approval{\n      approvedjobs\n      unapprovedJobs\n    }\n    applications_status{\n      total\n      accepted\n      rejected\n      pending\n    }\n    jobs_education_level{\n      diploma\n      bachelors_degree\n      masters_degree\n      phd\n      unspecified\n    }\n    unapprovedjobs_education_level{\n      diploma\n      bachelors_degree\n      masters_degree\n      phd\n      unspecified\n    }\n    jobs_seniority{\n      beginner\n      intermediate\n      senior\n      unspecified\n    }\n    unapprovedjobs_seniority{\n      beginner\n      intermediate\n      senior\n      unspecified\n    }\n    jobs_experience{\n      below_one\n      one_to_three\n      three_to_five\n      five_to_seven\n      seven_to_nine\n      nine_and_above\n    }\n    unapprovedjobs_experience{\n      below_one\n      one_to_three\n      three_to_five\n      five_to_seven\n      seven_to_nine\n      nine_and_above\n    }\n  }\n}\n    ": types.GetAnalyticsDocument,
     "\n  query getEmployersProfile{\n    getEmployersProfile{\n      id\n      name\n      phone_number\n    }\n  }\n  ": types.GetEmployersProfileDocument,
     "\n  query findAdminUnapprovedJob($id: Int!){\n    findUnapprovedJob(id: $id){\n      id\n      title\n      industry\n      deadline\n      description\n      requirements\n      level\n      location\n      educationLevel\n      experience\n      employer{\n            name\n        }\n    }\n  }\n  ": types.FindAdminUnapprovedJobDocument,
     "\n  mutation approveJob($id: Int!) {   \n    approveJob( id: $id ) {    \n      id\n     }    \n }\n": types.ApproveJobDocument,
     "\n  mutation removeUnapprovedJob($id: Int!) {   \n    removeUnapprovedJob( id: $id ) {    \n      id\n     }    \n }\n": types.RemoveUnapprovedJobDocument,
     "\nquery getUnapprovedJobs{\n  getUnapprovedJobs{\n    id\n    title\n    industry\n    employer{\n      name\n    }\n  }\n}\n": types.GetUnapprovedJobsDocument,
     "\n  mutation createJob($newjob: NewJob!) {   \n    createJob( input: $newjob ) {    \n      id\n     }    \n }\n": types.CreateJobDocument,
+    "\n    query findEemployerEditJob($id: Int!){\n      findJob(id: $id){\n        id\n        title\n        industry\n        deadline\n        description\n        requirements\n        level\n        location\n        educationLevel\n        experience\n      }\n    }\n    ": types.FindEemployerEditJobDocument,
+    "\n  mutation editJob($id: Int!, $newjob: NewJob!) {   \n    editJob( id: $id, input: $newjob ) {    \n      id\n     }    \n }\n": types.EditJobDocument,
+    "\n    query findUnapprovedJob($id: Int!){\n      findUnapprovedJob(id: $id){\n        id\n        title\n        industry\n        deadline\n        description\n        requirements\n        level\n        location\n        educationLevel\n        experience\n      }\n    }\n  ": types.FindUnapprovedJobDocument,
+    "\n  mutation editUnapprovedJob($id: Int!, $newjob: NewJob!) {   \n    editUnapprovedJob( id: $id, input: $newjob ) {    \n      id\n     }    \n }\n": types.EditUnapprovedJobDocument,
     "\n  query getJobs{\n    getJobs{\n      id\n      title\n      industry\n      employer{\n      name\n    }\n    }\n  }\n  ": types.GetJobsDocument,
     "\n   mutation resetEmployeePassword($new_password: String!){\n    resetEmployeePassword(new_password: $new_password){\n      id\n    }\n  }\n ": types.ResetEmployeePasswordDocument,
     "\n  mutation employeeLogin($employeelogin: EmployeeLogin!) {   \n    employeeLogin(input: $employeelogin) \n  }\n": types.EmployeeLoginDocument,
@@ -62,10 +67,6 @@ const documents = {
     "\n  query findEmployerJob($id: Int!){\n    findJob(id: $id){\n      id\n      title\n      industry\n      deadline\n      description\n      requirements\n      level\n      location\n      educationLevel\n      experience\n    }\n  }\n  ": types.FindEmployerJobDocument,
     "\n  query findUnapprovedJob($id: Int!){\n    findUnapprovedJob(id: $id){\n      id\n      title\n      industry\n      deadline\n      description\n      requirements\n      level\n      location\n      educationLevel\n      experience\n    }\n  }\n  ": types.FindUnapprovedJobDocument,
     "\nquery getEmployerProfile2{\n  getEmployerProfile{\n    unapprovedJobs{\n      id\n      title\n      level\n      deadline\n    }\n  }\n}\n": types.GetEmployerProfile2Document,
-    "\n    query findEemployerEditJob($id: Int!){\n      findJob(id: $id){\n        id\n        title\n        industry\n        deadline\n        description\n        requirements\n        level\n        location\n        educationLevel\n        experience\n      }\n    }\n    ": types.FindEemployerEditJobDocument,
-    "\n  mutation editJob($id: Int!, $newjob: NewJob!) {   \n    editJob( id: $id, input: $newjob ) {    \n      id\n     }    \n }\n": types.EditJobDocument,
-    "\n    query findUnapprovedJob($id: Int!){\n      findUnapprovedJob(id: $id){\n        id\n        title\n        industry\n        deadline\n        description\n        requirements\n        level\n        location\n        educationLevel\n        experience\n      }\n    }\n  ": types.FindUnapprovedJobDocument,
-    "\n  mutation editUnapprovedJob($id: Int!, $newjob: NewJob!) {   \n    editUnapprovedJob( id: $id, input: $newjob ) {    \n      id\n     }    \n }\n": types.EditUnapprovedJobDocument,
     "\n  query findJob($id: Int!){\n    findJob(id: $id){\n      id\n      title\n      industry\n      deadline\n      description\n      requirements\n      level\n      location\n      educationLevel\n      experience\n      employer{\n        name\n      }\n    }\n  }\n  ": types.FindJobDocument,
     "\n   mutation sendCode($phone_number: String!) {   \n    sendCode(phone_number: $phone_number) {    \n      phone_number\n      success\n     }    \n }\n": types.SendCodeDocument,
 };
@@ -111,6 +112,10 @@ export function gql(source: "\n  query findAdminJob($id: Int!){\n    findJob(id:
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "\nquery getAnalytics{\n  getAnalytics{\n    jobs_approval{\n      approvedjobs\n      unapprovedJobs\n    }\n    applications_status{\n      total\n      accepted\n      rejected\n      pending\n    }\n    jobs_education_level{\n      diploma\n      bachelors_degree\n      masters_degree\n      phd\n      unspecified\n    }\n    unapprovedjobs_education_level{\n      diploma\n      bachelors_degree\n      masters_degree\n      phd\n      unspecified\n    }\n    jobs_seniority{\n      beginner\n      intermediate\n      senior\n      unspecified\n    }\n    unapprovedjobs_seniority{\n      beginner\n      intermediate\n      senior\n      unspecified\n    }\n    jobs_experience{\n      below_one\n      one_to_three\n      three_to_five\n      five_to_seven\n      seven_to_nine\n      nine_and_above\n    }\n    unapprovedjobs_experience{\n      below_one\n      one_to_three\n      three_to_five\n      five_to_seven\n      seven_to_nine\n      nine_and_above\n    }\n  }\n}\n    "): (typeof documents)["\nquery getAnalytics{\n  getAnalytics{\n    jobs_approval{\n      approvedjobs\n      unapprovedJobs\n    }\n    applications_status{\n      total\n      accepted\n      rejected\n      pending\n    }\n    jobs_education_level{\n      diploma\n      bachelors_degree\n      masters_degree\n      phd\n      unspecified\n    }\n    unapprovedjobs_education_level{\n      diploma\n      bachelors_degree\n      masters_degree\n      phd\n      unspecified\n    }\n    jobs_seniority{\n      beginner\n      intermediate\n      senior\n      unspecified\n    }\n    unapprovedjobs_seniority{\n      beginner\n      intermediate\n      senior\n      unspecified\n    }\n    jobs_experience{\n      below_one\n      one_to_three\n      three_to_five\n      five_to_seven\n      seven_to_nine\n      nine_and_above\n    }\n    unapprovedjobs_experience{\n      below_one\n      one_to_three\n      three_to_five\n      five_to_seven\n      seven_to_nine\n      nine_and_above\n    }\n  }\n}\n    "];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "\n  query getEmployersProfile{\n    getEmployersProfile{\n      id\n      name\n      phone_number\n    }\n  }\n  "): (typeof documents)["\n  query getEmployersProfile{\n    getEmployersProfile{\n      id\n      name\n      phone_number\n    }\n  }\n  "];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -132,6 +137,22 @@ export function gql(source: "\nquery getUnapprovedJobs{\n  getUnapprovedJobs{\n 
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  mutation createJob($newjob: NewJob!) {   \n    createJob( input: $newjob ) {    \n      id\n     }    \n }\n"): (typeof documents)["\n  mutation createJob($newjob: NewJob!) {   \n    createJob( input: $newjob ) {    \n      id\n     }    \n }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n    query findEemployerEditJob($id: Int!){\n      findJob(id: $id){\n        id\n        title\n        industry\n        deadline\n        description\n        requirements\n        level\n        location\n        educationLevel\n        experience\n      }\n    }\n    "): (typeof documents)["\n    query findEemployerEditJob($id: Int!){\n      findJob(id: $id){\n        id\n        title\n        industry\n        deadline\n        description\n        requirements\n        level\n        location\n        educationLevel\n        experience\n      }\n    }\n    "];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation editJob($id: Int!, $newjob: NewJob!) {   \n    editJob( id: $id, input: $newjob ) {    \n      id\n     }    \n }\n"): (typeof documents)["\n  mutation editJob($id: Int!, $newjob: NewJob!) {   \n    editJob( id: $id, input: $newjob ) {    \n      id\n     }    \n }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n    query findUnapprovedJob($id: Int!){\n      findUnapprovedJob(id: $id){\n        id\n        title\n        industry\n        deadline\n        description\n        requirements\n        level\n        location\n        educationLevel\n        experience\n      }\n    }\n  "): (typeof documents)["\n    query findUnapprovedJob($id: Int!){\n      findUnapprovedJob(id: $id){\n        id\n        title\n        industry\n        deadline\n        description\n        requirements\n        level\n        location\n        educationLevel\n        experience\n      }\n    }\n  "];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation editUnapprovedJob($id: Int!, $newjob: NewJob!) {   \n    editUnapprovedJob( id: $id, input: $newjob ) {    \n      id\n     }    \n }\n"): (typeof documents)["\n  mutation editUnapprovedJob($id: Int!, $newjob: NewJob!) {   \n    editUnapprovedJob( id: $id, input: $newjob ) {    \n      id\n     }    \n }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -276,22 +297,6 @@ export function gql(source: "\n  query findUnapprovedJob($id: Int!){\n    findUn
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\nquery getEmployerProfile2{\n  getEmployerProfile{\n    unapprovedJobs{\n      id\n      title\n      level\n      deadline\n    }\n  }\n}\n"): (typeof documents)["\nquery getEmployerProfile2{\n  getEmployerProfile{\n    unapprovedJobs{\n      id\n      title\n      level\n      deadline\n    }\n  }\n}\n"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "\n    query findEemployerEditJob($id: Int!){\n      findJob(id: $id){\n        id\n        title\n        industry\n        deadline\n        description\n        requirements\n        level\n        location\n        educationLevel\n        experience\n      }\n    }\n    "): (typeof documents)["\n    query findEemployerEditJob($id: Int!){\n      findJob(id: $id){\n        id\n        title\n        industry\n        deadline\n        description\n        requirements\n        level\n        location\n        educationLevel\n        experience\n      }\n    }\n    "];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "\n  mutation editJob($id: Int!, $newjob: NewJob!) {   \n    editJob( id: $id, input: $newjob ) {    \n      id\n     }    \n }\n"): (typeof documents)["\n  mutation editJob($id: Int!, $newjob: NewJob!) {   \n    editJob( id: $id, input: $newjob ) {    \n      id\n     }    \n }\n"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "\n    query findUnapprovedJob($id: Int!){\n      findUnapprovedJob(id: $id){\n        id\n        title\n        industry\n        deadline\n        description\n        requirements\n        level\n        location\n        educationLevel\n        experience\n      }\n    }\n  "): (typeof documents)["\n    query findUnapprovedJob($id: Int!){\n      findUnapprovedJob(id: $id){\n        id\n        title\n        industry\n        deadline\n        description\n        requirements\n        level\n        location\n        educationLevel\n        experience\n      }\n    }\n  "];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "\n  mutation editUnapprovedJob($id: Int!, $newjob: NewJob!) {   \n    editUnapprovedJob( id: $id, input: $newjob ) {    \n      id\n     }    \n }\n"): (typeof documents)["\n  mutation editUnapprovedJob($id: Int!, $newjob: NewJob!) {   \n    editUnapprovedJob( id: $id, input: $newjob ) {    \n      id\n     }    \n }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

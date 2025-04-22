@@ -264,6 +264,18 @@ export type AdminQueryResult = {
   totalCount: Scalars['Int']['output'];
 };
 
+export type Analytics = {
+  __typename?: 'Analytics';
+  applications_status: ApplicationAnalytics;
+  jobs_approval: JobApprovalAnalytics;
+  jobs_education_level: JobEducationLevelAnalytics;
+  jobs_experience: JobExperienceAnalytics;
+  jobs_seniority: JobSeniorityLevelAnalytics;
+  unapprovedjobs_education_level: JobEducationLevelAnalytics;
+  unapprovedjobs_experience: JobExperienceAnalytics;
+  unapprovedjobs_seniority: JobSeniorityLevelAnalytics;
+};
+
 export type Application = {
   __typename?: 'Application';
   coverLetterUrl: Scalars['String']['output'];
@@ -277,6 +289,14 @@ export type Application = {
   resumeeUrl: Scalars['String']['output'];
   status: Scalars['String']['output'];
   updatedAt: Scalars['Time']['output'];
+};
+
+export type ApplicationAnalytics = {
+  __typename?: 'ApplicationAnalytics';
+  accepted: Scalars['Int']['output'];
+  pending: Scalars['Int']['output'];
+  rejected: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
 };
 
 /**
@@ -587,6 +607,14 @@ export type Employee = {
   updatedAt: Scalars['Time']['output'];
 };
 
+export type EmployeeAnalytics = {
+  __typename?: 'EmployeeAnalytics';
+  applied_jobs_education_level: JobEducationLevelAnalytics;
+  applied_jobs_experience: JobExperienceAnalytics;
+  applied_jobs_seniority: JobSeniorityLevelAnalytics;
+  job_application_status: ApplicationAnalytics;
+};
+
 /**
  * Filter input selection for Employee
  * Can be used f.e.: by queryEmployee
@@ -659,6 +687,7 @@ export type EmployeePatch = {
 
 export type EmployeeProfile = {
   __typename?: 'EmployeeProfile';
+  analytics: EmployeeAnalytics;
   applications?: Maybe<Array<ApplicationProfile>>;
   createdAt: Scalars['Time']['output'];
   id: Scalars['Int']['output'];
@@ -692,6 +721,18 @@ export type Employer = {
   password: Scalars['String']['output'];
   phone_number: Scalars['String']['output'];
   updatedAt: Scalars['Time']['output'];
+};
+
+export type EmployerAnalytics = {
+  __typename?: 'EmployerAnalytics';
+  applications_status: ApplicationAnalytics;
+  jobs_approval: JobApprovalAnalytics;
+  jobs_education_level: JobEducationLevelAnalytics;
+  jobs_experience: JobExperienceAnalytics;
+  jobs_seniority: JobSeniorityLevelAnalytics;
+  unapprovedjobs_education_level: JobEducationLevelAnalytics;
+  unapprovedjobs_experience: JobExperienceAnalytics;
+  unapprovedjobs_seniority: JobSeniorityLevelAnalytics;
 };
 
 /**
@@ -772,6 +813,7 @@ export type EmployerPatch = {
 export type EmployerProfile = {
   __typename?: 'EmployerProfile';
   Website?: Maybe<Scalars['String']['output']>;
+  analytics: EmployerAnalytics;
   badge?: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['Time']['output'];
   id: Scalars['Int']['output'];
@@ -870,6 +912,31 @@ export type Job = {
   requirements?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
   updatedAt: Scalars['Time']['output'];
+};
+
+export type JobApprovalAnalytics = {
+  __typename?: 'JobApprovalAnalytics';
+  approvedjobs: Scalars['Int']['output'];
+  unapprovedJobs: Scalars['Int']['output'];
+};
+
+export type JobEducationLevelAnalytics = {
+  __typename?: 'JobEducationLevelAnalytics';
+  bachelors_degree: Scalars['Int']['output'];
+  diploma: Scalars['Int']['output'];
+  masters_degree: Scalars['Int']['output'];
+  phd: Scalars['Int']['output'];
+  unspecified: Scalars['Int']['output'];
+};
+
+export type JobExperienceAnalytics = {
+  __typename?: 'JobExperienceAnalytics';
+  below_one: Scalars['Int']['output'];
+  five_to_seven: Scalars['Int']['output'];
+  nine_and_above: Scalars['Int']['output'];
+  one_to_three: Scalars['Int']['output'];
+  seven_to_nine: Scalars['Int']['output'];
+  three_to_five: Scalars['Int']['output'];
 };
 
 /**
@@ -998,6 +1065,7 @@ export type JobProfile = {
   location?: Maybe<Scalars['String']['output']>;
   maxSalary?: Maybe<Scalars['Int']['output']>;
   minSalary?: Maybe<Scalars['Int']['output']>;
+  posted: Scalars['String']['output'];
   requirements?: Maybe<Array<Scalars['String']['output']>>;
   title: Scalars['String']['output'];
   updatedAt: Scalars['Time']['output'];
@@ -1014,6 +1082,14 @@ export type JobQueryResult = {
   count: Scalars['Int']['output'];
   data: Array<Job>;
   totalCount: Scalars['Int']['output'];
+};
+
+export type JobSeniorityLevelAnalytics = {
+  __typename?: 'JobSeniorityLevelAnalytics';
+  beginner: Scalars['Int']['output'];
+  intermediate: Scalars['Int']['output'];
+  senior: Scalars['Int']['output'];
+  unspecified: Scalars['Int']['output'];
 };
 
 export type JobsFilterParameters = {
@@ -1070,6 +1146,8 @@ export type Mutation = {
   /** delete UnverifiedEmployer filtered by selection and delete all matched values */
   deleteUnverifiedEmployer?: Maybe<DeleteUnverifiedEmployerPayload>;
   editApplication: ApplicationProfile;
+  editEmployeeProfile?: Maybe<EmployeeProfile>;
+  editEmployerProfile?: Maybe<EmployerProfile>;
   editJob: JobProfile;
   editUnapprovedJob: UnapprovedJobProfile;
   employeeLogin?: Maybe<Scalars['String']['output']>;
@@ -1250,6 +1328,16 @@ export type MutationEditApplicationArgs = {
   id: Scalars['Int']['input'];
   input?: InputMaybe<NewApplication>;
   status?: InputMaybe<ApplicationStatus>;
+};
+
+
+export type MutationEditEmployeeProfileArgs = {
+  input: UpdateEmployee;
+};
+
+
+export type MutationEditEmployerProfileArgs = {
+  input: UpdatedEmployer;
 };
 
 
@@ -1460,6 +1548,7 @@ export type Query = {
   findUnapprovedJob: UnapprovedJobProfile;
   /** return one Admin selected by PrimaryKey(s) */
   getAdmin?: Maybe<Admin>;
+  getAnalytics: Analytics;
   /** return one Application selected by PrimaryKey(s) */
   getApplication?: Maybe<Application>;
   getDummy?: Maybe<Dummy>;
@@ -1916,6 +2005,7 @@ export type UnapprovedJobProfile = {
   location?: Maybe<Scalars['String']['output']>;
   maxSalary?: Maybe<Scalars['Int']['output']>;
   minSalary?: Maybe<Scalars['Int']['output']>;
+  posted: Scalars['String']['output'];
   requirements?: Maybe<Array<Scalars['String']['output']>>;
   title: Scalars['String']['output'];
   updatedAt: Scalars['Time']['output'];
@@ -2234,6 +2324,12 @@ export type UpdateApplicationPayloadApplicationArgs = {
   order?: InputMaybe<ApplicationOrder>;
 };
 
+export type UpdateEmployee = {
+  name: Scalars['String']['input'];
+  phone_number: Scalars['String']['input'];
+  profilepicture?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** Update rules for Employee multiupdates simple possible by global filtervalue */
 export type UpdateEmployeeInput = {
   filter: EmployeeFiltersInput;
@@ -2409,6 +2505,13 @@ export type UpdateUnverifiedEmployerPayloadUnverifiedEmployerArgs = {
   order?: InputMaybe<UnverifiedEmployerOrder>;
 };
 
+export type UpdatedEmployer = {
+  Website?: InputMaybe<Scalars['String']['input']>;
+  badge?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  phone_number: Scalars['String']['input'];
+};
+
 export type Verificationinfo = {
   otp: Scalars['String']['input'];
   phone_number: Scalars['String']['input'];
@@ -2456,6 +2559,11 @@ export type FindAdminJobQueryVariables = Exact<{
 
 export type FindAdminJobQuery = { __typename?: 'Query', findJob: { __typename?: 'JobProfile', id: number, title: string, industry?: string | null, deadline?: any | null, description: string, requirements?: Array<string> | null, level?: string | null, location?: string | null, educationLevel?: string | null, experience?: number | null, employer?: { __typename?: 'EmployerProfile', name: string } | null } };
 
+export type GetAnalyticsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAnalyticsQuery = { __typename?: 'Query', getAnalytics: { __typename?: 'Analytics', jobs_approval: { __typename?: 'JobApprovalAnalytics', approvedjobs: number, unapprovedJobs: number }, applications_status: { __typename?: 'ApplicationAnalytics', total: number, accepted: number, rejected: number, pending: number }, jobs_education_level: { __typename?: 'JobEducationLevelAnalytics', diploma: number, bachelors_degree: number, masters_degree: number, phd: number, unspecified: number }, unapprovedjobs_education_level: { __typename?: 'JobEducationLevelAnalytics', diploma: number, bachelors_degree: number, masters_degree: number, phd: number, unspecified: number }, jobs_seniority: { __typename?: 'JobSeniorityLevelAnalytics', beginner: number, intermediate: number, senior: number, unspecified: number }, unapprovedjobs_seniority: { __typename?: 'JobSeniorityLevelAnalytics', beginner: number, intermediate: number, senior: number, unspecified: number }, jobs_experience: { __typename?: 'JobExperienceAnalytics', below_one: number, one_to_three: number, three_to_five: number, five_to_seven: number, seven_to_nine: number, nine_and_above: number }, unapprovedjobs_experience: { __typename?: 'JobExperienceAnalytics', below_one: number, one_to_three: number, three_to_five: number, five_to_seven: number, seven_to_nine: number, nine_and_above: number } } };
+
 export type GetEmployersProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -2493,6 +2601,36 @@ export type CreateJobMutationVariables = Exact<{
 
 
 export type CreateJobMutation = { __typename?: 'Mutation', createJob: { __typename?: 'JobProfile', id: number } };
+
+export type FindEemployerEditJobQueryVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type FindEemployerEditJobQuery = { __typename?: 'Query', findJob: { __typename?: 'JobProfile', id: number, title: string, industry?: string | null, deadline?: any | null, description: string, requirements?: Array<string> | null, level?: string | null, location?: string | null, educationLevel?: string | null, experience?: number | null } };
+
+export type EditJobMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+  newjob: NewJob;
+}>;
+
+
+export type EditJobMutation = { __typename?: 'Mutation', editJob: { __typename?: 'JobProfile', id: number } };
+
+export type FindUnapprovedJobQueryVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type FindUnapprovedJobQuery = { __typename?: 'Query', findUnapprovedJob: { __typename?: 'UnapprovedJobProfile', id: number, title: string, industry?: string | null, deadline?: any | null, description: string, requirements?: Array<string> | null, level?: string | null, location?: string | null, educationLevel?: string | null, experience?: number | null } };
+
+export type EditUnapprovedJobMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+  newjob: NewJob;
+}>;
+
+
+export type EditUnapprovedJobMutation = { __typename?: 'Mutation', editUnapprovedJob: { __typename?: 'UnapprovedJobProfile', id: number } };
 
 export type GetJobsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2718,40 +2856,10 @@ export type FindEmployerJobQueryVariables = Exact<{
 
 export type FindEmployerJobQuery = { __typename?: 'Query', findJob: { __typename?: 'JobProfile', id: number, title: string, industry?: string | null, deadline?: any | null, description: string, requirements?: Array<string> | null, level?: string | null, location?: string | null, educationLevel?: string | null, experience?: number | null } };
 
-export type FindUnapprovedJobQueryVariables = Exact<{
-  id: Scalars['Int']['input'];
-}>;
-
-
-export type FindUnapprovedJobQuery = { __typename?: 'Query', findUnapprovedJob: { __typename?: 'UnapprovedJobProfile', id: number, title: string, industry?: string | null, deadline?: any | null, description: string, requirements?: Array<string> | null, level?: string | null, location?: string | null, educationLevel?: string | null, experience?: number | null } };
-
 export type GetEmployerProfile2QueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetEmployerProfile2Query = { __typename?: 'Query', getEmployerProfile?: { __typename?: 'EmployerProfile', unapprovedJobs?: Array<{ __typename?: 'UnapprovedJobProfile', id: number, title: string, level?: string | null, deadline?: any | null } | null> | null } | null };
-
-export type FindEemployerEditJobQueryVariables = Exact<{
-  id: Scalars['Int']['input'];
-}>;
-
-
-export type FindEemployerEditJobQuery = { __typename?: 'Query', findJob: { __typename?: 'JobProfile', id: number, title: string, industry?: string | null, deadline?: any | null, description: string, requirements?: Array<string> | null, level?: string | null, location?: string | null, educationLevel?: string | null, experience?: number | null } };
-
-export type EditJobMutationVariables = Exact<{
-  id: Scalars['Int']['input'];
-  newjob: NewJob;
-}>;
-
-
-export type EditJobMutation = { __typename?: 'Mutation', editJob: { __typename?: 'JobProfile', id: number } };
-
-export type EditUnapprovedJobMutationVariables = Exact<{
-  id: Scalars['Int']['input'];
-  newjob: NewJob;
-}>;
-
-
-export type EditUnapprovedJobMutation = { __typename?: 'Mutation', editUnapprovedJob: { __typename?: 'UnapprovedJobProfile', id: number } };
 
 export type FindJobQueryVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -2774,12 +2882,17 @@ export const ForgotAdminPasswordDocument = {"kind":"Document","definitions":[{"k
 export const RequestAdminPasswordResetDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"requestAdminPasswordReset"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"verificationinfo"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"verificationinfo"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"requestAdminPasswordReset"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"verificationinfo"}}}]}]}}]} as unknown as DocumentNode<RequestAdminPasswordResetMutation, RequestAdminPasswordResetMutationVariables>;
 export const RemoveJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"removeJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"removeJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<RemoveJobMutation, RemoveJobMutationVariables>;
 export const FindAdminJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"findAdminJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"industry"}},{"kind":"Field","name":{"kind":"Name","value":"deadline"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"requirements"}},{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"location"}},{"kind":"Field","name":{"kind":"Name","value":"educationLevel"}},{"kind":"Field","name":{"kind":"Name","value":"experience"}},{"kind":"Field","name":{"kind":"Name","value":"employer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<FindAdminJobQuery, FindAdminJobQueryVariables>;
+export const GetAnalyticsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getAnalytics"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getAnalytics"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"jobs_approval"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"approvedjobs"}},{"kind":"Field","name":{"kind":"Name","value":"unapprovedJobs"}}]}},{"kind":"Field","name":{"kind":"Name","value":"applications_status"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total"}},{"kind":"Field","name":{"kind":"Name","value":"accepted"}},{"kind":"Field","name":{"kind":"Name","value":"rejected"}},{"kind":"Field","name":{"kind":"Name","value":"pending"}}]}},{"kind":"Field","name":{"kind":"Name","value":"jobs_education_level"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"diploma"}},{"kind":"Field","name":{"kind":"Name","value":"bachelors_degree"}},{"kind":"Field","name":{"kind":"Name","value":"masters_degree"}},{"kind":"Field","name":{"kind":"Name","value":"phd"}},{"kind":"Field","name":{"kind":"Name","value":"unspecified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"unapprovedjobs_education_level"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"diploma"}},{"kind":"Field","name":{"kind":"Name","value":"bachelors_degree"}},{"kind":"Field","name":{"kind":"Name","value":"masters_degree"}},{"kind":"Field","name":{"kind":"Name","value":"phd"}},{"kind":"Field","name":{"kind":"Name","value":"unspecified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"jobs_seniority"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"beginner"}},{"kind":"Field","name":{"kind":"Name","value":"intermediate"}},{"kind":"Field","name":{"kind":"Name","value":"senior"}},{"kind":"Field","name":{"kind":"Name","value":"unspecified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"unapprovedjobs_seniority"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"beginner"}},{"kind":"Field","name":{"kind":"Name","value":"intermediate"}},{"kind":"Field","name":{"kind":"Name","value":"senior"}},{"kind":"Field","name":{"kind":"Name","value":"unspecified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"jobs_experience"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"below_one"}},{"kind":"Field","name":{"kind":"Name","value":"one_to_three"}},{"kind":"Field","name":{"kind":"Name","value":"three_to_five"}},{"kind":"Field","name":{"kind":"Name","value":"five_to_seven"}},{"kind":"Field","name":{"kind":"Name","value":"seven_to_nine"}},{"kind":"Field","name":{"kind":"Name","value":"nine_and_above"}}]}},{"kind":"Field","name":{"kind":"Name","value":"unapprovedjobs_experience"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"below_one"}},{"kind":"Field","name":{"kind":"Name","value":"one_to_three"}},{"kind":"Field","name":{"kind":"Name","value":"three_to_five"}},{"kind":"Field","name":{"kind":"Name","value":"five_to_seven"}},{"kind":"Field","name":{"kind":"Name","value":"seven_to_nine"}},{"kind":"Field","name":{"kind":"Name","value":"nine_and_above"}}]}}]}}]}}]} as unknown as DocumentNode<GetAnalyticsQuery, GetAnalyticsQueryVariables>;
 export const GetEmployersProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getEmployersProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getEmployersProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}}]}}]}}]} as unknown as DocumentNode<GetEmployersProfileQuery, GetEmployersProfileQueryVariables>;
 export const FindAdminUnapprovedJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"findAdminUnapprovedJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findUnapprovedJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"industry"}},{"kind":"Field","name":{"kind":"Name","value":"deadline"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"requirements"}},{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"location"}},{"kind":"Field","name":{"kind":"Name","value":"educationLevel"}},{"kind":"Field","name":{"kind":"Name","value":"experience"}},{"kind":"Field","name":{"kind":"Name","value":"employer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<FindAdminUnapprovedJobQuery, FindAdminUnapprovedJobQueryVariables>;
 export const ApproveJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"approveJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"approveJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<ApproveJobMutation, ApproveJobMutationVariables>;
 export const RemoveUnapprovedJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"removeUnapprovedJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"removeUnapprovedJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<RemoveUnapprovedJobMutation, RemoveUnapprovedJobMutationVariables>;
 export const GetUnapprovedJobsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getUnapprovedJobs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getUnapprovedJobs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"industry"}},{"kind":"Field","name":{"kind":"Name","value":"employer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetUnapprovedJobsQuery, GetUnapprovedJobsQueryVariables>;
 export const CreateJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newjob"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"NewJob"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newjob"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreateJobMutation, CreateJobMutationVariables>;
+export const FindEemployerEditJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"findEemployerEditJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"industry"}},{"kind":"Field","name":{"kind":"Name","value":"deadline"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"requirements"}},{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"location"}},{"kind":"Field","name":{"kind":"Name","value":"educationLevel"}},{"kind":"Field","name":{"kind":"Name","value":"experience"}}]}}]}}]} as unknown as DocumentNode<FindEemployerEditJobQuery, FindEemployerEditJobQueryVariables>;
+export const EditJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"editJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newjob"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"NewJob"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"editJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}},{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newjob"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<EditJobMutation, EditJobMutationVariables>;
+export const FindUnapprovedJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"findUnapprovedJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findUnapprovedJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"industry"}},{"kind":"Field","name":{"kind":"Name","value":"deadline"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"requirements"}},{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"location"}},{"kind":"Field","name":{"kind":"Name","value":"educationLevel"}},{"kind":"Field","name":{"kind":"Name","value":"experience"}}]}}]}}]} as unknown as DocumentNode<FindUnapprovedJobQuery, FindUnapprovedJobQueryVariables>;
+export const EditUnapprovedJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"editUnapprovedJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newjob"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"NewJob"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"editUnapprovedJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}},{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newjob"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<EditUnapprovedJobMutation, EditUnapprovedJobMutationVariables>;
 export const GetJobsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getJobs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getJobs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"industry"}},{"kind":"Field","name":{"kind":"Name","value":"employer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetJobsQuery, GetJobsQueryVariables>;
 export const ResetEmployeePasswordDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"resetEmployeePassword"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"new_password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"resetEmployeePassword"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"new_password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"new_password"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<ResetEmployeePasswordMutation, ResetEmployeePasswordMutationVariables>;
 export const EmployeeLoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"employeeLogin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"employeelogin"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"EmployeeLogin"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"employeeLogin"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"employeelogin"}}}]}]}}]} as unknown as DocumentNode<EmployeeLoginMutation, EmployeeLoginMutationVariables>;
@@ -2814,10 +2927,6 @@ export const FindEmployerJobApplicationsDocument = {"kind":"Document","definitio
 export const FindPendingEmployerJobApplicationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"findPendingEmployerJobApplications"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"applications"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"status"},"value":{"kind":"EnumValue","value":"PENDING"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"employee"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}}]}},{"kind":"Field","name":{"kind":"Name","value":"educationLevel"}}]}}]}}]}}]} as unknown as DocumentNode<FindPendingEmployerJobApplicationsQuery, FindPendingEmployerJobApplicationsQueryVariables>;
 export const FindRejectedEmployerJobApplicationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"findRejectedEmployerJobApplications"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"applications"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"status"},"value":{"kind":"EnumValue","value":"REJECTED"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"employee"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}}]}},{"kind":"Field","name":{"kind":"Name","value":"educationLevel"}}]}}]}}]}}]} as unknown as DocumentNode<FindRejectedEmployerJobApplicationsQuery, FindRejectedEmployerJobApplicationsQueryVariables>;
 export const FindEmployerJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"findEmployerJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"industry"}},{"kind":"Field","name":{"kind":"Name","value":"deadline"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"requirements"}},{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"location"}},{"kind":"Field","name":{"kind":"Name","value":"educationLevel"}},{"kind":"Field","name":{"kind":"Name","value":"experience"}}]}}]}}]} as unknown as DocumentNode<FindEmployerJobQuery, FindEmployerJobQueryVariables>;
-export const FindUnapprovedJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"findUnapprovedJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findUnapprovedJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"industry"}},{"kind":"Field","name":{"kind":"Name","value":"deadline"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"requirements"}},{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"location"}},{"kind":"Field","name":{"kind":"Name","value":"educationLevel"}},{"kind":"Field","name":{"kind":"Name","value":"experience"}}]}}]}}]} as unknown as DocumentNode<FindUnapprovedJobQuery, FindUnapprovedJobQueryVariables>;
 export const GetEmployerProfile2Document = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getEmployerProfile2"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getEmployerProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"unapprovedJobs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"deadline"}}]}}]}}]}}]} as unknown as DocumentNode<GetEmployerProfile2Query, GetEmployerProfile2QueryVariables>;
-export const FindEemployerEditJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"findEemployerEditJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"industry"}},{"kind":"Field","name":{"kind":"Name","value":"deadline"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"requirements"}},{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"location"}},{"kind":"Field","name":{"kind":"Name","value":"educationLevel"}},{"kind":"Field","name":{"kind":"Name","value":"experience"}}]}}]}}]} as unknown as DocumentNode<FindEemployerEditJobQuery, FindEemployerEditJobQueryVariables>;
-export const EditJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"editJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newjob"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"NewJob"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"editJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}},{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newjob"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<EditJobMutation, EditJobMutationVariables>;
-export const EditUnapprovedJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"editUnapprovedJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newjob"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"NewJob"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"editUnapprovedJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}},{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newjob"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<EditUnapprovedJobMutation, EditUnapprovedJobMutationVariables>;
 export const FindJobDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"findJob"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findJob"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"industry"}},{"kind":"Field","name":{"kind":"Name","value":"deadline"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"requirements"}},{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"location"}},{"kind":"Field","name":{"kind":"Name","value":"educationLevel"}},{"kind":"Field","name":{"kind":"Name","value":"experience"}},{"kind":"Field","name":{"kind":"Name","value":"employer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<FindJobQuery, FindJobQueryVariables>;
 export const SendCodeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"sendCode"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sendCode"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"phone_number"},"value":{"kind":"Variable","name":{"kind":"Name","value":"phone_number"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"phone_number"}},{"kind":"Field","name":{"kind":"Name","value":"success"}}]}}]}}]} as unknown as DocumentNode<SendCodeMutation, SendCodeMutationVariables>;
