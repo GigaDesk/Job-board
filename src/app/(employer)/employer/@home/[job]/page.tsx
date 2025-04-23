@@ -20,6 +20,7 @@ const FIND_EMPLOYER_JOB_QUERY = gql(`
       requirements
       level
       location
+      posted
       educationLevel
       experience
     }
@@ -46,7 +47,11 @@ export default function JobListing() {
       <div className="w-full md:w-[700px] lg:w-[750px] text-black">
         <div className="grid gap-8">
           <div className="grid gap-4">
-            <div className="">Posted: 1 day ago</div>
+            <div className="text-text-table-gray">
+              <ul className="list-disc pl-4">
+                <li> {data?.findJob.posted} </li>
+              </ul>
+            </div>
             <div className="text-black font-bold text-xl grid content-center">
               {data?.findJob.title}
             </div>
