@@ -11,7 +11,7 @@ import Card from "@mui/material/Card";
 import ApplicationForm from "./application-form";
 
 const FIND_ADMIN_JOB_QUERY = gql(`
-  query findAdminJob($id: Int!){
+  query findEmployeeJob($id: Int!){
     findJob(id: $id){
       id
       title
@@ -21,6 +21,7 @@ const FIND_ADMIN_JOB_QUERY = gql(`
       requirements
       level
       location
+      posted
       educationLevel
       experience
       employer{
@@ -55,7 +56,11 @@ export default function JobListing() {
           <div className="grid gap-4">
             <div className="grid grid-cols-2">
               <div className="text-black">{data?.findJob.employer?.name}</div>
-              <div className="">Posted: 1 day ago</div>
+              <div className="text-text-table-gray">
+                <ul className="list-disc">
+                  <li> {data?.findJob.posted} </li>
+                </ul>
+              </div>
             </div>
             <div className="text-black font-bold text-xl grid content-center">
               {data?.findJob.title}
@@ -110,8 +115,8 @@ export default function JobListing() {
         aria-describedby="parent-modal-description"
       >
         <div className="z-1 shadow-xl my-72 md:my-92 lg:my-52 mx-4 md:mx-12">
-          <Card sx={{  }}>
-            <ApplicationForm job_id={params.job as unknown as number}/>
+          <Card sx={{}}>
+            <ApplicationForm job_id={params.job as unknown as number} />
           </Card>
         </div>
       </Modal>

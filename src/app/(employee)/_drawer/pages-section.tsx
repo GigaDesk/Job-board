@@ -28,6 +28,22 @@ export default function PagesSection() {
           )}
         </Link>
         <Link
+          href="/employee/profile"
+          onClick={() => {
+            SideDrawerState.show = false;
+          }}
+        >
+          {route.instance == "Profile" ? (
+            <div className="pl-4 py-2 rounded-full bg-light-blue text-bright-blue hover:bg-hover-gray hover:text-black cursor-pointer">
+              Profile
+            </div>
+          ) : (
+            <div className="pl-4 py-2 rounded-full text-black hover:bg-hover-gray hover:text-black cursor-pointer">
+              Profile
+            </div>
+          )}
+        </Link>
+        <Link
           href="/employee/applications"
           onClick={() => {
             SideDrawerState.show = false;
