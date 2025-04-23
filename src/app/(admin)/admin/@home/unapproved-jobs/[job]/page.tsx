@@ -23,6 +23,7 @@ const FIND_UNAPPROVEDJOB_QUERY = gql(`
       location
       educationLevel
       experience
+      posted
       employer{
             name
         }
@@ -53,7 +54,11 @@ export default function UnapprovedJobListing() {
               <div className="text-black">
                 {data?.findUnapprovedJob.employer?.name}
               </div>
-              <div className="">Posted: 1 day ago</div>
+              <div className="text-black text-text-table-gray">
+                <ul className="list-disc">
+                  <li> {data?.findUnapprovedJob.posted} </li>
+                </ul>
+              </div>
             </div>
             <div className="text-black font-bold text-xl grid content-center">
               {data?.findUnapprovedJob.title}
@@ -68,7 +73,8 @@ export default function UnapprovedJobListing() {
               Industry: {data?.findUnapprovedJob.industry}
             </div>
             <div className="text-text-table-gray">
-              Deadline: {ToLocalDate(data?.findUnapprovedJob.deadline as string)}
+              Deadline:{" "}
+              {ToLocalDate(data?.findUnapprovedJob.deadline as string)}
             </div>
           </div>
           <div className="grid grid-rows-[50px_1fr]">

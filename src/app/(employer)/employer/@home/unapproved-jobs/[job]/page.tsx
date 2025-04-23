@@ -10,7 +10,7 @@ import DeleteUnapprovedJobButton from "../delete-unapprovedjob-button";
 import { ToLocalDate } from "@/utils/time-manipulation/toLocal";
 
 const FIND_UNAPPROVEDJOB_QUERY = gql(`
-  query findUnapprovedJob($id: Int!){
+  query findEmployerUnapprovedJob($id: Int!){
     findUnapprovedJob(id: $id){
       id
       title
@@ -19,6 +19,7 @@ const FIND_UNAPPROVEDJOB_QUERY = gql(`
       description
       requirements
       level
+      posted
       location
       educationLevel
       experience
@@ -46,7 +47,11 @@ export default function JobListing() {
       <div className="w-full md:w-[700px] lg:w-[750px] text-black">
         <div className="grid gap-8">
           <div className="grid gap-4">
-            <div className="">Posted: 1 day ago</div>
+            <div className="text-text-table-gray">
+              <ul className="list-disc pl-4">
+                <li> {data?.findUnapprovedJob.posted} </li>
+              </ul>
+            </div>
             <div className="text-black font-bold text-xl grid content-center">
               {data?.findUnapprovedJob.title}
             </div>
