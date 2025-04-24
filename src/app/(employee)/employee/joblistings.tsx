@@ -15,6 +15,7 @@ query getlistingJobs($filters: JobsFilterParameters) {
     title
     description
     location
+    posted
     employer{
       name
     }
@@ -85,6 +86,7 @@ export default function JobListings() {
               location={job.location}
               description={job.description}
               company={job.employer?.name}
+              posted={job.posted}
             />
           </div>
         ))}

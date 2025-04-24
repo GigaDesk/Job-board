@@ -9,12 +9,13 @@ import { FilterInstance } from "@/state/store";
 import { useEffect } from "react";
 
 const GET_JOB_LISTING_QUERY = gql(`
-query getlistingJobs($filters: JobsFilterParameters) {
+query getlistingJobs1($filters: JobsFilterParameters) {
   getJobs(filterparameters: $filters){
     id
     title
     description
     location
+    posted
     employer{
       name
     }
@@ -85,6 +86,7 @@ export default function JobListings() {
               location={job.location}
               description={job.description}
               company={job.employer?.name}
+              posted={job.posted}
             />
           </div>
         ))}
