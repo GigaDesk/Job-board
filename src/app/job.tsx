@@ -13,6 +13,7 @@ export interface JobProps {
   location: string | null | undefined;
   description: string;
   company?: string | null;
+  posted: string;
 }
 
 export default function Job(props: JobProps) {
@@ -31,16 +32,14 @@ export default function Job(props: JobProps) {
         resize: "horizontal",
       }}
     >
-      <div className="grid grid-cols-[50px_1fr]">
-        <div className="">
-          <Avatar src="/static/images/avatar/1.jpg" size="lg" />
-        </div>
-        <div className=" grid content-center pl-4">{props.company}</div>
+      <div className="grid">
+        <div className=" grid content-center">{props.company}</div>
       </div>
       <CardContent>
         <div className="h-12 overflow-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-border-gray hover:[&::-webkit-scrollbar-thumb]:bg-hover-gray  [&::-webkit-scrollbar-thumb]:rounded-full">
           <Typography level="title-lg">{props.title}</Typography>
         </div>
+        <Typography level="body-md"> {props.posted} </Typography>
         <Typography level="body-md"> {props.location} </Typography>
         <div className="mt-4 h-32 overflow-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-border-gray hover:[&::-webkit-scrollbar-thumb]:bg-hover-gray  [&::-webkit-scrollbar-thumb]:rounded-full">
           <Typography level="body-sm">{props.description}</Typography>
