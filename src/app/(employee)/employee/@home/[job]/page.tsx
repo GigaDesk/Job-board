@@ -9,6 +9,7 @@ import { Button } from "@mui/joy";
 import Modal from "@mui/material/Modal";
 import Card from "@mui/material/Card";
 import ApplicationForm from "./application-form";
+import { Link } from "@mui/material";
 
 const FIND_ADMIN_JOB_QUERY = gql(`
   query findEmployeeJob($id: Int!){
@@ -26,6 +27,7 @@ const FIND_ADMIN_JOB_QUERY = gql(`
       experience
       employer{
         name
+        Website
       }
     }
   }
@@ -55,7 +57,15 @@ export default function JobListing() {
         <div className="grid gap-8">
           <div className="grid gap-4">
             <div className="grid grid-cols-2">
-              <div className="text-black">{data?.findJob.employer?.name}</div>
+            <Link
+            href={
+              data?.findJob.employer?.Website != null
+                ? data.findJob.employer.Website
+                : undefined
+            }
+          >
+              {data?.findJob.employer?.name}
+            </Link>
               <div className="text-text-table-gray">
                 <ul className="list-disc">
                   <li> {data?.findJob.posted} </li>

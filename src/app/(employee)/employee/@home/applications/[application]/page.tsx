@@ -17,6 +17,7 @@ const FIND_JOB_APPLICATION_QUERY = gql(`
       employer{
         id
         name
+        Website
       }
       title
     }
@@ -64,7 +65,15 @@ export default function JobListing() {
           </div>
           <div className="text-text-table-gray">
             <span className="text-black"> Company: </span>
-            {data?.findApplication.job.employer?.name}
+            <Link
+              href={
+                data?.findApplication.job.employer?.Website != null
+                  ? data.findApplication.job.employer.Website
+                  : undefined
+              }
+            >
+              {data?.findApplication.job.employer?.name}
+            </Link>
           </div>
           <div className="text-text-table-gray">
             <span className="text-black"> Status: </span>
