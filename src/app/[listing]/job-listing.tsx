@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 import Button from "@mui/joy/Button";
 import { useRouter } from "next/navigation";
 import { ToLocalDate } from "@/utils/time-manipulation/toLocal";
+import { Link } from "@mui/material";
 
 const FIND_JOB_QUERY = gql(`
   query findJob($id: Int!){
@@ -24,6 +25,7 @@ const FIND_JOB_QUERY = gql(`
       posted
       employer{
         name
+        Website
       }
     }
   }
@@ -48,7 +50,15 @@ export default function JobListing() {
     >
       <div className="grid gap-4">
         <div className="grid grid-cols-2">
-          <div className="text-black">{data?.findJob.employer?.name}</div>
+          <Link
+            href={
+              data?.findJob.employer?.Website != null
+                ? data.findJob.employer.Website
+                : undefined
+            }
+          >
+          {data?.findJob.employer?.name}
+          </Link>
           <div className="text-text-table-gray">
             <ul className="list-disc">
               <li> {data?.findJob.posted} </li>
