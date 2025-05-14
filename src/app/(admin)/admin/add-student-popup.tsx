@@ -16,6 +16,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { JobInstance } from "../state/store";
 import { useSnapshot } from "valtio";
 import { DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { useRouter } from "next/navigation";
 
 const CREATE_JOB_MUTATION = gql(`
   mutation createJob($newjob: NewJob!) {   
@@ -25,6 +26,13 @@ const CREATE_JOB_MUTATION = gql(`
  }
 `);
 export default function AddStudentPopup() {
+
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/admin/job-preview`);
+  };
+
   const [disableSubmit, setDisableSubmit] = React.useState(true);
 
   const jobinstance = useSnapshot(JobInstance);
@@ -235,6 +243,7 @@ export default function AddStudentPopup() {
           type="number"
           size="small"
         />
+         <Button onClick={handleClick}>Preview</Button>
         <Button
           disabled={disableSubmit}
           sx={{ fontFamily: "McLaren" }}
