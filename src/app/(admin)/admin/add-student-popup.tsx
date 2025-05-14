@@ -16,6 +16,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { JobInstance } from "../state/store";
 import { useSnapshot } from "valtio";
 import { DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { useRouter } from "next/navigation";
 
 const CREATE_JOB_MUTATION = gql(`
   mutation createJob($newjob: NewJob!) {   
@@ -25,6 +26,13 @@ const CREATE_JOB_MUTATION = gql(`
  }
 `);
 export default function AddStudentPopup() {
+
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/admin/job-preview`);
+  };
+
   const [disableSubmit, setDisableSubmit] = React.useState(true);
 
   const jobinstance = useSnapshot(JobInstance);
@@ -49,6 +57,46 @@ export default function AddStudentPopup() {
     if (value != null) {
       JobInstance.instance.deadline = value.toISOString();
     }
+  };
+
+  const handleChangeExternalApplicationLink = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    JobInstance.instance.externalApplicationLink = e.target.value;
+  };
+
+  const handleChangeCompanyName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    JobInstance.instance.companyName = e.target.value;
+  };
+
+  const handleChangeCompanyLocation = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    JobInstance.instance.companyLocation = e.target.value;
+  };
+
+  const handleChangeCompanyIndustry = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    JobInstance.instance.companyIndustry = e.target.value;
+  };
+
+  const handleChangeCompanyDescription = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    JobInstance.instance.companyDescription = e.target.value;
+  };
+
+  const handleChangeMinimumEmployees = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    JobInstance.instance.minimumEmployees = e.target.value as unknown as number;
+  };
+
+  const handleChangeMaximumEmployees = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    JobInstance.instance.maximumEmployees = e.target.value as unknown as number;
   };
 
   const handleStringValue = (s: string) => {
@@ -150,6 +198,52 @@ export default function AddStudentPopup() {
           </DemoItem>
         </LocalizationProvider>
         <QualificationsPopup />
+        <TextField
+          placeholder="External Application Link"
+          onChange={handleChangeExternalApplicationLink}
+          value={jobinstance.instance.externalApplicationLink}
+          size="small"
+        />
+        <TextField
+          placeholder="Company Name"
+          onChange={handleChangeCompanyName}
+          value={jobinstance.instance.companyName}
+          size="small"
+        />
+        <TextField
+          placeholder="Company Location"
+          onChange={handleChangeCompanyLocation}
+          value={jobinstance.instance.companyLocation}
+          size="small"
+        />
+        <TextField
+          placeholder="Company Industry"
+          onChange={handleChangeCompanyIndustry}
+          value={jobinstance.instance.companyIndustry}
+          size="small"
+        />
+        <TextField
+          placeholder="Company Description"
+          onChange={handleChangeCompanyDescription}
+          value={jobinstance.instance.companyDescription}
+          maxRows={4}
+          size="small"
+        />
+        <TextField
+          placeholder="Minimum Number of Employees"
+          onChange={handleChangeMinimumEmployees}
+          value={jobinstance.instance.minimumEmployees}
+          type="number"
+          size="small"
+        />
+        <TextField
+          placeholder="Maximum Number of Employees"
+          onChange={handleChangeMaximumEmployees}
+          value={jobinstance.instance.maximumEmployees}
+          type="number"
+          size="small"
+        />
+         <Button onClick={handleClick}>Preview</Button>
         <Button
           disabled={disableSubmit}
           sx={{ fontFamily: "McLaren" }}
@@ -175,6 +269,27 @@ export default function AddStudentPopup() {
                   maxSalary: jobinstance.instance.maxSalary,
                   requirements: handleStringArrayValue(
                     JobInstance.instance.requirements
+                  ),
+                  jobUrl: handleStringValue(
+                    jobinstance.instance.externalApplicationLink
+                  ),
+                  companyName: handleStringValue(
+                    jobinstance.instance.companyName
+                  ),
+                  companyLocation: handleStringValue(
+                    jobinstance.instance.companyLocation
+                  ),
+                  companyIndustry: handleStringValue(
+                    jobinstance.instance.industry
+                  ),
+                  companyDescription: handleStringValue(
+                    jobinstance.instance.companyDescription
+                  ),
+                  MinimumEmployees: handleNumberStringValue(
+                    jobinstance.instance.minimumEmployees
+                  ),
+                  MaximumEmployees: handleNumberStringValue(
+                    jobinstance.instance.maximumEmployees
                   ),
                 },
               },

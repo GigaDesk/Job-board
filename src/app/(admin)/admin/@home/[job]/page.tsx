@@ -22,6 +22,13 @@ const FIND_ADMIN_JOB_QUERY = gql(`
       level
       location
       educationLevel
+      jobUrl
+      companyName
+      companyLocation
+      companyIndustry
+      companyDescription
+      MinimumEmployees
+      MaximumEmployees
       experience
       posted
       employer{
@@ -109,6 +116,55 @@ export default function JobListing() {
               </div>
             </div>
           </div>
+          {data?.findJob.companyName != null ||
+          data?.findJob.companyLocation != null ||
+          data?.findJob.companyIndustry != null ||
+          data?.findJob.MinimumEmployees != null ||
+          data?.findJob.MaximumEmployees != null ||
+          data?.findJob.companyDescription != null ? (
+            <div className="grid gap-4">
+              <div className="text-black font-bold text-md grid content-center">
+                Company Details
+              </div>
+
+              {data?.findJob.companyName != null ? (
+                <div className="text-text-table-gray grid content-center">
+                  Company Name: {data?.findJob.companyName}
+                </div>
+              ) : null}
+
+              {data?.findJob.companyLocation != null ? (
+                <div className="text-text-table-gray">
+                  Company Location: {data?.findJob.companyLocation}
+                </div>
+              ) : null}
+
+              {data?.findJob.companyIndustry != null ? (
+                <div className="text-text-table-gray grid content-center">
+                  Company Industry: {data?.findJob.companyIndustry}
+                </div>
+              ) : null}
+
+              {data?.findJob.MinimumEmployees != null &&
+              data?.findJob.MaximumEmployees != null ? (
+                <div className="text-text-table-gray">
+                  Company Size: {data?.findJob.MinimumEmployees} -{" "}
+                  {data?.findJob.MaximumEmployees} employees
+                </div>
+              ) : null}
+
+              {data?.findJob.companyDescription != null ? (
+                <div className="grid grid-rows-[50px_1fr]">
+                  <div className="text-black text-md font-bold">
+                    Company Description
+                  </div>
+                  <div className="text-text-table-gray ">
+                    {data?.findJob.companyDescription}
+                  </div>
+                </div>
+              ) : null}
+            </div>
+          ) : null}
           <div className="grid grid-cols-[100px_100px]">
             <DeleteJobButton id={data?.findJob.id as number} />
             <Button
