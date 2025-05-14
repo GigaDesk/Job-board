@@ -3,7 +3,7 @@
 import React from "react";
 import Button from "@mui/joy/Button";
 import { Link } from "@mui/material";
-import { JobInstance } from "@/app/(admin)/state/store";
+import { JobInstance } from "@/app/(employer)/state/store";
 import { useSnapshot } from "valtio";
 
 export default function JobListing() {
