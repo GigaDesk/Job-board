@@ -24,6 +24,13 @@ export interface NewJob {
   minSalary: number | undefined;
   maxSalary: number | undefined;
   requirements: string[];
+  externalApplicationLink: string;
+  companyName: string;
+  companyLocation: string;
+  companyIndustry: string;
+  companyDescription: string;
+  minimumEmployees: number | "";
+  maximumEmployees: number | "";
 }
 
 export const ForgotSchoolPasswordInstance = proxy({
@@ -51,6 +58,14 @@ export const JobInstance = proxy({
     minSalary: undefined,
     maxSalary: undefined,
     requirements:[""],
+    externalApplicationLink: "",
+    companyName: "",
+    companyLocation: "",
+    companyIndustry: "",
+    companyDescription: "",
+    minimumEmployees:"",
+    maximumEmployees: ""
+
   } as NewJob,
 });
 
