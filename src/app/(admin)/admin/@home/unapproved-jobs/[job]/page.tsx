@@ -22,6 +22,13 @@ const FIND_UNAPPROVEDJOB_QUERY = gql(`
       level
       location
       educationLevel
+      jobUrl
+      companyName
+      companyLocation
+      companyIndustry
+      companyDescription
+      MinimumEmployees
+      MaximumEmployees
       experience
       posted
       employer{
@@ -106,6 +113,55 @@ export default function UnapprovedJobListing() {
               </div>
             </div>
           </div>
+          {data?.findUnapprovedJob.companyName != null ||
+          data?.findUnapprovedJob.companyLocation != null ||
+          data?.findUnapprovedJob.companyIndustry != null ||
+          data?.findUnapprovedJob.MinimumEmployees != null ||
+          data?.findUnapprovedJob.MaximumEmployees != null ||
+          data?.findUnapprovedJob.companyDescription != null ? (
+            <div className="grid gap-4">
+              <div className="text-black font-bold text-md grid content-center">
+                Company Details
+              </div>
+
+              {data?.findUnapprovedJob.companyName != null ? (
+                <div className="text-text-table-gray grid content-center">
+                  Company Name: {data?.findUnapprovedJob.companyName}
+                </div>
+              ) : null}
+
+              {data?.findUnapprovedJob.companyLocation != null ? (
+                <div className="text-text-table-gray">
+                  Company Location: {data?.findUnapprovedJob.companyLocation}
+                </div>
+              ) : null}
+
+              {data?.findUnapprovedJob.companyIndustry != null ? (
+                <div className="text-text-table-gray grid content-center">
+                  Company Industry: {data?.findUnapprovedJob.companyIndustry}
+                </div>
+              ) : null}
+
+              {data?.findUnapprovedJob.MinimumEmployees != null &&
+              data?.findUnapprovedJob.MaximumEmployees != null ? (
+                <div className="text-text-table-gray">
+                  Company Size: {data?.findUnapprovedJob.MinimumEmployees} -{" "}
+                  {data?.findUnapprovedJob.MaximumEmployees} employees
+                </div>
+              ) : null}
+
+              {data?.findUnapprovedJob.companyDescription != null ? (
+                <div className="grid grid-rows-[50px_1fr]">
+                  <div className="text-black text-md font-bold">
+                    Company Description
+                  </div>
+                  <div className="text-text-table-gray ">
+                    {data?.findUnapprovedJob.companyDescription}
+                  </div>
+                </div>
+              ) : null}
+            </div>
+          ) : null}
           <div>
             <div className="grid grid-cols-[100px_100px_100px]">
               <ApproveJobButton id={data?.findUnapprovedJob.id as number} />
